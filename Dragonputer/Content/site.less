@@ -1,0 +1,207 @@
+﻿@import "bootstrap/bootstrap.less";
+
+
+@input-border-focus: #66afe9;
+@input-bg: #111;
+@input-border: #555;
+
+body {
+    background-color: #333;
+}
+
+.app-bar {
+    .navbar;
+    .navbar-inverse;
+    .navbar-fixed-top;
+}
+
+.app-logo {
+    .navbar-brand;
+    color: #ddd;
+}
+
+.user-menu {
+    .navbar-collapse;
+    .collapse;
+}
+
+.user-menu-links {
+    .nav;
+    .navbar-nav;
+}
+
+.character-sheet {
+    .container-fixed;
+    min-height: 200px;
+    overflow: auto;
+    color: #eee;
+}
+
+.cs-section {
+    float: left;
+    border-right: 1px solid #000;
+    padding: 15px 10px;
+    width: 300px;
+    height: 100%;
+    margin: @navbar-height 0;
+    top: 0px;
+    -webkit-overflow-scrolling: touch;
+    overflow-y: auto;
+    position: fixed;
+}
+.cs-section:nth-child(1) {
+    left: 0px;
+}
+.cs-section:nth-child(2) {
+    left: 300px;
+}
+.cs-section:nth-child(3) {
+    left: 600px;
+}
+.cs-section:nth-child(4) {
+    left: 900px;
+}
+
+.cs-section:last-child {
+    border-right: none;
+}
+
+
+.cs-field-block {
+    .clearfix;
+    white-space: nowrap;
+    text-overflow:clip;
+    overflow: hidden;
+}
+
+.cs-header-block {
+    .clearfix;
+    font-size: 10px;
+    border-bottom: 1px solid #555;
+    margin-bottom: 10px;
+}
+
+.cs-field-block > *,
+.cs-header-block > * {
+    float: left;
+}
+
+.cs-section-label {
+    .clearfix;
+    float: none;
+    display: block;
+    text-transform: uppercase;
+    font-size: 18px;
+    background: #111;
+    padding: 6px;
+}
+
+.cs-abil-value {
+    .form-control;
+    width: 70px;
+    color: #fafafa;
+    font-weight: bold;
+    font-size: 16px;
+}
+.cs-abil-value-label {
+    width: 70px;
+}
+
+.cs-abil-type {
+    font-size: 24px;
+    margin-left: 15px;
+    width: 50px;
+}
+.cs-abil-type-label {
+    margin-left: 15px;
+    width: 50px;
+}
+
+.cs-fake-input {
+    background-color: @input-bg;
+    border: 1px solid @input-border;
+    padding: 4px 8px;
+    border-radius: @input-border-focus;
+}
+
+.cs-abil-mod, .cs-abil-mod-hl {
+    .text-center;
+    .cs-fake-input;
+    margin-left: 15px;
+    width: 34px;
+}
+
+.cs-abil-mod-label, 
+.cs-abil-mod-hl-label {    
+    margin-left: 15px;
+    padding: 0 8px;
+    width: 34px;
+}
+
+
+input.cs-def-component {
+    .form-control;
+    width: 32px;
+}
+span.cs-def-component {
+    .form-control-static;
+    .cs-fake-input;
+    width: 20px;
+}
+.cs-def-score {
+    .cs-fake-input;
+    font-size: 16px;
+    font-weight: bold;
+}
+.cs-def-type {
+    font-size: 24px;
+    width: 50px;
+    margin-left: 15px;
+}
+
+.cs-power-block {
+    margin: 5px 0;
+}
+.cs-power-body > * {
+    display: block;
+}
+.cs-power-head {
+    .panel-heading;
+    padding: 0;
+}
+.cs-power-name {
+    .panel-title;
+    font-weight: bold;
+    font-size: 16px;
+}
+.cs-power-used {
+    .pull-right;
+}
+.cs-power-body {
+    .panel-body;
+    padding: 0;
+}
+.cs-power-source {
+    .pull-right;
+    margin-top: -1 * @line-height-computed + 5px;
+    font-size: 10px;
+}
+.cs-power-flavor {
+    font-style: italic;
+    font-size: 12px;
+}
+.cs-power-properties {
+
+}
+.cs-power-range {
+
+}
+.cs-power-target {
+
+}
+.cs-power-attack {
+
+}
+.cs-power-desc {
+
+}
