@@ -22,182 +22,11 @@
         </div>
         <form class="character-sheet">
             @Html.Partial("_Abilities")
-            <fieldset class="cs-section">
-                <h3 class="cs-section-label">At-will powers</h3>
-                @* Accordian these *@
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Flame Seed</a>
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-                        <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-                        <span class="cs-power-range">Ranged: 10</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-                    </div>
-                </div>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Grasping Claws</a>
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-                        <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-                        <span class="cs-power-range">Melee: touch</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-                    </div>
-                </div>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Flame Seed</a>
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-                        <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-                        <span class="cs-power-range">Ranged: 10</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-                    </div>
-                </div>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Grasping Claws</a>
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-                        <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-                        <span class="cs-power-range">Melee: touch</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-                    </div>
-                </div>
-                <h3 class="cs-section-label">Encounter powers</h3>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Flame Seed</a>
-                        <input type="checkbox" class="cs-power-used" />
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-                        <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-                        <span class="cs-power-range">Ranged: 10</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-                    </div>
-                </div>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Grasping Claws</a>
-                        <input type="checkbox" class="cs-power-used" />
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-                        <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-                        <span class="cs-power-range">Melee: touch</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-                    </div>
-                </div>
-                <h3 class="cs-section-label">Daily powers</h3>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Flame Seed</a>
-                        <input type="checkbox" class="cs-power-used" />
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-                        <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-                        <span class="cs-power-range">Ranged: 10</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-                    </div>
-                </div>
-                <div class="cs-power-block">
-                    <div class="cs-power-head">
-                        <a class="cs-power-name" href="#">Grasping Claws</a>
-                        <input type="checkbox" class="cs-power-used" />
-                    </div>
-                    <div class="cs-power-body">
-                        <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-                        <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-                        <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-                        <span class="cs-power-range">Melee: touch</span>
-                        <span class="cs-power-target">Target: One creature </span>
-                        <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-                        <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-                    </div>
-                </div>
-                <h3 class="cs-section-label">Rituals</h3>
-            </fieldset>
-            <fieldset class="cs-section">
-                <div class="cs-field">
-                    <label>STR</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>CON</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>DEX</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>INT</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>WIS</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>CHA</label>
-                    <input type="number" />
-                </div>
-            </fieldset>
-            <fieldset class="cs-section">
-                <div class="cs-field">
-                    <label>STR</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>CON</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>DEX</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>INT</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>WIS</label>
-                    <input type="number" />
-                </div>
-                <div class="cs-field">
-                    <label>CHA</label>
-                    <input type="number" />
-                </div>
-            </fieldset>
-
+            @Html.Partial("_Powers")
+            @Html.Partial("_Abilities")
+            @Html.Partial("_Powers")
+            @Html.Partial("_Abilities")
+            @Html.Partial("_Powers")
         </form>
 
         <script type="text/javascript" src="@Url.Content("~/Scripts/less-1.4.2.js")"></script>
@@ -212,6 +41,11 @@
                 $('.cs-power-name').click(function (e) {
                     e.preventDefault();
                     $(this).closest('.cs-power-block').children('.cs-power-body').slideToggle();
+                });
+                var left = 0;
+                $('.cs-section').each(function () {
+                    $(this).css({ 'left': left });
+                    left += $(this).outerWidth();
                 })
             });
         </script>
