@@ -6,28 +6,29 @@
         <title>glompix - dragonputer</title>
 
         <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/bootstrap/bootstrap.less")" />
-        <link rel="stylesheet" type="text/css" href="@Url.Content("~/Content/font-awesome.css")" />
+        <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
         <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/site.less")" />
     </head>
     <body>
-        <div class="app-bar">
+        <nav class="app-bar">
             <div class="app-logo">
-                <i class="fa-magic"></i> Dragonputer 
+                <i class="fa fa-lg fa-magic" ></i> Dragonputer 
             </div>
             <div class="user-menu">
                 <ul class="user-menu-links">
-                    <li><a href="#"><i class="fa-user"></i> glompix</a></li>
+                    <li>Level 5</li>
+                    <li><a href="#"><i class="fa fa-user"></i> glompix</a></li>
                 </ul>
             </div>
+        </nav>
+        <div class="character-sheet">
+            @Html.Partial("_Abilities")
+            @Html.Partial("_Powers")
+            @Html.Partial("_Abilities")
+            @Html.Partial("_Powers")
+            @Html.Partial("_Abilities")
+            @Html.Partial("_Powers")
         </div>
-        <form class="character-sheet">
-            @Html.Partial("_Abilities")
-            @Html.Partial("_Powers")
-            @Html.Partial("_Abilities")
-            @Html.Partial("_Powers")
-            @Html.Partial("_Abilities")
-            @Html.Partial("_Powers")
-        </form>
 
         <script type="text/javascript" src="@Url.Content("~/Scripts/less-1.4.2.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/angular.js")"></script>
