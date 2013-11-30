@@ -34,6 +34,7 @@
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.6.2.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.easing.1.3.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/app/dragonputer.js")"></script>   
         <script type="text/javascript">
             $(document).ready(function () {
@@ -46,6 +47,37 @@
                 $('.cs-section').each(function () {
                     $(this).css({ 'left': left });
                     left += $(this).outerWidth();
+                });
+
+                $('.character-sheet').scroll(function () {
+                    clearTimeout($.data(this, 'scrollTimer'));
+                    $.data(this, 'scrollTimer', setTimeout(function () {
+                        var $sheet = $('.character-sheet');
+                        var $sections = $('.cs-section');
+                        var scrollLeft = $sheet.scrollLeft();
+                        var runningX = 0;
+                        var closestX = 0;
+                        var closestDistance = 9000;
+                        $sections.each(function (index) {
+                            // TODO: Optimization - stop iterating after sign change.
+                            var $section = $(this);
+                            var distance = Math.abs(runningX - scrollLeft);
+                            if (distance < closestDistance) {
+                                closestDistance = distance;
+                                closestX = runningX;
+                            }
+                            runningX += $section.outerWidth();
+                        });
+
+                        var leftScrollable = runningX - $(window).outerWidth(true);
+                        if (scrollLeft >= leftScrollable - 15) { // 15px of buffer to snap to right edge
+                            $sheet.scrollLeft(leftScrollable);
+                        }
+                        else {
+                            $sheet.animate({ scrollLeft: closestX }, 250);
+                        }
+                        console.log("Haven't scrolled in 250ms! Should snap to x " + closestX + '.');
+                    }, 150));
                 });
             });
         </script>

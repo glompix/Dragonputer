@@ -7,14 +7,14 @@
 
 body {
     background-color: #333;
-    height: 100%;
-    margin-top: @navbar-height;
+    padding-top: @navbar-height;
 }
 
 .app-bar {
     .navbar;
     .navbar-inverse;
     .navbar-fixed-top;
+    margin: 0;
 }
 
 .app-logo {
@@ -34,10 +34,10 @@ body {
 .character-sheet {
     .container-fixed;
     color: #eee;    
-    
     position: fixed;
     width: 100%;
-    height: 100%;
+    top: @navbar-height;
+    bottom: 0; 
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }

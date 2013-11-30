@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>jQuery.Easing</id>
+    <version>1.3.0.1</version>
+    <title>jQuery Easing</title>
+    <authors>George McGinley Smith</authors>
+    <owners>George McGinley Smith</owners>
+    <projectUrl>http://gsgd.co.uk/sandbox/jquery/easing/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A jQuery plugin from GSGD to give advanced easing options.</description>
+    <summary>A jQuery plugin from GSGD to give advanced easing options.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>jQuery plugins</tags>
+    <dependencies>
+      <dependency id="jQuery" version="1.4.4" />
+    </dependencies>
+  </metadata>
+</package>
