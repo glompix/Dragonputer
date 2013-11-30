@@ -37,18 +37,24 @@
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.easing.1.3.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/app/dragonputer.js")"></script>   
         <script type="text/javascript">
+            function alignSections() {
+                var left = 0;
+                $('.cs-section').each(function () {
+                    $(this).css({ 'left': left });
+                    left += $(this).outerWidth();
+                });
+            }
+
             $(document).ready(function () {
                 $('.cs-power-body').hide();
                 $('.cs-power-name').click(function (e) {
                     e.preventDefault();
                     $(this).closest('.cs-power-block').children('.cs-power-body').slideToggle();
                 });
-                var left = 0;
-                $('.cs-section').each(function () {
-                    $(this).css({ 'left': left });
-                    left += $(this).outerWidth();
-                });
-
+                
+                $(window).resize(alignSections);
+                alignSections();
+                
                 $('.character-sheet').scroll(function () {
                     clearTimeout($.data(this, 'scrollTimer'));
                     $.data(this, 'scrollTimer', setTimeout(function () {
