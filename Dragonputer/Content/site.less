@@ -114,6 +114,17 @@ body {
     }
 }
 
+.cs-label-lg {
+    font-size: 24px;
+    margin-left: 15px;
+    font-weight: bold;
+}
+
+.cs-label-md {
+    font-size: 20px;
+    margin-left: 15px;
+}
+
 .cs-section:last-child {
     border-right: none;
 }
@@ -149,7 +160,6 @@ body {
     font-size: 18px;
     padding: 0;
     margin: 0;
-
 }
 
 .cs-section-control {
@@ -170,8 +180,7 @@ body {
 }
 
 .cs-abil-type {
-    font-size: 24px;
-    margin-left: 15px;
+    .cs-label-lg;
     width: 50px;
 }
 .cs-abil-type-label {
@@ -241,9 +250,8 @@ span.cs-def-component {
     border-radius: @border-radius-base;
 }
 .cs-def-type {
-    font-size: 24px;
+    .cs-label-lg;
     width: 80px;
-    margin-left: 15px;
 }
 .cs-def-score-label {
     width: 52px;
@@ -309,9 +317,30 @@ span.cs-def-component {
     .text-muted;
 }
 
+.cs-status-current {
+    .cs-label-md;
+}
+.cs-current-hp-value {
+    .form-control;
+    .text-center;
+    margin-left: 15px;
+    width: 60px;
+ }
+.cs-current-hp-label, .cs-temp-hp-label {
+    .cs-label-lg;
+    margin-left: 5px;
+    width: 30px;
+}
+.cs-temp-hp-value {
+    .form-control;
+    .text-center;
+    margin-left: 15px;
+    width: 60px;
+}
 
 
-/* Hide spinners on input[type="number"] in Webkit. */
+
+/* Hide spinners on input[type="tel"] in Webkit. */
 /* http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-inputs-spin-box */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -319,6 +348,6 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
-input[type="number"] {
+input[type="tel"] {
     color: @input-border-focus;
 }
