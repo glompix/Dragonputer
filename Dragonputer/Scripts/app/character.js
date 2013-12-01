@@ -42,11 +42,20 @@
         return this.c.dexterity.mod() + this.c.halfLevel() + this.misc;
     }
 
-    function Power() {
-        this.name = '';
+    function HitPoints() {
+        this.current = 0;
+        this.temp = 0;
+        this.max = 0;
+        this.surgesPerDay = 0;
+    }
+    HitPoints.prototype.bloodied = function () { return Math.floor(this.max / 2.0); }
+    HitPoints.prototype.surgeValue = function () { return Math.floor(this.max / 4.0); }
+
+    function Power(type, name) {
+        this.type = type;
+        this.name = name;
         this.flavor = '';
-        this.properties = [];
-        this.properties.addItem = 'copy';
+        this.properties = '';
         this.range = '';
         this.target = '';
         this.attack = {
@@ -62,6 +71,8 @@
         this.experience = 9000;
         this.level = function () { return calculateLevel(this.experience); };
         this.halfLevel = function () { return Math.floor(this.level() / 2.0); };
+
+        this.hitpoints = new HitPoints();
 
         this.strength = new Ability();
         this.constitution = new Ability();
@@ -79,7 +90,14 @@
         this.lastSaved = new Date();
 
         this.powers = [];
-        this.powers.addItem = function () { var p = new Power(); powers.push(p); return p; };
+        this.powers.add = function (type, name) {
+            console.log(name);
+            if (type && !name)
+                return null;
+            var p = new Power(type, name);
+            this.push(p);
+            return p;
+        };
 
         this.json = function () { return JSON.stringify(this, censor('c')); }
 
@@ -93,14 +111,15 @@
                 if (target.hasOwnProperty(prop)) {
                     var sourceObj = m[prop];
                     var sourceType = typeof sourceObj;
-                    if (sourceObj instanceof Array && target[prop].addItem) {
+                    if (sourceObj instanceof Array && target[prop].add) {
+                        console.log(sourceObj, target[prop]);
                         target[prop].length = 0;
                         for (var i = 0; i < sourceObj.length; i++) {
                             if (target[prop].addItem === 'copy') {
                                 target[prop].push(sourceObj);
                             }
-                            else if (typeof target[prop].addItem === 'function') {
-                                var p = target[prop].addItem();
+                            else if (typeof target[prop].add === 'function') {
+                                var p = target[prop].add();
                                 copyObject(sourceObj[i], p);
                             }
                         }

@@ -1,147 +1,84 @@
 ﻿<fieldset class="cs-section cs-powers">
+    <script type="text/ng-template" id="new-power-form">
+    </script>
     <div class="cs-section-header">
-        <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus" ></i></a>
+        <a class="cs-section-control" ng-init="$addAtWillPower = false" ng-click="$addAtWillPower = !$addAtWillPower" ng-hide="$addAtWillPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">At-will powers</h3>
     </div>
-    @* Accordian these *@
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Flame Seed</a>
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-            <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-            <span class="cs-power-range">Ranged: 10</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-        </div>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Grasping Claws</a>
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-            <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-            <span class="cs-power-range">Melee: touch</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-        </div>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Flame Seed</a>
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-            <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-            <span class="cs-power-range">Ranged: 10</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-        </div>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Grasping Claws</a>
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-            <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-            <span class="cs-power-range">Melee: touch</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-        </div>
-    </div>
-    
-    <div class="cs-section-header">
-        <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Encounter powers</h3>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Second Wind</a>
-            <input type="checkbox" class="cs-power-used" />
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-flavor">You feel a second wind.</span>
-            <ul class="cs-power-properties"><li>Basic</li></ul>
-            <span class="cs-power-target">Target: Self</span>
-            <span class="cs-power-desc">Use a healing surge.</span>
-        </div>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Flame Seed</a>
-            <input type="checkbox" class="cs-power-used" />
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-            <ul class="cs-power-properties">Fire, Implement, Primal, Zone</ul>
-            <span class="cs-power-range">Ranged: 10</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-        </div>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Grasping Claws</a>
-            <input type="checkbox" class="cs-power-used" />
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-            <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-            <span class="cs-power-range">Melee: touch</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-        </div>
-    </div>
+    <ul>
+        <li class="cs-new-power-form" ng-show="$addAtWillPower">
+            <button class="cs-new-power-button" ng-click="c.powers.add('at-will', $newPowerName); $newPowerName = ''; $addAtWillPower = false;">Add</button>
+            <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
+        </li>
+        @* Accordian these *@
+        <li class="cs-power-block" ng-repeat="power in c.powers | filter: { type: 'at-will' }">
+            <div class="cs-power-head">
+                <a class="cs-power-name">{{ power.name }}</a>
+            </div>
+            <div class="cs-power-body">
+                <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
+                <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
+                <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
+                <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
+                <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
+                <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea>@* TODO: [ABIL] highlighting filter. *@
+                <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
+            </div>
+        </li>
+    </ul>
 
     <div class="cs-section-header">
-        <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
+        <a class="cs-section-control" ng-init="$addEncounterPower = false" ng-click="$addEncounterPower = !$addEncounterPower" ng-hide="$addEncounterPower"><i class="fa fa-plus"></i></a>
+        <h3 class="cs-section-label">Encounter powers</h3>
+    </div>
+    <ul>
+        <li class="cs-new-power-form" ng-show="$addEncounterPower">
+            <button class="cs-new-power-button" ng-click="c.powers.add('encounter', $newPowerName); $newPowerName = ''; $addEncounterPower = false;">Add</button>
+            <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
+        </li>
+        @* Accordian these *@
+        <li class="cs-power-block" ng-repeat="power in c.powers | filter: { type: 'encounter' }">
+            <div class="cs-power-head">
+                <a class="cs-power-name">{{ power.name }}</a>
+            </div>
+            <div class="cs-power-body">
+                <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
+                <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
+                <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
+                <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
+                <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
+                <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea>@* TODO: [ABIL] highlighting filter. *@
+                <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
+            </div>
+        </li>
+    </ul>
+
+    <div class="cs-section-header">
+        <a class="cs-section-control" ng-init="$addDailyPower = false" ng-click="$addDailyPower = !$addDailyPower" ng-hide="$addDailyPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Daily powers</h3>
     </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Flame Seed</a>
-            <input type="checkbox" class="cs-power-used" />
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You hurl a seed infused with primal energy at your foes. When it strikes the ground, the seed explodes in a fiery burst.</span>
-            <span class="cs-power-properties">Fire, Implement, Primal, Zone</span>
-            <span class="cs-power-range">Ranged: 10</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d6 fire damage, and the squares adjacent to the target become a fiery zone taht lasts until the end of your next turn. Any enemy that enters the zone or starts its turn there takes fire damage equal to your <code>WIS</code> modifier.</span>
-        </div>
-    </div>
-    <div class="cs-power-block">
-        <div class="cs-power-head">
-            <a class="cs-power-name" href="#">Grasping Claws</a>
-            <input type="checkbox" class="cs-power-used" />
-        </div>
-        <div class="cs-power-body">
-            <span class="cs-power-source">Druid Attack 1 (PHB2-85)</span>
-            <span class="cs-power-flavor">You rend and tear your foe with your claws, leaving it unable to escape your next assault.</span>
-            <span class="cs-power-properties">Beast Form, Implement, Primal</span>
-            <span class="cs-power-range">Melee: touch</span>
-            <span class="cs-power-target">Target: One creature </span>
-            <span class="cs-power-attack">Attack: <code>WIS</code> vs <code>REF</code></span>
-            <span class="cs-power-desc"><strong>Hit:</strong> 1d8 + <code>WIS</code> modifier damage, and the target is slowed until the end of your next turn.</span>
-        </div>
-    </div>
+    <ul>
+        <li class="cs-new-power-form" ng-show="$addDailyPower">
+            <button class="cs-new-power-button" ng-click="c.powers.add('daily', $newPowerName); $newPowerName = ''; $addDailyPower = false;">Add</button>
+            <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
+        </li>
+        @* Accordian these *@
+        <li class="cs-power-block" ng-repeat="power in c.powers | filter: { type: 'daily' }">
+            <div class="cs-power-head">
+                <a class="cs-power-name">{{ power.name }}</a>
+            </div>
+            <div class="cs-power-body">
+                <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
+                <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
+                <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
+                <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
+                <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
+                <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea>@* TODO: [ABIL] highlighting filter. *@
+                <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
+            </div>
+        </li>
+    </ul>
+        
     <div class="cs-section-header">
         <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Rituals</h3>

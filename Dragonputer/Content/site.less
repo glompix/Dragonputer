@@ -4,6 +4,11 @@
 @input-bg: #111;
 @input-border: #555;
 @input-padding: 6px 12px;
+@state-danger-color: #c9514c;
+@state-danger-text: @state-danger-color;
+@btn-default-bg: @input-bg;
+@btn-default-border: @input-border;
+@btn-default-color: #ccc;
 
 body {
     background: #333 url('images/drow-ranger-wallpaper.jpg') no-repeat left top;
@@ -265,6 +270,42 @@ span.cs-def-component {
     text-overflow: clip;
 }
 
+.cs-powers ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.cs-new-power-form {
+    margin: 5px;
+}
+.cs-new-power-name {
+    .form-control;
+    width: 70%;
+}
+.cs-new-power-button {
+    .btn;
+    .btn-default;
+    float: right;
+    margin-left: 10px;
+    width: 25%;
+    :hover {
+        border: 1px solid @input-border-focus;
+    }
+}
+.cs-power-block input, .cs-power-block textarea {
+    width: 100%;
+    background: #333;
+    color: #ccc;
+    border: 0;
+    .box-shadow(none);
+}
+.cs-power-attack input {
+    .form-control;
+    .text-center;
+    color: @input-border-focus;
+    display: inline;
+    width: 80px;
+}
 .cs-power-block {
     margin: 5px 0;
 }
@@ -286,11 +327,6 @@ span.cs-def-component {
 .cs-power-body {
     .panel-body;
     padding: 0 8px;
-}
-.cs-power-source {
-    .pull-right;
-    margin-top: -1 * @line-height-computed + 5px;
-    font-size: 10px;
 }
 .cs-power-flavor {
     font-style: italic;
@@ -338,6 +374,26 @@ span.cs-def-component {
     width: 60px;
 }
 
+.cs-max-hp-label, .cs-bloodied-hp-label,
+.cs-surges-day-label, .cs-surge-hp-label
+{
+    width: 60px;
+    margin-left: 15px;
+}
+
+.cs-max-hp-value, .cs-surges-day-value {
+    .form-control;
+    .text-center;
+    width: 60px;
+    margin-left: 15px;
+}
+
+.cs-bloodied-hp-value, .cs-surge-hp-value {
+    .cs-fake-input;
+    .text-center;
+    width: 60px;
+    margin-left: 15px;
+}
 
 
 /* Hide spinners on input[type="tel"] in Webkit. */
@@ -348,6 +404,11 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
-input[type="tel"] {
+input[type="tel"],input[type="text"] {
     color: @input-border-focus;
+}
+input[type="tel"].text-danger,
+input[type="text"].text-danger,
+.cs-fake-input.text-danger {
+    color: @state-danger-text;
 }
