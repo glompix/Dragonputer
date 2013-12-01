@@ -2,15 +2,17 @@
     @* INITIATIVE *@
     <div class="cs-header-block">
         <span class="cs-abil-value-label">score</span>
-        <span class="cs-abil-type-label">ability</span>
-        <span class="cs-abil-mod-label">mod</span>
-        <span class="cs-abil-mod-hl-label">+ ½ lvl</span>
+        <span class="cs-abil-type-label">&nbsp;</span>
+        <span class="cs-abil-mod-label">dex</span>
+        <span class="cs-abil-mod-hl-label">½ lvl</span>
+        <span class="cs-abil-misc-label">misc</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
-        <label class="cs-abil-type">INIT</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-value">{{ c.init.mod() }}</span>
+        <span class="cs-abil-type">INIT</span>
+        <span class="cs-abil-mod">{{ c.dexterity.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.halfLevel() }}</span>
+        <input class="cs-abil-misc" ng-model="c.init.misc" type="number" />
     </div>
 
     @* ABILITIES *@
@@ -24,40 +26,40 @@
         <span class="cs-abil-mod-hl-label">+ ½ lvl</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
+        <input class="cs-abil-value" type="number" ng-model="c.strength.value" />
         <label class="cs-abil-type">STR</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-mod">{{ c.strength.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.strength.mod() + halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
+        <input class="cs-abil-value" type="number" ng-model="c.constitution.value" />
         <label class="cs-abil-type">CON</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-mod">{{ c.constitution.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.constitution.mod() + halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
+        <input class="cs-abil-value" type="number" ng-model="c.dexterity.value" />
         <label class="cs-abil-type">DEX</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-mod">{{ c.dexterity.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.dexterity.mod() + halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
+        <input class="cs-abil-value" type="number" ng-model="c.intelligence.value" />
         <label class="cs-abil-type">INT</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-mod">{{ c.intelligence.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.intelligence.mod() + halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
+        <input class="cs-abil-value" type="number" ng-model="c.wisdom.value" />
         <label class="cs-abil-type">WIS</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-mod">{{ c.wisdom.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.wisdom.mod() + halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="number" value="10" />
+        <input class="cs-abil-value" type="number" ng-model="c.charisma.value" />
         <label class="cs-abil-type">CHA</label>
-        <span class="cs-abil-mod">2</span>
-        <span class="cs-abil-mod-hl">4</span>
+        <span class="cs-abil-mod">{{ c.charisma.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.charisma.mod() + halfLevel() }}</span>
     </div>
 
     @* DEFENSES *@
@@ -76,47 +78,47 @@
         <span class="cs-def-component-label">misc</span>
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">99</span>
+        <span class="cs-def-score">{{ c.armorClass.score() }}</span>
         <label class="cs-def-type">AC</label>
-        <span class="cs-def-component">12</span>
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" class="cs-def-component">
-        <input type="text" class="cs-def-component">
+        <span class="cs-def-component">{{ c.armorClass.base() }}</span>
+        <input class="cs-def-component" type="number" ng-model="c.armorClass.armor">
+        <input class="cs-def-component" type="number" ng-model="c.armorClass.classBonus" />
+        <input class="cs-def-component" type="number" ng-model="c.armorClass.feat" />
+        <input class="cs-def-component" type="number" ng-model="c.armorClass.enh" />
+        <input class="cs-def-component" type="number" ng-model="c.armorClass.misc1" />
+        <input class="cs-def-component" type="number" ng-model="c.armorClass.misc2" />
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">99</span>
+        <span class="cs-def-score">{{ c.fortitude.score() }}</span>
         <label class="cs-def-type">FORT</label>
-        <span class="cs-def-component">12</span>
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" class="cs-def-component">
-        <input type="text" class="cs-def-component">
+        <span class="cs-def-component">{{ c.fortitude.base() }}</span>
+        <input class="cs-def-component" type="number" ng-model="c.fortitude.armor">
+        <input class="cs-def-component" type="number" ng-model="c.fortitude.classBonus" />
+        <input class="cs-def-component" type="number" ng-model="c.fortitude.feat" />
+        <input class="cs-def-component" type="number" ng-model="c.fortitude.enh" />
+        <input class="cs-def-component" type="number" ng-model="c.fortitude.misc1" />
+        <input class="cs-def-component" type="number" ng-model="c.fortitude.misc2" />
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">99</span>
+        <span class="cs-def-score">{{ c.reflex.score() }}</span>
         <label class="cs-def-type">REF</label>
-        <span class="cs-def-component">12</span>
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" class="cs-def-component">
-        <input type="text" class="cs-def-component">
+        <span class="cs-def-component">{{ c.reflex.base() }}</span>
+        <input class="cs-def-component" type="number" ng-model="c.reflex.armor">
+        <input class="cs-def-component" type="number" ng-model="c.reflex.classBonus" />
+        <input class="cs-def-component" type="number" ng-model="c.reflex.feat" />
+        <input class="cs-def-component" type="number" ng-model="c.reflex.enh" />
+        <input class="cs-def-component" type="number" ng-model="c.reflex.misc1" />
+        <input class="cs-def-component" type="number" ng-model="c.reflex.misc2" />
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">99</span>
+        <span class="cs-def-score">{{ c.willpower.score() }}</span>
         <label class="cs-def-type">WILL</label>
-        <span class="cs-def-component">12</span>
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" value="2" class="cs-def-component">
-        <input type="text" class="cs-def-component">
-        <input type="text" class="cs-def-component">
+        <span class="cs-def-component">{{ c.willpower.base() }}</span>
+        <input class="cs-def-component" type="number" ng-model="c.willpower.armor">
+        <input class="cs-def-component" type="number" ng-model="c.willpower.classBonus" />
+        <input class="cs-def-component" type="number" ng-model="c.willpower.feat" />
+        <input class="cs-def-component" type="number" ng-model="c.willpower.enh" />
+        <input class="cs-def-component" type="number" ng-model="c.willpower.misc1" />
+        <input class="cs-def-component" type="number" ng-model="c.willpower.misc2" />
     </div>
 </fieldset>

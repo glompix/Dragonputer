@@ -17,24 +17,57 @@
             <div class="user-menu">
                 <ul class="user-menu-links">
                     <li><a href="#"><i class="fa fa-user"></i> glompix</a></li>
+                    <li><a href="#">Level {{ c.level() }}</a></li>
                 </ul>
             </div>
         </nav>
-        <div class="character-sheet">
+        <form class="character-sheet" ng-controller="CharacterSheetController">
+            @Html.Partial("_Abilities")
+            @Html.Partial("_Powers")
+            <fieldset class="cs-section cs-status">
+                <div class="cs-section-header">
+                    <h3 class="cs-section-label">Hit Points</h3>
+                </div>
+                <div class="cs-field-block">
+                    <span class="cs-status-current">Current</span>
+                    <input class="cs-current-hp-value" type="number" value="62" />
+                    <label class="cs-current-hp-label">HP</label>
+                    <input class="cs-temp-hp-value" type="number" value="13" />
+                    <label class="cs-temp-hp-label">Temp</label>
+                </div>
+                <div class="cs-header-block">
+                    <span class="cs-hp-max-label">Max HP</span>
+                    <span class="cs-hp-max-label">Bloodied</span>
+                    <span class="cs-hp-max-label">Surges/day</span>
+                    <span class="cs-hp-max-label">HP Value</span>
+                </div>
+                <div class="cs-field-block">
+                    <input class="cs-max-hp-value" type="number" value="62" />
+                    <input class="cs-bloodied-hp-value" type="number" value="62" />
+                    <input class="cs-surges-day-value" type="number" value="62" />
+                    <input class="cs-surge-hp-value" type="number" value="62" />
+                </div>
+                <div class="cs-section-header">
+                    <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
+                    <h3 class="cs-section-label">Status Effects</h3>
+                </div>
+                <div class="cs-section-header">
+                    <h3 class="cs-section-label">Action Points</h3>
+                </div>
+            </fieldset>
             @Html.Partial("_Abilities")
             @Html.Partial("_Powers")
             @Html.Partial("_Abilities")
             @Html.Partial("_Powers")
-            @Html.Partial("_Abilities")
-            @Html.Partial("_Powers")
-        </div>
+        </form>
 
         <script type="text/javascript" src="@Url.Content("~/Scripts/less-1.4.2.js")"></script>
-        <script type="text/javascript" src="@Url.Content("~/Scripts/angular.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-1.10.2.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/angular.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/modernizr-2.6.2.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.easing.1.3.js")"></script>
+        <script type="text/javascript" src="@Url.Content("~/Scripts/app/character.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/app/dragonputer.js")"></script>   
         <script type="text/javascript">
             function alignSections() {

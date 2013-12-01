@@ -114,7 +114,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\app\character\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -196,6 +195,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\character\character.js" />
     <Content Include="Scripts\app\dragonputer.js" />
     <Content Include="Scripts\errors.json" />
     <Content Include="Scripts\angular-touch.min.js.map" />
@@ -482,6 +482,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\_Abilities.cshtml" />
     <Content Include="Views\Home\_Powers.cshtml" />
+    <Content Include="Views\Home\_Status.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

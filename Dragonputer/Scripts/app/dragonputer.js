@@ -1,13 +1,10 @@
-﻿var dragonputer = angular.module('dragonputer', []);
+﻿(function () {
+    'use strict';
 
-/*
-dragonputer.config(function ($routeProvider) {
-    $routeProvider
-        .when('/', {
-            controller: 'CharacterController',
-            templateUrl: '',
+    var dragonputer = angular.module('dragonputer', []);
 
-        })
-        .otherwise({ redirectTo: '/' });
-});
-*/
+    dragonputer.controller('CharacterSheetController', ['$scope', function ($scope) {
+
+        $scope.c = new Character();
+    }]);
+})();

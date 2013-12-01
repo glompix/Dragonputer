@@ -6,7 +6,7 @@
 @input-padding: 6px 12px;
 
 body {
-    background-color: #333;
+    background: #333 url('images/drow-ranger-wallpaper.jpg') no-repeat left top;
     padding-top: @navbar-height;
 }
 
@@ -33,7 +33,9 @@ body {
 
 .character-sheet {
     .container-fixed;
-    color: #eee;    
+    color: #eee;
+    opacity: .9;
+    background-color: #333;  
     position: fixed;
     width: 100%;
     top: @navbar-height;
@@ -133,22 +135,25 @@ body {
 }
 
 .cs-abil-mod, .cs-abil-mod-hl {
-    .text-center;
     .cs-fake-input;
-    margin-left: 30px;
+    .text-center;
+    margin-left: 20px;
     width: 40px;
 }
-.cs-abil-mod-label {
-    margin-left: 30px;
+.cs-abil-misc {
+    .form-control;
+    .text-center;
+    color: #ddd;
+    margin-left: 20px;
+    width: 40px; 
+    padding: 4px 8px;
+    height: 30px;
+}
+.cs-abil-mod-label, .cs-abil-mod-hl-label, .cs-abil-misc-label {
+    margin-left: 20px;
     padding: 0;
     width: 40px;
 }
-.cs-abil-mod-hl-label {    
-    margin-left: 30px;
-    padding: 0;
-    width: 40px;
-}
-
 
 input.cs-def-component {
     .form-control;
@@ -250,4 +255,16 @@ span.cs-def-component {
 .cs-no-content {
     .text-center;
     .text-muted;
+}
+
+/* Hide spinners on input[type="number"] in Webkit. */
+/* http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-inputs-spin-box */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+input[type="number"] {
+    color: @input-border-focus;
 }
