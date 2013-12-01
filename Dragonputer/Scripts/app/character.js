@@ -9,7 +9,7 @@
     }
     Ability.prototype.mod = function () {
         return Math.floor((this.value - 10) / 2.0);
-    }
+    };
 
     /* Defense Score value type */
     function Defense(c, armor, classBonus, feat, enh, misc1, misc2) {
@@ -23,20 +23,104 @@
     }
     Defense.prototype.base = function () {
         return 10 + this.c.halfLevel();
-    }
+    };
     Defense.prototype.score = function () {
-        console.log(this);
-
         return this.base()
-            + this.armor
-            + this.classBonus
-            + this.feat
-            + this.enh
-            + this.misc1
-            + this.misc2;
+            + (this.armor || 0)
+            + (this.classBonus || 0)
+            + (this.feat || 0)
+            + (this.enh || 0)
+            + (this.misc1 || 0)
+            + (this.misc2 || 0);
+    };
+
+    function Initiative(c, misc) {
+        this.c = c;
+        this.misc = misc || 0;
+    }
+    Initiative.prototype.mod = function () {
+        return this.c.dexterity.mod() + this.c.halfLevel() + this.misc;
+    }
+
+    function Power() {
+        this.name = '';
+        this.flavor = '';
+        this.properties = [];
+        this.properties.addItem = 'copy';
+        this.range = '';
+        this.target = '';
+        this.attack = {
+            source: '',
+            target: ''
+        };
+        this.description = '';
+    }
+
+    /* Character model */
+    Character = function (source) {
+        this.name = 'glompix';
+        this.experience = 9000;
+        this.level = function () { return calculateLevel(this.experience); };
+        this.halfLevel = function () { return Math.floor(this.level() / 2.0); };
+
+        this.strength = new Ability();
+        this.constitution = new Ability();
+        this.dexterity = new Ability();
+        this.intelligence = new Ability();
+        this.wisdom = new Ability();
+        this.charisma = new Ability();
+
+        this.armorClass = new Defense(this);
+        this.fortitude = new Defense(this);
+        this.reflex = new Defense(this);
+        this.willpower = new Defense(this);
+
+        this.init = new Initiative(this);
+        this.lastSaved = new Date();
+
+        this.powers = [];
+        this.powers.addItem = function () { var p = new Power(); powers.push(p); return p; };
+
+        this.json = function () { return JSON.stringify(this, censor('c')); }
+
+        if (source) {
+            copyObject(source, this);
+        }
+
+        function copyObject(m, target) {
+            for (var prop in m) {
+                // One thing that sucks is that this will fail if the type of a property changes!
+                if (target.hasOwnProperty(prop)) {
+                    var sourceObj = m[prop];
+                    var sourceType = typeof sourceObj;
+                    if (sourceObj instanceof Array && target[prop].addItem) {
+                        target[prop].length = 0;
+                        for (var i = 0; i < sourceObj.length; i++) {
+                            if (target[prop].addItem === 'copy') {
+                                target[prop].push(sourceObj);
+                            }
+                            else if (typeof target[prop].addItem === 'function') {
+                                var p = target[prop].addItem();
+                                copyObject(sourceObj[i], p);
+                            }
+                        }
+                    }
+                    else if (m[prop].constructor === Date) {
+                        target[prop] = new Date(m[prop].getTime());
+                    }
+                    else if (sourceType === 'object') {
+                        copyObject(sourceObj, target[prop]);
+                    }
+                    else if (sourceType === 'string' || sourceType === 'number') {
+                        target[prop] = sourceObj;
+                    }
+                }
+            }
+        }
     };
 
     /* helper functions */
+    /* Calculate player level from XP based on 4e rules */
     function calculateLevel(experience) {
         if (experience < 0) { return 0; }
         else if (experience < 1000) { return 1; }
@@ -71,32 +155,16 @@
         else { return 30; }
     }
 
-    function Initiative(c, misc) {
-        this.c = c;
-        this.misc = misc || 0;
-    }
-    Initiative.prototype.mod = function () {
-        return this.c.dexterity.mod() + this.c.halfLevel() + this.misc;
+    // Function generator for excluding members from JSON.stringify()./
+    function censor(value) {
+        return function (k, v) {
+            if (k === value) {
+                return undefined;
+            }
+            else {
+                return v;
+            }
+        };
     }
 
-    /* Character model */
-    Character = function () {
-        this.experience = 9000;
-        this.level = function () { return calculateLevel(this.experience); };
-        this.halfLevel = function () { return Math.floor(this.level() / 2.0); };
-        
-        this.strength = new Ability(10);
-        this.constitution = new Ability(12);
-        this.dexterity = new Ability(12);
-        this.intelligence = new Ability(16);
-        this.wisdom = new Ability(16);
-        this.charisma = new Ability(13);
-
-        this.armorClass = new Defense(this, 0, 0, 0, 0, 0, 0);
-        this.fortitude = new Defense(this, 0, 0, 0, 0, 0, 0);
-        this.reflex = new Defense(this, 0, 0, 0, 0, 0, 0);
-        this.willpower = new Defense(this, 0, 0, 0, 0, 0, 0);
-
-        this.init = new Initiative(this, 0);
-    }
 })();

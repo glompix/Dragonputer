@@ -22,14 +22,46 @@ body {
     color: #ddd;
 }
 
+.app-playing-as {
+    .text-muted;
+    font-size: 80%;
+}
+
 .user-menu {
+    float: right;
 }
 
 .user-menu-links {
     .nav;
     .navbar-nav;
-    .pull-right;
 }
+
+.user-menu-text {
+    color: #ccc;
+}
+
+.user-menu-links [ng-click] {
+    cursor: pointer;
+    text-shadow: none;
+    transition: text-shadow 0.1s linear;
+    transition: color 0.1s linear;
+}
+.user-menu-links [ng-click].disabled {
+    color: #666;
+    cursor: default;
+}
+
+.user-menu-links [ng-click]:hover {
+    background-color: inherit;
+    color: #eee;
+    text-shadow: 1px 1px 3px rgba(230, 230, 230, 0.8);
+}
+.user-menu-links [ng-click].disabled:hover {
+    background-color: inherit;
+    color: #966;
+    text-shadow: 1px 1px 3px fade(#966, 80%);
+}
+
 
 .character-sheet {
     .container-fixed;
@@ -53,6 +85,26 @@ body {
     bottom: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: @grid-float-breakpoint)
+{
+    .user-menu {
+        width: 100%;
+        text-align: right;
+    }
+    .user-menu-links {
+        margin: 0 -15px;
+    }
+    .user-menu-links > * {
+        border-top: 1px solid #000;
+    }
+    .user-menu-links > :first-child {
+        border-top: none;
+    }
+    .user-menu-links > li > a {
+        padding: 15px;
+    }
 }
 
 @media (max-width: @screen-xs-min)
@@ -256,6 +308,8 @@ span.cs-def-component {
     .text-center;
     .text-muted;
 }
+
+
 
 /* Hide spinners on input[type="number"] in Webkit. */
 /* http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-inputs-spin-box */
