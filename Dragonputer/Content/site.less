@@ -15,6 +15,7 @@ body {
     padding-top: @navbar-height;
 }
 
+/* ====== MENU BAR ======= */
 .app-bar {
     .navbar;
     .navbar-inverse;
@@ -39,59 +40,39 @@ body {
 .user-menu-links {
     .nav;
     .navbar-nav;
+
+    .user-menu-text {
+        color: #ccc;
+        &:hover {
+            background-color: inherit !important; /* Better than asserting structure bootstrap asserts for these... */
+            color: #ccc;
+        }
+    }
+
+    [ng-click] {
+        cursor: pointer;
+        text-shadow: none;
+        transition: text-shadow 0.1s linear;
+        transition: color 0.1s linear;
+        &:hover {
+            background-color: inherit;
+            color: #eee;
+            text-shadow: 1px 1px 3px fade(#eee, 0.8);
+        }
+    }
+
+    [ng-click].disabled {
+        color: #666;
+        cursor: default;
+        &:hover {
+            background-color: inherit;
+            color: #966;
+            text-shadow: 1px 1px 3px fade(#966, 80%);
+        }
+    }
 }
 
-.user-menu-text {
-    color: #ccc;
-}
-
-.user-menu-links [ng-click] {
-    cursor: pointer;
-    text-shadow: none;
-    transition: text-shadow 0.1s linear;
-    transition: color 0.1s linear;
-}
-.user-menu-links [ng-click].disabled {
-    color: #666;
-    cursor: default;
-}
-
-.user-menu-links [ng-click]:hover {
-    background-color: inherit;
-    color: #eee;
-    text-shadow: 1px 1px 3px rgba(230, 230, 230, 0.8);
-}
-.user-menu-links [ng-click].disabled:hover {
-    background-color: inherit;
-    color: #966;
-    text-shadow: 1px 1px 3px fade(#966, 80%);
-}
-
-
-.character-sheet {
-    .container-fixed;
-    color: #eee;
-    opacity: .9;
-    background-color: #333;  
-    position: fixed;
-    width: 100%;
-    top: @navbar-height;
-    bottom: 0; 
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-.cs-section {
-    border-right: 1px solid #000;
-    padding: 10px;
-    width: 375px;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
+/* Support collapsable menu at lower resolutions. */
 @media (max-width: @grid-float-breakpoint)
 {
     .user-menu {
@@ -112,9 +93,48 @@ body {
     }
 }
 
-@media (max-width: @screen-xs-min)
-{
-    .cs-section {
+/* Highlight editable inputs for differentiation */
+input[type="tel"],input[type="text"] {
+    color: @input-border-focus;
+}
+/* Make text-danger work where needed. */
+input[type="tel"].text-danger,
+input[type="text"].text-danger,
+.cs-value-fakeinput.text-danger {
+    color: @state-danger-text;
+}
+
+/* ====== CHARACTER SHEET SHARED ======= */
+.character-sheet {
+    .container-fixed;
+    color: #eee;
+    opacity: .9;
+    background-color: #333;  
+    position: fixed;
+    width: 100%;
+    top: @navbar-height;
+    bottom: 0; 
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.cs-section {
+    padding: 10px;
+    width: 375px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    border-right: 1px solid #000;
+    &:last-child {
+        border-right: none;
+    }
+
+    /* Fit to width on mobile phones. */
+    @media (max-width: @screen-xs-min)
+    {
         width: 100%;
     }
 }
@@ -130,10 +150,22 @@ body {
     margin-left: 15px;
 }
 
-.cs-section:last-child {
-    border-right: none;
+.cs-value-field {
+    .form-control;
+    .text-center;
+    color: #fafafa;
+    font-weight: bold;
+    font-size: 16px;
+    padding: @input-padding;
 }
 
+.cs-value-fakeinput {
+    .text-center;
+    background-color: @input-bg;
+    border: 1px solid @input-border;
+    padding: 6px 8px;
+    border-radius: @input-border-focus;
+}
 
 .cs-field-block {
     .clearfix;
@@ -154,6 +186,7 @@ body {
     float: left;
 }
 
+
 .cs-section-header {
     .clearfix;
     background: #111;
@@ -171,49 +204,28 @@ body {
     float: right;
 }
 
-.cs-abil-value {
-    .form-control;
+.cs-no-content {
     .text-center;
-    width: 70px;
-    color: #fafafa;
-    font-weight: bold;
-    font-size: 16px;
-    padding: @input-padding;
-}
-.cs-abil-value-label {
-    width: 70px;
+    .text-muted;
 }
 
-.cs-abil-type {
-    .cs-label-lg;
-    width: 50px;
-}
-.cs-abil-type-label {
-    margin-left: 15px;
-    width: 50px;
-}
+/* ===== ABILITY SCORES ===== */
+.cs-abil-value { .cs-value-field; width: 70px; }
+.cs-abil-value-label { width: 70px; }
 
-.cs-fake-input {
-    background-color: @input-bg;
-    border: 1px solid @input-border;
-    padding: 4px 8px;
-    border-radius: @input-border-focus;
-}
+.cs-abil-type { .cs-label-lg; width: 50px; }
+.cs-abil-type-label { margin-left: 15px; width: 50px; }
+
 
 .cs-abil-mod, .cs-abil-mod-hl {
-    .cs-fake-input;
-    .text-center;
+.cs-value-fakeinput;
     margin-left: 20px;
     width: 40px;
 }
 .cs-abil-misc {
-    .form-control;
-    .text-center;
-    color: #ddd;
+    .cs-value-field;
     margin-left: 20px;
     width: 40px; 
-    padding: 4px 8px;
-    height: 30px;
 }
 .cs-abil-mod-label, .cs-abil-mod-hl-label, .cs-abil-misc-label {
     margin-left: 20px;
@@ -221,31 +233,8 @@ body {
     width: 40px;
 }
 
-input.cs-def-component {
-    .form-control;
-    .text-center;
-    width: 24px;
-    height: 24px;
-    border-radius: 0px 0px;
-    font-size: 10px;
-    padding: 4px;
-    color: #eee;
-    margin-top: 4px;
-    margin-left: 2px;
-}
-span.cs-def-component {
-    .cs-fake-input;
-    .text-center;
-    height: 24px;
-    width: 24px;
-    font-size: 10px;
-    padding: 4px;
-    color: #eee;
-    margin-top: 4px;
-    margin-left: 2px;
-}
 .cs-def-score {
-    .cs-fake-input;
+    .cs-value-fakeinput;
     .text-center;
     font-size: 16px;
     font-weight: bold;
@@ -258,6 +247,17 @@ span.cs-def-component {
     .cs-label-lg;
     width: 80px;
 }
+
+.cs-def-component() {
+    width: 24px; height: 24px;
+    border-radius: 0px 0px;
+    font-size: 10px;
+    padding: 4px;
+    margin: 4px 0 0 2px;
+}
+span.cs-def-component { .cs-value-fakeinput; .cs-def-component(); }
+input.cs-def-component { .cs-value-field; .cs-def-component(); }
+
 .cs-def-score-label {
     width: 52px;
 }
@@ -270,6 +270,7 @@ span.cs-def-component {
     text-overflow: clip;
 }
 
+/* ===== POWERS ===== */
 .cs-powers ul {
     list-style: none;
     padding: 0;
@@ -300,9 +301,7 @@ span.cs-def-component {
     .box-shadow(none);
 }
 .cs-power-attack input {
-    .form-control;
-    .text-center;
-    color: @input-border-focus;
+    .cs-value-field;
     display: inline;
     width: 80px;
 }
@@ -332,33 +331,19 @@ span.cs-def-component {
     font-style: italic;
     font-size: 12px;
 }
-.cs-power-properties {
+.cs-power-properties { }
+.cs-power-range { }
+.cs-power-target { }
+.cs-power-attack { }
+.cs-power-desc { }
 
-}
-.cs-power-range {
 
-}
-.cs-power-target {
-
-}
-.cs-power-attack {
-
-}
-.cs-power-desc {
-
-}
-
-.cs-no-content {
-    .text-center;
-    .text-muted;
-}
-
+/* ===== STATUS ===== */
 .cs-status-current {
     .cs-label-md;
 }
 .cs-current-hp-value {
-    .form-control;
-    .text-center;
+    .cs-value-field;
     margin-left: 15px;
     width: 60px;
  }
@@ -368,8 +353,7 @@ span.cs-def-component {
     width: 30px;
 }
 .cs-temp-hp-value {
-    .form-control;
-    .text-center;
+    .cs-value-field;
     margin-left: 15px;
     width: 60px;
 }
@@ -382,19 +366,16 @@ span.cs-def-component {
 }
 
 .cs-max-hp-value, .cs-surges-day-value {
-    .form-control;
-    .text-center;
+    .cs-value-field;
     width: 60px;
     margin-left: 15px;
 }
 
 .cs-bloodied-hp-value, .cs-surge-hp-value {
-    .cs-fake-input;
-    .text-center;
+    .cs-value-fakeinput;
     width: 60px;
     margin-left: 15px;
 }
-
 
 /* Hide spinners on input[type="tel"] in Webkit. */
 /* http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-inputs-spin-box */
@@ -403,12 +384,4 @@ input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
-}
-input[type="tel"],input[type="text"] {
-    color: @input-border-focus;
-}
-input[type="tel"].text-danger,
-input[type="text"].text-danger,
-.cs-fake-input.text-danger {
-    color: @state-danger-text;
 }

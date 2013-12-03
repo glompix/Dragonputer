@@ -26,12 +26,12 @@
     };
     Defense.prototype.score = function () {
         return this.base()
-            + (this.armor || 0)
-            + (this.classBonus || 0)
-            + (this.feat || 0)
-            + (this.enh || 0)
-            + (this.misc1 || 0)
-            + (this.misc2 || 0);
+            + (parseInt(this.armor) || 0)
+            + (parseInt(this.classBonus) || 0)
+            + (parseInt(this.feat) || 0)
+            + (parseInt(this.enh) || 0)
+            + (parseInt(this.misc1) || 0)
+            + (parseInt(this.misc2) || 0);
     };
 
     function Initiative(c, misc) {
