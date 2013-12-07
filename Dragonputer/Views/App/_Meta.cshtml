@@ -1,0 +1,17 @@
+﻿
+<fieldset class="cs-section cs-status" data-initial-panel="-1">
+    <div class="cs-section-header">
+        <div ng-hide="$editName">
+            <a class="cs-section-control" ng-init="$editName = false" ng-click="$editName = true"><i class="fa fa-edit"></i></a>
+            <h3 class="cs-section-label">{{ c.name }}</h3>
+        </div>
+        <div ng-show="$editName">
+            <button class="cs-new-power-button" ng-click="$editName = false">OK</button>
+            <input class="cs-new-power-name" type="text" ng-model="c.name" />
+        </div>
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-meta-experience-label">Experience Points</label>
+        <input class="cs-current-hp-value" type="tel" ng-model="c.experience" />
+    </div>
+</fieldset>

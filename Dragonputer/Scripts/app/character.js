@@ -91,7 +91,6 @@
 
         this.powers = [];
         this.powers.add = function (type, name) {
-            console.log(name);
             if (type && !name)
                 return null;
             var p = new Power(type, name);
@@ -112,7 +111,6 @@
                     var sourceObj = m[prop];
                     var sourceType = typeof sourceObj;
                     if (sourceObj instanceof Array && target[prop].add) {
-                        console.log(sourceObj, target[prop]);
                         target[prop].length = 0;
                         for (var i = 0; i < sourceObj.length; i++) {
                             if (target[prop].addItem === 'copy') {

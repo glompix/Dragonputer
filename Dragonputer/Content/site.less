@@ -167,6 +167,13 @@ input[type="text"].text-danger,
     border-radius: @input-border-focus;
 }
 
+.cs-seamless-input {
+    background: #333;
+    color: #ccc;
+    border: 0;
+    .box-shadow(none);
+}
+
 .cs-field-block {
     .clearfix;
     white-space: nowrap;
@@ -198,6 +205,25 @@ input[type="text"].text-danger,
     font-size: 18px;
     padding: 0;
     margin: 0;
+}
+
+.cs-section-header-control {
+    .cs-seamless-input;
+    background: #111;
+    color: @input-border-focus;
+    padding: 0; margin-top: -3px;
+    font-size: 18px;
+    text-transform: uppercase;
+    height: 23px;
+}
+.cs-section-header input[type="text"] {
+    .cs-section-header-control
+}
+
+.cs-section-header button {
+    .cs-section-header-control;
+    padding-top: 3px;
+    height: 23px;
 }
 
 .cs-section-control {
@@ -294,11 +320,8 @@ input.cs-def-component { .cs-value-field; .cs-def-component(); }
     }
 }
 .cs-power-block input, .cs-power-block textarea {
+    .cs-seamless-input;
     width: 100%;
-    background: #333;
-    color: #ccc;
-    border: 0;
-    .box-shadow(none);
 }
 .cs-power-attack input {
     .cs-value-field;
