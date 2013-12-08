@@ -4,12 +4,18 @@
     angular.module('dragonputer').controller('CharacterSheetController', ['$scope', 'localStorageService', 'facebookAuthService', 'characterService',
         function ($scope, localStorageService, facebookAuthService, characterService) {
 
-            function importCharacter(character) {
-                if (character) {
-                    console.log('Importing Character');
-                    if (!$scope.c.timestamp || character.timestamp >= $scope.c.timestamp) {
+            function loadCharacter() {
+                var character = characterService.getLocal();               
+                if (character && !$scope.c) {
+                    $scope.c = character;
+                }
+                else if (character) {
+                    console.log('Compare characters', $scope.c.timestamp, character.timestamp);
+                    if (character.timestamp >= $scope.c.timestamp) {
                         $scope.c = character;
-                        $scope.$apply();
+                        if (!$scope.$$phase) {
+                            $scope.$apply();
+                        }
                     }
                     else {
                         console.warn('Character on server older than local character.');
@@ -17,20 +23,16 @@
                 }
             }
 
-            var data = localStorageService.get('dragonputer.character');
-            if (data) {
-                console.log('Loading: ', data);
-                $scope.c = new Character(data);
-            }
-            else {
-                console.log('New Character');
-                $scope.c = new Character();
-            }
+            loadCharacter();
 
-            $scope.canSave = function () { return $scope.c.json() !== data };
+            $scope.canSave = function () { return $scope.c.json() !== characterService.getLocal().json(); };
             $scope.save = function () {
                 console.log('Saving: ', $scope.c);
-                characterService.save(facebookAuthService.getSignedRequest(), $scope.c);
+                characterService.saveLocal($scope.c);
+                characterService.push(facebookAuthService.getSignedRequest(), function () {
+                    console.log('Pushed character. Updating local.');
+                    loadCharacter()
+                });
             };
 
             $scope.login = facebookAuthService.login;
@@ -38,15 +40,19 @@
             $scope.loggedIn = facebookAuthService.loggedIn;
             $scope.username = facebookAuthService.getCurrentUserName;
 
-            facebookAuthService.authResponseChange = _.debounce(function () {
+            facebookAuthService.authResponseChange = function () {
                 $scope.$apply();
                 if (facebookAuthService.loggedIn()) {
                     var signedRequest = facebookAuthService.getSignedRequest();
                     characterService.registerUser(signedRequest).then(function () {
-                        characterService.get(signedRequest, importCharacter);
+                        console.log('Registered.');
+                        characterService.pull(signedRequest, function () {
+                            console.log('Downloaded a character to local');
+                            loadCharacter();
+                        });
                     });
                 }
-            }, 1000, true);
+            };
         }
     ]);
 })();

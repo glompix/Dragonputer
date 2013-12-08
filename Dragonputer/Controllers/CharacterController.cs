@@ -10,15 +10,18 @@ namespace Dragonputer.Controllers
 {
     public class CharacterController : ApiController
     {
-        public CharacterSheet Get(string signedRequest)
+        public string Get(string signedRequest)
         {
             // Only one character per user for now.
             var user = new FacebookRequestParser().GetToken(signedRequest);
             var userId = long.Parse(user.user_id);
             using (var context = new Context())
             {
-                var sheet = context.CharacterSheets.AsNoTracking().FirstOrDefault(c => c.UserProfileId == userId);
-                return sheet;
+                var sheet = context.CharacterSheets.AsNoTracking().FirstOrDefault(c => c.UserProfile.FacebookUserId == userId);
+                if (sheet == null)
+                    return null;
+                else
+                    return sheet.Sheet;
             }
         }
 
@@ -33,14 +36,12 @@ namespace Dragonputer.Controllers
             var fbUserId = long.Parse(fbUser.user_id);
             using (var context = new Context())
             {
-                var sheet = context.CharacterSheets.FirstOrDefault(c => c.UserProfileId == fbUserId)
+                var sheet = context.CharacterSheets.FirstOrDefault(c => c.UserProfile.FacebookUserId == fbUserId)
                     ?? new CharacterSheet();
 
                 sheet.UserProfile = context.UserProfiles.Single(u => u.FacebookUserId == fbUserId);
                 sheet.Sheet = p.character;
                 sheet.Timestamp = DateTime.Now;
-
-                
 
                 if (sheet.Id == default(long))
                     context.CharacterSheets.Add(sheet);
