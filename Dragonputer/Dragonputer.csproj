@@ -560,6 +560,7 @@
     <Content Include="Views\App\_Status.cshtml" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Views\App\_Meta.cshtml" />
+    <Content Include="Views\App\_Skills.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

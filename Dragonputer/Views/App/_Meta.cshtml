@@ -1,5 +1,5 @@
 ﻿
-<fieldset class="cs-section cs-status" data-initial-panel="-1">
+<fieldset class="cs-section cs-status">
     <div class="cs-section-header">
         <div ng-hide="$editName">
             <a class="cs-section-control" ng-init="$editName = false" ng-click="$editName = true"><i class="fa fa-edit"></i></a>
@@ -11,7 +11,11 @@
         </div>
     </div>
     <div class="cs-field-block">
-        <label class="cs-meta-experience-label">Experience Points</label>
-        <input class="cs-current-hp-value" type="tel" ng-model="c.experience" />
+        <label class="cs-field-label">Experience Points</label>
+        <input class="cs-field-value" type="tel" ng-model="c.experience" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-field-label">Experience Points</label>
+        <span class="cs-field-label cs-fake-input">{{ c.level() }}</span>
     </div>
 </fieldset>

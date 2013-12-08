@@ -39,6 +39,7 @@
             @Html.Partial("_Status")
             @Html.Partial("_Abilities")
             @Html.Partial("_Powers")
+            @Html.Partial("_Skills")
         </form>
 
         <script type="text/javascript" src="@Url.Content("~/Scripts/less-1.5.1.js")"></script>
@@ -102,6 +103,12 @@
                         }
                     }, 150));
                 });
+
+                var $initialSection = $('[data-initial-section]:first');
+                if ($initialSection.size() > 0) {
+                    $('.character-sheet').scrollLeft($initialSection[0].offsetLeft);
+                    console.log('left', $initialSection[0].offsetLeft);
+                }
             });
         </script>
     </body>
