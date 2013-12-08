@@ -6,6 +6,7 @@
 
             function importCharacter(character) {
                 if (character) {
+                    console.log('Importing Character');
                     if (!$scope.c.timestamp || character.timestamp >= $scope.c.timestamp) {
                         $scope.c = character;
                         $scope.$apply();
@@ -26,11 +27,10 @@
                 $scope.c = new Character();
             }
 
-
             $scope.canSave = function () { return $scope.c.json() !== data };
             $scope.save = function () {
                 console.log('Saving: ', $scope.c);
-                characterService.save($scope.c);
+                characterService.save(facebookAuthService.getSignedRequest(), $scope.c);
             };
 
             $scope.login = facebookAuthService.login;
@@ -38,13 +38,15 @@
             $scope.loggedIn = facebookAuthService.loggedIn;
             $scope.username = facebookAuthService.getCurrentUserName;
 
-            facebookAuthService.authResponseChange = function () {
+            facebookAuthService.authResponseChange = _.debounce(function () {
                 $scope.$apply();
                 if (facebookAuthService.loggedIn()) {
                     var signedRequest = facebookAuthService.getSignedRequest();
-                    characterService.get(signedRequest).success(importCharacter);
+                    characterService.registerUser(signedRequest).then(function () {
+                        characterService.get(signedRequest, importCharacter);
+                    });
                 }
-            };
+            }, 1000, true);
         }
     ]);
 })();

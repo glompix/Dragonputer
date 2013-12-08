@@ -20,6 +20,7 @@ namespace Dragonputer.Models
         }
     
         public long Id { get; set; }
+        public long FacebookUserId { get; set; }
     
         public virtual ICollection<CharacterSheet> CharacterSheets { get; set; }
     }

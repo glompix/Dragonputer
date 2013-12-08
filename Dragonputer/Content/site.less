@@ -56,6 +56,8 @@ body {
         transition: color 0.1s linear;
         &:hover {
             background-color: inherit;
+        }
+        &:active {            
             color: #eee;
             text-shadow: 1px 1px 3px fade(#eee, 0.8);
         }
@@ -66,10 +68,18 @@ body {
         cursor: default;
         &:hover {
             background-color: inherit;
+        }
+        &:active {
             color: #966;
             text-shadow: 1px 1px 3px fade(#966, 80%);
         }
     }
+}
+
+.facebook-login {
+    background-color: #3b5998;
+    &:active { background-color: #2A406D; }
+    a { color: #fff; }
 }
 
 /* Support collapsable menu at lower resolutions. */
@@ -135,6 +145,7 @@ input[type="text"].text-danger,
     /* Fit to width on mobile phones. */
     @media (max-width: @screen-xs-min)
     {
+        min-width: 375px;
         width: 100%;
     }
 }
@@ -148,6 +159,7 @@ input[type="text"].text-danger,
 .cs-label-md {
     font-size: 20px;
     margin-left: 15px;
+    padding-top: 3px;
 }
 
 .cs-value-field {
@@ -164,6 +176,7 @@ input[type="text"].text-danger,
     background-color: @input-bg;
     border: 1px solid @input-border;
     padding: 6px 8px;
+    margin-left: 10px;
     border-radius: @input-border-focus;
 }
 
@@ -410,6 +423,54 @@ input.cs-def-component { .cs-value-field; .cs-def-component(); }
     .cs-value-fakeinput;
     width: 60px;
     margin-left: 15px;
+}
+
+/* ======== META ========= */
+.cs-meta-name-value {
+    .form-control;
+    width: 70%;
+}
+.cs-meta-name-button {
+    .btn;
+    .btn-default;
+    float: right;
+    margin-left: 10px;
+    width: 25%;
+    &:hover {
+        background: none;
+    }
+}
+.cs-meta-xp-label {
+    .cs-label-md;
+    width: 40px;
+    text-transform: uppercase;
+
+}
+.cs-meta-xp-value {
+    .cs-value-field;
+    width: 100px;
+    margin-bottom: 5px;
+}
+.cs-meta-level-label {
+    .cs-label-md;
+    margin-left: 20px;
+    width: 65px;
+    text-transform: uppercase;
+}
+.cs-meta-level-value {
+    .cs-value-fakeinput;
+    width: 60px;
+}
+.cs-meta-label {
+    .cs-field-label;
+    width: 106px;
+    text-align: right;
+}
+.cs-meta-value {
+    .form-control;
+    .text-left;
+    width: 185px;
+    margin: 0 0 5px 10px;
 }
 
 /* Hide spinners on input[type="tel"] in Webkit. */

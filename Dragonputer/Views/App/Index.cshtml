@@ -25,12 +25,11 @@
             </div>
             <div class="user-menu collapse navbar-collapse" id="UserMenu">
                 <ul class="user-menu-links">
-                    <li ng-hide="loggedIn()"><a class="user-menu-text">Not logged in.</a></li>
-                    <li ng-show="loggedIn()"><a class="user-menu-text">Logged in as <i class="fa fa-facebook-square"></i> {{ username() }}</a></li>
+                    <li ng-hide="loggedIn()"><a class="user-menu-text">Not logged in. Saving locally.</a></li>
+                    <li ng-show="loggedIn()"><a class="user-menu-text"><i class="fa fa-lg fa-facebook-square"></i> Logged in as {{ username() }}</a></li>
                     <li><a ng-class="{ disabled: !canSave() }" ng-click="save()"><i class="fa fa-save"></i> Save</a></li>
-                    <li><a ng-click=""><i class="fa fa-cog"></i> Settings</a></li>
                     <li ng-show="loggedIn()"><a ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
-                    <li ng-hide="loggedIn()"><a ng-click="login()"><i class="fa fa-facebook-square"></i> Log in with Facebook</a></li>
+                    <li ng-hide="loggedIn()" class="facebook-login"><a ng-click="login()"><i class="fa fa-lg fa-facebook-square"></i> &nbsp; Log in with Facebook</a></li>
                 </ul>
             </div>
         </nav>
@@ -42,6 +41,8 @@
             @Html.Partial("_Skills")
         </form>
 
+
+        <script type="text/javascript" src="@Url.Content("~/Scripts/underscore.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/less-1.5.1.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/jquery-2.0.3.js")"></script>
         <script type="text/javascript" src="@Url.Content("~/Scripts/angular.js")"></script>
@@ -105,7 +106,7 @@
                 });
 
                 var $initialSection = $('[data-initial-section]:first');
-                if ($initialSection.size() > 0) {
+                if ($initialSection.attr('data-initial-section')) {
                     $('.character-sheet').scrollLeft($initialSection[0].offsetLeft);
                     console.log('left', $initialSection[0].offsetLeft);
                 }

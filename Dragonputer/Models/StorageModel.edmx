@@ -4,43 +4,44 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="Model1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CharacterSheets">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserProfileId" Type="bigint" Nullable="false" />
-          <Property Name="Sheet" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Timestamp" Type="datetime" Nullable="false" StoreGeneratedPattern="None" />
-        </EntityType>
-        <EntityType Name="UserProfiles">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_CharacterSheetUserProfile">
-          <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="1" />
-          <End Role="CharacterSheets" Type="Self.CharacterSheets" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfiles">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CharacterSheets">
-              <PropertyRef Name="UserProfileId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="Model1StoreContainer">
-          <EntitySet Name="CharacterSheets" EntityType="Self.CharacterSheets" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_CharacterSheetUserProfile" Association="Self.FK_CharacterSheetUserProfile">
-            <End Role="UserProfiles" EntitySet="UserProfiles" />
-            <End Role="CharacterSheets" EntitySet="CharacterSheets" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="CharacterSheets" EntityType="Model1.Store.CharacterSheets" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserProfiles" EntityType="Model1.Store.UserProfiles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="CharacterSheetUserProfile" Association="Model1.Store.CharacterSheetUserProfile">
+      <End Role="CharacterSheet" EntitySet="CharacterSheets" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CharacterSheets">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserProfileId" Type="bigint" Nullable="false" />
+    <Property Name="Sheet" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Timestamp" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserProfiles">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FacebookUserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="CharacterSheetUserProfile">
+    <End Role="CharacterSheet" Type="Model1.Store.CharacterSheets" Multiplicity="*" />
+    <End Role="UserProfile" Type="Model1.Store.UserProfiles" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CharacterSheet">
+        <PropertyRef Name="UserProfileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -48,8 +49,8 @@
           <EntitySet Name="CharacterSheets" EntityType="Model1.CharacterSheet" />
           <EntitySet Name="UserProfiles" EntityType="Model1.UserProfile" />
           <AssociationSet Name="CharacterSheetUserProfile" Association="Model1.CharacterSheetUserProfile">
-            <End Role="CharacterSheet" EntitySet="CharacterSheets" />
-            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End EntitySet="CharacterSheets" Role="CharacterSheet" />
+            <End EntitySet="UserProfiles" Role="UserProfile" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="CharacterSheet">
@@ -66,12 +67,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int64" />
           <NavigationProperty Name="CharacterSheets" Relationship="Model1.CharacterSheetUserProfile" FromRole="UserProfile" ToRole="CharacterSheet" />
+          <Property Name="FacebookUserId" Type="Int64" Nullable="false" />
         </EntityType>
         <Association Name="CharacterSheetUserProfile">
-          <End Type="Model1.CharacterSheet" Role="CharacterSheet" Multiplicity="*" />
-          <End Type="Model1.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="Model1.CharacterSheet" Multiplicity="*" Role="CharacterSheet" />
+          <End Type="Model1.UserProfile" Multiplicity="1" Role="UserProfile" />
           <ReferentialConstraint>
             <Principal Role="UserProfile">
               <PropertyRef Name="Id" />
@@ -90,10 +92,10 @@
     <EntitySetMapping Name="CharacterSheets">
       <EntityTypeMapping TypeName="IsTypeOf(Model1.CharacterSheet)">
         <MappingFragment StoreEntitySet="CharacterSheets">
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Sheet" ColumnName="Sheet" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserProfileId" ColumnName="UserProfileId" />
+          <ScalarProperty Name="Sheet" ColumnName="Sheet" />
+          <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -101,6 +103,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model1.UserProfile)">
         <MappingFragment StoreEntitySet="UserProfiles">
           <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FacebookUserId" ColumnName="FacebookUserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

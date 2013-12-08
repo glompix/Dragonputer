@@ -27,18 +27,20 @@ namespace Dragonputer.Controllers
         /// <summary>
         /// Saves a character and returns the id of the character.
         /// </summary>
-        public string Post(string signedRequest, int id, DateTime timestamp, string characterJson)
+        public string Post(SaveCharacterParams p)
         {
-            var user = new FacebookRequestParser().GetToken(signedRequest);
-            var userId = long.Parse(user.user_id);
+            var fbUser = new FacebookRequestParser().GetToken(p.signedRequest);
+            var fbUserId = long.Parse(fbUser.user_id);
             using (var context = new Context())
             {
-                var sheet = context.CharacterSheets.FirstOrDefault(c => c.UserProfileId == userId && c.Id == id)
-                    ?? new CharacterSheet();                
+                var sheet = context.CharacterSheets.FirstOrDefault(c => c.UserProfileId == fbUserId)
+                    ?? new CharacterSheet();
 
-                sheet.UserProfileId = userId;
-                sheet.Sheet = characterJson;
+                sheet.UserProfile = context.UserProfiles.Single(u => u.FacebookUserId == fbUserId);
+                sheet.Sheet = p.character;
                 sheet.Timestamp = DateTime.Now;
+
+                
 
                 if (sheet.Id == default(long))
                     context.CharacterSheets.Add(sheet);
@@ -47,6 +49,12 @@ namespace Dragonputer.Controllers
 
                 return sheet.Id.ToString();
             }
+        }
+
+        public class SaveCharacterParams
+        {
+            public string signedRequest { get; set; }
+            public string character { get; set; }
         }
     }
 }

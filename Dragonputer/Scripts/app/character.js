@@ -67,12 +67,20 @@
 
     /* Character model */
     Character = function (source) {
+
+        this.id = 0;
+        this.timestamp = new Date(0);
+
         this.name = 'glompix';
         this.experience = 9000;
+        this.race = '';
+        this.diety = '';
+
         this.level = function () { return calculateLevel(this.experience); };
         this.halfLevel = function () { return Math.floor(this.level() / 2.0); };
 
         this.hitpoints = new HitPoints();
+        this.statusEffects = []; // simple list of strings.
 
         this.strength = new Ability();
         this.constitution = new Ability();

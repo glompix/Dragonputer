@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 12/07/2013 00:22:26
+-- Date Created: 12/08/2013 10:28:31
 -- Generated from EDMX file: C:\Users\stuartb\Projects\Dragonputer\Dragonputer\Models\StorageModel.edmx
 -- --------------------------------------------------
 
@@ -17,10 +17,20 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_CharacterSheetUserProfile]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CharacterSheets] DROP CONSTRAINT [FK_CharacterSheetUserProfile];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
+
+IF OBJECT_ID(N'[dbo].[CharacterSheets]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CharacterSheets];
+GO
+IF OBJECT_ID(N'[dbo].[UserProfiles]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserProfiles];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -29,15 +39,16 @@ GO
 -- Creating table 'CharacterSheets'
 CREATE TABLE [dbo].[CharacterSheets] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
-	[UserProfileId] bigint  NOT NULL,
+    [UserProfileId] bigint  NOT NULL,
     [Sheet] nvarchar(max)  NOT NULL,
-	[Timestamp] datetime not null
+    [Timestamp] datetime  NOT NULL
 );
 GO
 
 -- Creating table 'UserProfiles'
 CREATE TABLE [dbo].[UserProfiles] (
-    [Id] bigint IDENTITY(1,1) NOT NULL
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [FacebookUserId] bigint  NOT NULL
 );
 GO
 
