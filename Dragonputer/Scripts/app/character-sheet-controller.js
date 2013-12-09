@@ -10,7 +10,7 @@
                     $scope.c = character;
                 }
                 else if (character) {
-                    console.log('Compare characters', $scope.c.timestamp, character.timestamp);
+                    console.log('Compare characters', $scope.c.timestamp, character.timestamp, character.timestamp.length);
                     if (character.timestamp >= $scope.c.timestamp) {
                         $scope.c = character;
                         if (!$scope.$$phase) {

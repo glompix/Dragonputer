@@ -141,6 +141,9 @@
                     }
                 }
             }
+            if (typeof target.timestamp === 'string') {
+                target.timestamp = new Date(target.timestamp);
+            }
         }
     };
 
