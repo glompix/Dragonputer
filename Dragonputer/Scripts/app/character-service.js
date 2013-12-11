@@ -6,14 +6,21 @@
     var _localKey = 'dragonputer.character';
     angular.module('dragonputer').factory('characterService', function ($http, localStorageService) {
         
+        // This service handles getting/setting characters in the local store, and also pushing or pulling
+        // characters from a remote service. A pull will store the pulled character directly to local storage,
+        // if the character on the server is newer than the one on local.
+
         // Save a character to local storage.
         function saveLocal(json) {
             localStorageService.clearAll();
-            console.log('Save local', localStorageService.add(_localKey, json), json);
+            localStorageService.add(_localKey, json);
         }
 
         return {
             registerUser: function (signedRequest) {
+                if (!signedRequest)
+                    return;
+
                 console.log('Registering User...');
                 return $http.post("/api/user", {
                     signedRequest: signedRequest
@@ -24,12 +31,13 @@
                 return new Character(json);
             },
             saveLocal: function(character) {
-                character.timestamp = new Date();
+                character.data.timestamp = new Date();
                 saveLocal(character.json());
             },
             pull: function (signedRequest, callback) {
-                // TODO: push get from local storage in here too. Return a promise that's already been filled in a little
-                // and return the local version if no newer server version.
+                if (!signedRequest)
+                    return;
+
                 return $http.get(_url, {
                     params: {
                         signedRequest: signedRequest
@@ -42,17 +50,21 @@
                 });
             },
             push: function (signedRequest, callback) {
-                var local = localStorageService.get(_localKey);
+                if (!signedRequest)
+                    return;
+
+                var json = localStorageService.get(_localKey);
+                var character = new Character(json);
                 return $http.post(_url, {
                     signedRequest: signedRequest,
-                    character: JSON.stringify(local)
+                    character: character.json()
                 }).success(function (id) {
                     id = id.replace(/"/g, '');
                     console.log('Assigning id', id);
                     if (id && /^\d+$/.test(id)) {
-                        local.id = parseInt(id);
-                        local.timestamp = new Date();
-                        saveLocal(JSON.stringify(local));
+                        character.data.id = parseInt(id);
+                        character.data.timestamp = new Date();
+                        saveLocal(character.json());
                         if (callback) {
                             callback();
                         }

@@ -3,40 +3,40 @@
     <div class="cs-section-header">
         <div ng-hide="$editName">
             <a class="cs-section-control" ng-init="$editName = false" ng-click="$editName = true; $('.cs-status')"><i class="fa fa-edit"></i></a>
-            <h3 class="cs-section-label">{{ c.name }}</h3>
+            <h3 class="cs-section-label">{{ c.data.name }}</h3>
         </div>
         <div ng-show="$editName">
             <button class="cs-meta-name-button" ng-click="$editName = false">OK</button>
-            <input class="cs-meta-name-value" type="text" ng-model="c.name" />
+            <input class="cs-meta-name-value" type="text" ng-model="c.data.name" />
         </div>
     </div>
     <div class="cs-field-block">
         <label class="cs-meta-xp-label">XP</label>
-        <input class="cs-meta-xp-value" type="tel" ng-model="c.experience" />
+        <input class="cs-meta-xp-value" type="tel" ng-model="c.data.experience" />
         <span class="cs-meta-level-label">Level</span>
-        <span class="cs-meta-level-value">{{ c.level() }}</span>
+        <span class="cs-meta-level-value">{{ c.calc.level() }}</span>
     </div>
     <div class="cs-field-block">
         <label class="cs-meta-label">Race</label>
-        <input class="cs-meta-value" type="text" ng-model="c.race" />
+        <input class="cs-meta-value" type="text" ng-model="c.data.race" />
     </div>
     <div class="cs-field-block">
         <label class="cs-meta-label">Class</label>
-        <input class="cs-meta-value" type="text" ng-model="c.class" />
+        <input class="cs-meta-value" type="text" ng-model="c.data.class" />
     </div>
     <div class="cs-field-block">
         <label class="cs-meta-label">Diety</label>
-        <input class="cs-meta-value" type="text" ng-model="c.diety" />
+        <input class="cs-meta-value" type="text" ng-model="c.data.diety" />
     </div>
 
 
     <div class="cs-field-block">
         <label class="cs-meta-label">Paragon Path</label>
-        <input class="cs-meta-value" type="text" ng-model="c.paragonPath" />
+        <input class="cs-meta-value" type="text" ng-model="c.data.paragonPath" />
     </div>
 
     <div class="cs-field-block">
         <label class="cs-meta-label">Epic Destiny</label>
-        <input class="cs-meta-value" type="text" ng-model="c.epicDestiny" />
+        <input class="cs-meta-value" type="text" ng-model="c.data.epicDestiny" />
     </div>
 </fieldset>

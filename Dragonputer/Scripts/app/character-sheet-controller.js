@@ -10,15 +10,12 @@
                     $scope.c = character;
                 }
                 else if (character) {
-                    console.log('Compare characters', $scope.c.timestamp, character.timestamp, character.timestamp.length);
-                    if (character.timestamp >= $scope.c.timestamp) {
+                    console.log('Compare characters', $scope.c.data.timestamp.getTime(), character.data.timestamp.getTime());
+                    if (character.data.timestamp.getTime() > $scope.c.data.timestamp.getTime()) {
                         $scope.c = character;
                         if (!$scope.$$phase) {
                             $scope.$apply();
                         }
-                    }
-                    else {
-                        console.warn('Character on server older than local character.');
                     }
                 }
             }
@@ -31,7 +28,7 @@
                 characterService.saveLocal($scope.c);
                 characterService.push(facebookAuthService.getSignedRequest(), function () {
                     console.log('Pushed character. Updating local.');
-                    loadCharacter()
+                    loadCharacter();
                 });
             };
 

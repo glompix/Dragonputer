@@ -7,11 +7,11 @@
     </div>
     <ul>
         <li class="cs-new-power-form" ng-show="$addAtWillPower">
-            <button class="cs-new-power-button" ng-click="c.powers.add('at-will', $newPowerName); $newPowerName = ''; $addAtWillPower = false;">Add</button>
+            <button class="cs-new-power-button" ng-click="c.data.powers.push({ name: $newPowerName, type: 'at-will' }); $newPowerName = ''; $addAtWillPower = false;">Add</button>
             <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
-        <li class="cs-power-block" ng-repeat="power in c.powers | filter: { type: 'at-will' }">
+        <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'at-will' }">
             <div class="cs-power-head">
                 <a class="cs-power-name">{{ power.name }}</a>
             </div>
@@ -33,11 +33,11 @@
     </div>
     <ul>
         <li class="cs-new-power-form" ng-show="$addEncounterPower">
-            <button class="cs-new-power-button" ng-click="c.powers.add('encounter', $newPowerName); $newPowerName = ''; $addEncounterPower = false;">Add</button>
+            <button class="cs-new-power-button" ng-click="c.data.powers.push({ name: $newPowerName, type: 'encounter' }); $newPowerName = ''; $addEncounterPower = false;">Add</button>
             <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
-        <li class="cs-power-block" ng-repeat="power in c.powers | filter: { type: 'encounter' }">
+        <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'encounter' }">
             <div class="cs-power-head">
                 <a class="cs-power-name">{{ power.name }}</a>
             </div>
@@ -59,11 +59,11 @@
     </div>
     <ul>
         <li class="cs-new-power-form" ng-show="$addDailyPower">
-            <button class="cs-new-power-button" ng-click="c.powers.add('daily', $newPowerName); $newPowerName = ''; $addDailyPower = false;">Add</button>
+            <button class="cs-new-power-button" ng-click="c.data.powers.push({ name: $newPowerName, type: 'daily' }); $newPowerName = ''; $addDailyPower = false;">Add</button>
             <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
-        <li class="cs-power-block" ng-repeat="power in c.powers | filter: { type: 'daily' }">
+        <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'daily' }">
             <div class="cs-power-head">
                 <a class="cs-power-name">{{ power.name }}</a>
             </div>

@@ -41,7 +41,7 @@ namespace Dragonputer.Controllers
 
                 sheet.UserProfile = context.UserProfiles.Single(u => u.FacebookUserId == fbUserId);
                 sheet.Sheet = p.character;
-                sheet.Timestamp = DateTime.Now;
+                sheet.Timestamp = DateTime.Now; // TODO: Remove - held on sheet object.
 
                 if (sheet.Id == default(long))
                     context.CharacterSheets.Add(sheet);

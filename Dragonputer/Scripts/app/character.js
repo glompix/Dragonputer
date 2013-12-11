@@ -3,14 +3,7 @@
 (function () {
     'use strict';
 
-    /* Ability Score value type */
-    function Ability(value) {
-        this.value = value || 0;
-    }
-    Ability.prototype.mod = function () {
-        return Math.floor((this.value - 10) / 2.0);
-    };
-
+    
     /* Defense Score value type */
     function Defense(c, armor, classBonus, feat, enh, misc1, misc2) {
         this.c = c;
@@ -25,13 +18,7 @@
         return 10 + this.c.halfLevel();
     };
     Defense.prototype.score = function () {
-        return this.base()
-            + (parseInt(this.armor) || 0)
-            + (parseInt(this.classBonus) || 0)
-            + (parseInt(this.feat) || 0)
-            + (parseInt(this.enh) || 0)
-            + (parseInt(this.misc1) || 0)
-            + (parseInt(this.misc2) || 0);
+        return 
     };
 
     function Initiative(c, misc) {
@@ -68,50 +55,128 @@
     /* Character model */
     Character = function (source) {
 
-        this.id = 0;
-        this.timestamp = new Date(0);
+        // This is *the* data structure for a character sheet. It is data only to make
+        // saving and restoring characters dead simple.
+        var data = {
+            // Housekeeping
+            id: 0,
+            timestamp: new Date(0),
 
-        this.name = 'glompix';
-        this.experience = 9000;
-        this.race = '';
-        this.diety = '';
+            // Meta
+            name: '',
+            experience: 0,
+            race: '',
+            class$: '',
+            diety: '',
 
-        this.level = function () { return calculateLevel(this.experience); };
-        this.halfLevel = function () { return Math.floor(this.level() / 2.0); };
+            // Status
+            hitpoints: {
+                current: 0,
+                temp: 0,
+                max: 0
+            },
+            surges: {
+                current: 0,
+                perDay: 0
+            },
+            statusEffects: [],
 
-        this.hitpoints = new HitPoints();
-        this.statusEffects = []; // simple list of strings.
+            // Abilities
+            strength: { value: 0 },
+            constitution: { value: 0 },
+            dexterity: { value: 0 },
+            intelligence: { value: 0 },
+            wisdom: { value: 0 },
+            charisma: { value: 0 },
+            initiative: { misc: 0 },
 
-        this.strength = new Ability();
-        this.constitution = new Ability();
-        this.dexterity = new Ability();
-        this.intelligence = new Ability();
-        this.wisdom = new Ability();
-        this.charisma = new Ability();
+            // Defenses
+            armorClass: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
+            fortitude: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
+            reflex: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
+            willpower: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
 
-        this.armorClass = new Defense(this);
-        this.fortitude = new Defense(this);
-        this.reflex = new Defense(this);
-        this.willpower = new Defense(this);
-
-        this.init = new Initiative(this);
-        this.lastSaved = new Date();
-
-        this.powers = [];
-        this.powers.add = function (type, name) {
-            if (type && !name)
-                return null;
-            var p = new Power(type, name);
-            this.push(p);
-            return p;
+            powers: [],
+            rituals: []
         };
 
-        this.json = function () { return JSON.stringify(this, censor('c')); }
-
-        if (source) {
-            copyObject(source, this);
+        function abilityMod(value) {
+            return Math.floor((value - 10) / 2.0);
         }
 
+        function defenseBase() {
+            return 10 + calc.halfLevel();
+        }
+
+        function defenseScore(d) {
+            return defenseBase()
+                + (parseInt(d.armor) || 0)
+                + (parseInt(d.classBonus) || 0)
+                + (parseInt(d.feat) || 0)
+                + (parseInt(d.enh) || 0)
+                + (parseInt(d.misc1) || 0)
+                + (parseInt(d.misc2) || 0);
+        }
+
+        // This object contains the calculations the character sheet uses. Note that this creates
+        // a conventions useful in views. Always {{ c.calc.ass() }} and ng-model="c.data.ass".
+        var calc = {
+            level: function () { return calculateLevel(data.experience); },
+            halfLevel: function () { return Math.floor(calc.level() / 2.0); },
+
+            hitpoints: {
+                bloodied: function() { return Math.floor(data.hitpoints.max / 2.0); },
+            },
+            surges: {
+                hpValue: function() { return Math.floor(data.hitpoints.max / 4.0); }
+            },
+
+            strength: { mod: function() { return abilityMod(data.strength.value); } },
+            constitution: { mod: function() { return abilityMod(data.constitution.value); } },
+            dexterity: { mod: function () { return abilityMod(data.dexterity.value); } },
+            intelligence: { mod: function() { return abilityMod(data.intelligence.value); } },
+            wisdom: { mod: function() { return abilityMod(data.wisdom.value); } },
+            charisma: { mod: function() { return abilityMod(data.charisma.value); } },
+            initiative: { mod: function () { return calc.dexterity.mod() + calc.halfLevel() + data.initiative.misc; } },
+
+            armorClass: {
+                base: defenseBase,
+                score: function () { return defenseScore(data.armorClass); }
+            },
+            fortitude: {
+                base: defenseBase,
+                score: function () { return defenseScore(data.fortitude); }
+            },
+            reflex: {
+                base: defenseBase,
+                score: function () { return defenseScore(data.reflex); }
+            },
+            willpower: {
+                base: defenseBase,
+                score: function () { return defenseScore(data.willpower); }
+            }
+        }
+
+        if (source) {
+            while (typeof source === 'string') {
+                console.log('Parsing', source);
+                source = JSON.parse(source);
+            }
+            data = $.extend(data, source);
+
+            // Make corrections:
+            if (typeof data.timestamp === 'string') {
+                data.timestamp = new Date(data.timestamp);
+            }
+        }
+
+        this.data = data;
+        this.calc = calc;
+
+        this.json = function () { 
+            return JSON.stringify(data); 
+        }
+        
         function copyObject(m, target) {
             for (var prop in m) {
                 // One thing that sucks is that this will fail if the type of a property changes!

@@ -8,11 +8,11 @@
         <span class="cs-abil-misc-label">misc</span>
     </div>
     <div class="cs-field-block">
-        <span class="cs-abil-value">{{ c.init.mod() }}</span>
+        <span class="cs-abil-value">{{ c.calc.initiative.mod() }}</span>
         <span class="cs-abil-type">INIT</span>
-        <span class="cs-abil-mod">{{ c.dexterity.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.halfLevel() }}</span>
-        <input class="cs-abil-misc" ng-model="c.init.misc" type="tel" />
+        <span class="cs-abil-mod">{{ c.calc.dexterity.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.halfLevel() }}</span>
+        <input class="cs-abil-misc" ng-model="c.data.initiative.misc" type="tel" />
     </div>
 
     @* ABILITIES *@
@@ -26,40 +26,40 @@
         <span class="cs-abil-mod-hl-label">+ ½ lvl</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="tel" ng-model="c.strength.value" />
+        <input class="cs-abil-value" type="tel" ng-model="c.data.strength.value" />
         <label class="cs-abil-type">STR</label>
-        <span class="cs-abil-mod">{{ c.strength.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.strength.mod() + halfLevel() }}</span>
+        <span class="cs-abil-mod">{{ c.calc.strength.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.strength.mod() + c.calc.halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="tel" ng-model="c.constitution.value" />
+        <input class="cs-abil-value" type="tel" ng-model="c.data.constitution.value" />
         <label class="cs-abil-type">CON</label>
-        <span class="cs-abil-mod">{{ c.constitution.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.constitution.mod() + halfLevel() }}</span>
+        <span class="cs-abil-mod">{{ c.calc.constitution.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.constitution.mod() + c.calc.halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="tel" ng-model="c.dexterity.value" />
+        <input class="cs-abil-value" type="tel" ng-model="c.data.dexterity.value" />
         <label class="cs-abil-type">DEX</label>
-        <span class="cs-abil-mod">{{ c.dexterity.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.dexterity.mod() + halfLevel() }}</span>
+        <span class="cs-abil-mod">{{ c.calc.dexterity.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.dexterity.mod() + c.calc.halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="tel" ng-model="c.intelligence.value" />
+        <input class="cs-abil-value" type="tel" ng-model="c.data.intelligence.value" />
         <label class="cs-abil-type">INT</label>
-        <span class="cs-abil-mod">{{ c.intelligence.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.intelligence.mod() + halfLevel() }}</span>
+        <span class="cs-abil-mod">{{ c.calc.intelligence.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.intelligence.mod() + c.calc.halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="tel" ng-model="c.wisdom.value" />
+        <input class="cs-abil-value" type="tel" ng-model="c.data.wisdom.value" />
         <label class="cs-abil-type">WIS</label>
-        <span class="cs-abil-mod">{{ c.wisdom.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.wisdom.mod() + halfLevel() }}</span>
+        <span class="cs-abil-mod">{{ c.calc.wisdom.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.wisdom.mod() + c.calc.halfLevel() }}</span>
     </div>
     <div class="cs-field-block">
-        <input class="cs-abil-value" type="tel" ng-model="c.charisma.value" />
+        <input class="cs-abil-value" type="tel" ng-model="c.data.charisma.value" />
         <label class="cs-abil-type">CHA</label>
-        <span class="cs-abil-mod">{{ c.charisma.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.charisma.mod() + halfLevel() }}</span>
+        <span class="cs-abil-mod">{{ c.calc.charisma.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.charisma.mod() + c.calc.halfLevel() }}</span>
     </div>
 
     @* DEFENSES *@
@@ -78,47 +78,47 @@
         <span class="cs-def-component-label">misc</span>
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">{{ c.armorClass.score() }}</span>
+        <span class="cs-def-score">{{ c.calc.armorClass.score() }}</span>
         <label class="cs-def-type">AC</label>
-        <span class="cs-def-component">{{ c.armorClass.base() }}</span>
-        <input class="cs-def-component" type="tel" ng-model="c.armorClass.armor">
-        <input class="cs-def-component" type="tel" ng-model="c.armorClass.classBonus" />
-        <input class="cs-def-component" type="tel" ng-model="c.armorClass.feat" />
-        <input class="cs-def-component" type="tel" ng-model="c.armorClass.enh" />
-        <input class="cs-def-component" type="tel" ng-model="c.armorClass.misc1" />
-        <input class="cs-def-component" type="tel" ng-model="c.armorClass.misc2" />
+        <span class="cs-def-component">{{ c.calc.armorClass.base() }}</span>
+        <input class="cs-def-component" type="tel" ng-model="c.data.armorClass.armor">
+        <input class="cs-def-component" type="tel" ng-model="c.data.armorClass.classBonus" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.armorClass.feat" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.armorClass.enh" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.armorClass.misc1" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.armorClass.misc2" />
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">{{ c.fortitude.score() }}</span>
+        <span class="cs-def-score">{{ c.calc.fortitude.score() }}</span>
         <label class="cs-def-type">FORT</label>
-        <span class="cs-def-component">{{ c.fortitude.base() }}</span>
-        <input class="cs-def-component" type="tel" ng-model="c.fortitude.armor">
-        <input class="cs-def-component" type="tel" ng-model="c.fortitude.classBonus" />
-        <input class="cs-def-component" type="tel" ng-model="c.fortitude.feat" />
-        <input class="cs-def-component" type="tel" ng-model="c.fortitude.enh" />
-        <input class="cs-def-component" type="tel" ng-model="c.fortitude.misc1" />
-        <input class="cs-def-component" type="tel" ng-model="c.fortitude.misc2" />
+        <span class="cs-def-component">{{ c.calc.fortitude.base() }}</span>
+        <input class="cs-def-component" type="tel" ng-model="c.data.fortitude.armor">
+        <input class="cs-def-component" type="tel" ng-model="c.data.fortitude.classBonus" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.fortitude.feat" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.fortitude.enh" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.fortitude.misc1" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.fortitude.misc2" />
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">{{ c.reflex.score() }}</span>
+        <span class="cs-def-score">{{ c.calc.reflex.score() }}</span>
         <label class="cs-def-type">REF</label>
-        <span class="cs-def-component">{{ c.reflex.base() }}</span>
-        <input class="cs-def-component" type="tel" ng-model="c.reflex.armor">
-        <input class="cs-def-component" type="tel" ng-model="c.reflex.classBonus" />
-        <input class="cs-def-component" type="tel" ng-model="c.reflex.feat" />
-        <input class="cs-def-component" type="tel" ng-model="c.reflex.enh" />
-        <input class="cs-def-component" type="tel" ng-model="c.reflex.misc1" />
-        <input class="cs-def-component" type="tel" ng-model="c.reflex.misc2" />
+        <span class="cs-def-component">{{ c.calc.reflex.base() }}</span>
+        <input class="cs-def-component" type="tel" ng-model="c.data.reflex.armor">
+        <input class="cs-def-component" type="tel" ng-model="c.data.reflex.classBonus" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.reflex.feat" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.reflex.enh" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.reflex.misc1" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.reflex.misc2" />
     </div>
     <div class="cs-field-block">
-        <span class="cs-def-score">{{ c.willpower.score() }}</span>
+        <span class="cs-def-score">{{ c.calc.willpower.score() }}</span>
         <label class="cs-def-type">WILL</label>
-        <span class="cs-def-component">{{ c.willpower.base() }}</span>
-        <input class="cs-def-component" type="tel" ng-model="c.willpower.armor">
-        <input class="cs-def-component" type="tel" ng-model="c.willpower.classBonus" />
-        <input class="cs-def-component" type="tel" ng-model="c.willpower.feat" />
-        <input class="cs-def-component" type="tel" ng-model="c.willpower.enh" />
-        <input class="cs-def-component" type="tel" ng-model="c.willpower.misc1" />
-        <input class="cs-def-component" type="tel" ng-model="c.willpower.misc2" />
+        <span class="cs-def-component">{{ c.calc.willpower.base() }}</span>
+        <input class="cs-def-component" type="tel" ng-model="c.data.willpower.armor">
+        <input class="cs-def-component" type="tel" ng-model="c.data.willpower.classBonus" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.willpower.feat" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.willpower.enh" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.willpower.misc1" />
+        <input class="cs-def-component" type="tel" ng-model="c.data.willpower.misc2" />
     </div>
 </fieldset>

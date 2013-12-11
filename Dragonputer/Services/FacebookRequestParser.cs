@@ -14,6 +14,9 @@ namespace Dragonputer.Models
     {
         public FacebookAccess GetToken(string signedRequest)
         {
+            if (signedRequest == null)
+                throw new ArgumentNullException("signedRequest");
+
             // https://developers.facebook.com/docs/facebook-login/using-login-with-games/
             var parts = signedRequest.Split(new char[] { '.' }, 2);
             var sig = base64UrlDecode(parts[0]);
