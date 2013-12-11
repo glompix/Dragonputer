@@ -1,13 +1,11 @@
 ﻿<fieldset class="cs-section cs-powers">
-    <script type="text/ng-template" id="new-power-form">
-    </script>
     <div class="cs-section-header">
         <a class="cs-section-control" ng-init="$addAtWillPower = false" ng-click="$addAtWillPower = !$addAtWillPower" ng-hide="$addAtWillPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">At-will powers</h3>
     </div>
     <ul>
         <li class="cs-new-power-form" ng-show="$addAtWillPower">
-            <button class="cs-new-power-button" ng-click="c.data.powers.push({ name: $newPowerName, type: 'at-will' }); $newPowerName = ''; $addAtWillPower = false;">Add</button>
+            <button class="cs-new-power-button" ng-click="c.addPower({ name: $newPowerName, type: 'at-will' }); $newPowerName = ''; $addAtWillPower = false;">Add</button>
             <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
@@ -26,14 +24,14 @@
             </div>
         </li>
     </ul>
-
+    
     <div class="cs-section-header">
         <a class="cs-section-control" ng-init="$addEncounterPower = false" ng-click="$addEncounterPower = !$addEncounterPower" ng-hide="$addEncounterPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Encounter powers</h3>
     </div>
     <ul>
         <li class="cs-new-power-form" ng-show="$addEncounterPower">
-            <button class="cs-new-power-button" ng-click="c.data.powers.push({ name: $newPowerName, type: 'encounter' }); $newPowerName = ''; $addEncounterPower = false;">Add</button>
+            <button class="cs-new-power-button" ng-click="c.addPower({ name: $newPowerName, type: 'encounter' }); $newPowerName = ''; $addEncounterPower = false;">Add</button>
             <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
@@ -51,15 +49,16 @@
                 <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
             </div>
         </li>
+            
     </ul>
-
+    
     <div class="cs-section-header">
         <a class="cs-section-control" ng-init="$addDailyPower = false" ng-click="$addDailyPower = !$addDailyPower" ng-hide="$addDailyPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Daily powers</h3>
     </div>
     <ul>
         <li class="cs-new-power-form" ng-show="$addDailyPower">
-            <button class="cs-new-power-button" ng-click="c.data.powers.push({ name: $newPowerName, type: 'daily' }); $newPowerName = ''; $addDailyPower = false;">Add</button>
+            <button class="cs-new-power-button" ng-click="c.addPower({ name: $newPowerName,  type: 'daily' }); $newPowerName = ''; $addDailyPower = false;">Add</button>
             <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
@@ -78,7 +77,6 @@
             </div>
         </li>
     </ul>
-        
     <div class="cs-section-header">
         <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Rituals</h3>

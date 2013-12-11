@@ -1,15 +1,15 @@
 ﻿<!DOCTYPE html>
-<html @*manifest="manifest.appcache"*@ ng-app="dragonputer">
+<html @*manifest="manifest.appcache"*@ ng-app="dragonputer" ng-controller="CharacterSheetController">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="height=device-height, user-scalable=no, initial-scale=1.0" />
-        <title>glompix - dragonputer</title>
+        <title>{{ c.data.name }} - dragonputer</title>
 
         <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/bootstrap/bootstrap.less")" />
         <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
         <link rel="stylesheet/less" type="text/css" href="@Url.Content("~/Content/site.less")" />
     </head>
-    <body ng-controller="CharacterSheetController">
+    <body>
         <nav class="app-bar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
@@ -67,7 +67,7 @@
 
             $(document).ready(function () {
                 $('.cs-power-body').hide();
-                $('.cs-power-name').click(function (e) {
+                $('.cs-powers').on('click', '.cs-power-name', function (e) {
                     e.preventDefault();
                     $(this).closest('.cs-power-block').children('.cs-power-body').slideToggle();
                 });
@@ -112,5 +112,4 @@
             });
         </script>
     </body>
-
 </html>

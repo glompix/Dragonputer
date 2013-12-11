@@ -176,6 +176,12 @@
         this.json = function () { 
             return JSON.stringify(data); 
         }
+
+        this.addPower = function (power) {
+            if (power.name) {
+                data.powers.push(power);
+            }
+        }
         
         function copyObject(m, target) {
             for (var prop in m) {
