@@ -13,5 +13,16 @@ namespace Dragonputer.Controllers
         {
             return View();
         }
+
+        public ActionResult Manifest()
+        {
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var content = @"CACHE MANIFEST
+# " + version + @"
+/
+/Content/site.less
+" + System.Web.Optimization.Scripts.Url("~/js/character").ToString();
+            return Content(content, "text/cache-manifest");
+        }
     }
 }

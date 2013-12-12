@@ -1,101 +1,107 @@
-﻿<!DOCTYPE html>
-<html @*manifest="manifest.appcache"*@ ng-app="dragonputer" ng-controller="CharacterSheetController">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="height=device-height, user-scalable=no, initial-scale=1.0" />
-        <title>{{ c.data.name }} - dragonputer</title>
+﻿@{
+    var enableOfflineSetting = System.Configuration.ConfigurationManager.AppSettings["EnableOffline"];
+    var enableOffline = !string.IsNullOrEmpty(enableOfflineSetting) && enableOfflineSetting != "false";
+}
 
-        @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
-        @Styles.Render("~/Content/site.less")
-    </head>
-    <body>
-        <nav class="app-bar" role="navigation">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="app-logo">
-                    <i class="fa fa-lg fa-magic"></i> Dragonputer
-                    <small class="app-playing-as">Playing as <strong>{{ c.data.name }}</strong></small>
-                </div>
+<!DOCTYPE html>
+<html @(!enableOffline ? @"manifest=""manifest.appcache""" : "") ng-app="dragonputer" ng-controller="CharacterSheetController">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="height=device-height, user-scalable=no, initial-scale=1.0" />
+    <title>{{ c.data.name }} - dragonputer</title>
+
+    @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
+    @Styles.Render("~/Content/site.less")
+</head>
+<body>
+    <nav class="app-bar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="app-logo">
+                <i class="fa fa-lg fa-magic"></i> Dragonputer
+                <small class="app-playing-as">Playing as <strong>{{ c.data.name }}</strong></small>
             </div>
-            <div class="user-menu collapse navbar-collapse" id="UserMenu">
-                <ul class="user-menu-links">
-                    <li ng-hide="loggedIn()"><a class="user-menu-text">Not logged in. Saving locally.</a></li>
-                    <li ng-show="loggedIn()"><a class="user-menu-text"><i class="fa fa-lg fa-facebook-square"></i> Logged in as {{ username() }}</a></li>
-                    <li><a ng-class="{ disabled: !canSave() }" ng-click="save()"><i class="fa fa-save"></i> Save</a></li>
-                    <li ng-show="loggedIn()"><a ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
-                    <li ng-hide="loggedIn()" class="facebook-login"><a ng-click="login()"><i class="fa fa-lg fa-facebook-square"></i> &nbsp; Log in with Facebook</a></li>
-                </ul>
-            </div>
-        </nav>
-        <form class="character-sheet">
-            @Html.Partial("_Meta")
-            @Html.Partial("_Status")
-            @Html.Partial("_Abilities")
-            @Html.Partial("_Powers")
-            @Html.Partial("_Skills")
-        </form>
+        </div>
+        <div class="user-menu collapse navbar-collapse" id="UserMenu">
+            <ul class="user-menu-links">
+                <li ng-hide="loggedIn()"><a class="user-menu-text">Not logged in. Saving locally.</a></li>
+                <li ng-show="loggedIn()"><a class="user-menu-text"><i class="fa fa-lg fa-facebook-square"></i> Logged in as {{ username() }}</a></li>
+                <li><a ng-class="{ disabled: !canSave() }" ng-click="save()"><i class="fa fa-save"></i> Save</a></li>
+                <li ng-show="loggedIn()"><a ng-click="logout()"><i class="fa fa-sign-out"></i> Sign out</a></li>
+                <li ng-hide="loggedIn()" class="facebook-login"><a ng-click="login()"><i class="fa fa-lg fa-facebook-square"></i> &nbsp; Log in with Facebook</a></li>
+            </ul>
+        </div>
+    </nav>
+    <form class="character-sheet">
+        @Html.Partial("_Meta")
+        @Html.Partial("_Status")
+        @Html.Partial("_Abilities")
+        @Html.Partial("_Powers")
+        @Html.Partial("_Skills")
+    </form>
 
-        @Scripts.Render("~/js/character")
-        <script type="text/javascript">
-            // Just UI code here... may move later.
-            function alignSections() {
-                var left = 0;
-                $('.cs-section').each(function () {
-                    $(this).css({ 'left': left });
-                    left += $(this).outerWidth();
-                });
-            }
+    @Scripts.Render("~/js/character")
 
-            $(document).ready(function () {
-                $('.cs-power-body').hide();
-                $('.cs-powers').on('click', '.cs-power-name', function (e) {
-                    e.preventDefault();
-                    $(this).closest('.cs-power-block').children('.cs-power-body').slideToggle();
-                });
-
-                $(window).resize(alignSections);
-                alignSections();
-
-                $('.character-sheet').scroll(function () {
-                    clearTimeout($.data(this, 'scrollTimer'));
-                    $.data(this, 'scrollTimer', setTimeout(function () {
-                        var $sheet = $('.character-sheet');
-                        var $sections = $('.cs-section');
-                        var scrollLeft = $sheet.scrollLeft();
-                        var runningX = 0;
-                        var closestX = 0;
-                        var closestDistance = 9000;
-                        $sections.each(function (index) {
-                            // TODO: Optimization - stop iterating after sign change.
-                            var $section = $(this);
-                            var distance = Math.abs(runningX - scrollLeft);
-                            if (distance < closestDistance) {
-                                closestDistance = distance;
-                                closestX = runningX;
-                            }
-                            runningX += $section.outerWidth();
-                        });
-
-                        var leftScrollable = runningX - $(window).outerWidth(true);
-                        if (scrollLeft >= leftScrollable - 15) { // 15px of buffer to snap to right edge
-                            $sheet.scrollLeft(leftScrollable);
-                        }
-                        else {
-                            $sheet.animate({ scrollLeft: closestX }, 250);
-                        }
-                    }, 150));
-                });
-
-                var $initialSection = $('[data-initial-section]:first');
-                if ($initialSection.attr('data-initial-section')) {
-                    $('.character-sheet').scrollLeft($initialSection[0].offsetLeft);
-                }
+    <script type="text/javascript">
+        // Just UI code here... may move later.
+        function alignSections() {
+            var left = 0;
+            $('.cs-section').each(function () {
+                $(this).css({ 'left': left });
+                left += $(this).outerWidth();
             });
-        </script>
-    </body>
+        }
+
+        $(document).ready(function () {
+            $('.cs-power-body').hide();
+            $('.cs-powers').on('click', '.cs-power-name', function (e) {
+                e.preventDefault();
+                $(this).closest('.cs-power-block').children('.cs-power-body').slideToggle();
+            });
+
+            $(window).resize(alignSections);
+            alignSections();
+
+            $('.character-sheet').scroll(function () {
+                clearTimeout($.data(this, 'scrollTimer'));
+                $.data(this, 'scrollTimer', setTimeout(function () {
+                    var $sheet = $('.character-sheet');
+                    var $sections = $('.cs-section');
+                    var scrollLeft = $sheet.scrollLeft();
+                    var runningX = 0;
+                    var closestX = 0;
+                    var closestDistance = 9000;
+                    $sections.each(function (index) {
+                        // TODO: Optimization - stop iterating after sign change.
+                        var $section = $(this);
+                        var distance = Math.abs(runningX - scrollLeft);
+                        if (distance < closestDistance) {
+                            closestDistance = distance;
+                            closestX = runningX;
+                        }
+                        runningX += $section.outerWidth();
+                    });
+
+                    var leftScrollable = runningX - $(window).outerWidth(true);
+                    if (scrollLeft >= leftScrollable - 15) { // 15px of buffer to snap to right edge
+                        $sheet.scrollLeft(leftScrollable);
+                    }
+                    else {
+                        $sheet.animate({ scrollLeft: closestX }, 250);
+                    }
+                }, 150));
+            });
+
+            var $initialSection = $('[data-initial-section]:first');
+            if ($initialSection.attr('data-initial-section')) {
+                $('.character-sheet').scrollLeft($initialSection[0].offsetLeft);
+            }
+        });
+    </script>
+</body>
 </html>
