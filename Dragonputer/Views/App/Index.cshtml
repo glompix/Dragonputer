@@ -4,7 +4,7 @@
 }
 
 <!DOCTYPE html>
-<html @(!enableOffline ? @"manifest=""manifest.appcache""" : "") ng-app="dragonputer" ng-controller="CharacterSheetController">
+<html @Html.Raw(enableOffline ? @"manifest=""manifest.appcache""" : "") ng-app="dragonputer" ng-controller="CharacterSheetController">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="height=device-height, user-scalable=no, initial-scale=1.0" />
