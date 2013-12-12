@@ -1,7 +1,4 @@
-﻿using BundleTransformer.Core.Bundles;
-using BundleTransformer.Core.Orderers;
-using BundleTransformer.Core.Transformers;
-using System.Web;
+﻿using System.Web;
 using System.Web.Optimization;
 namespace Dragonputer
 {
@@ -10,15 +7,7 @@ namespace Dragonputer
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            var charLessBundle = new CustomStyleBundle("~/css/character");
-            charLessBundle.Transforms.Add(new CssTransformer());
-            charLessBundle.Transforms.Add(new CssMinify());
-            charLessBundle.Orderer = new NullOrderer();
-            charLessBundle.Include("~/Content/site.less");
-            bundles.Add(charLessBundle);
-
-
-            var charJsBundle = new CustomScriptBundle("~/js/character").Include(
+            var charJsBundle = new ScriptBundle("~/js/character").Include(
                 "~/Scripts/underscore.js",
                 "~/Scripts/less-1.5.1.js",
                 "~/Scripts/jquery-2.0.3.js",
