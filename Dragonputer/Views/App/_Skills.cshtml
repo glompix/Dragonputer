@@ -1,5 +1,24 @@
-﻿<fieldset class="cs-section cs-status">
+﻿<fieldset class="cs-section cs-skills">
     <div class="cs-section-header">
         <h3 class="cs-section-label">Skills</h3>
+    </div>
+    <div class="cs-header-block">
+        <span class="cs-skill-bonus-label">bonus</span>
+        <span class="cs-skill-name-label">skill</span>
+        <span class="cs-skill-abil-label">abil</span>
+        <span class="cs-skill-mod-hl-label">mod + ½ lvl</span>
+        <span class="cs-skill-trained-label">trnd (+5)</span>
+        <span class="cs-skill-armor-penalty-label">armor penalty</span>
+        <span class="cs-skill-misc-label">misc</span>
+    </div>
+    <div class="cs-field-block" ng-repeat="skill in c.data.skills">
+        <span class="cs-skill-bonus">{{ c.calc.skills.bonus(skill) }}</span>
+        <span class="cs-skill-name">{{ skill.name }}</span>
+        <span class="cs-skill-abil">{{ skill.ability }}</span>
+        <span class="cs-skill-mod-hl">{{ c.calc.skills.abilMod(skill) }}</span>
+        <input class="cs-skill-trained" type="checkbox" ng-model="skill.trained" />
+        <span class="cs-skill-armor-penalty" ng-show="skill.armorPenalty === 'n/a'">{{ skill.armorPenalty }}</span>
+        <input class="cs-skill-armor-penalty" type="tel" ng-hide="skill.armorPenalty === 'n/a'" ng-model="skill.armorPenalty" />
+        <input class="cs-skill-misc" type="tel" ng-model="skill.misc" />
     </div>
 </fieldset>

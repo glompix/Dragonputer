@@ -97,7 +97,7 @@ body {
 
 /* Highlight editable inputs for differentiation */
 input[type="tel"],input[type="text"] {
-    color: @input-border-focus;
+    color: @input-border-focus !important;
 }
 /* Make text-danger work where needed. */
 input[type="tel"].text-danger,
@@ -462,6 +462,77 @@ input.cs-def-component { .cs-value-field; .cs-def-component(); }
     width: 185px;
     margin: 0 0 5px 10px;
 }
+
+.cs-skill-bonus-label {
+    margin: 0 0 0 10px;
+    width: 40px;
+}
+.cs-skill-bonus { 
+    .cs-value-fakeinput;
+    width: 40px;
+}
+.cs-skill-name-label {
+    padding: 0 0 0 5px;
+    width: 90px;
+}
+.cs-skill-name { 
+    padding: 8px 0 0 5px;
+    width: 90px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cs-skill-abil-label {  
+    width: 15px;
+}
+.cs-skill-abil { 
+    font-size: 10px;
+    padding: 12px 0 0 0;
+    width: 15px;
+    text-transform: uppercase;
+}
+.cs-skill-mod-hl-label {
+    margin-left: 10px;
+    width: 40px;
+}
+.cs-skill-mod-hl {
+    .cs-value-fakeinput;
+    width: 40px;
+}
+.cs-skill-trained-label { 
+    width: 34px;
+}
+.cs-skill-trained { 
+    width: 34px;
+    height: 34px;
+}
+.cs-skill-armor-penalty-label { 
+    width: 40px;
+}
+input.cs-skill-armor-penalty { 
+    .cs-value-field;
+    width: 40px;
+    font-weight: normal;
+    font-size: 14px !important;
+}
+span.cs-skill-armor-penalty {
+    .text-center;
+    width: 40px;
+    padding: 6px 8px;
+}
+.cs-skill-misc-label {
+    width: 40px;
+    margin-left: 5px;
+}
+.cs-skill-misc {
+    .cs-value-field;
+    margin-left: 5px;
+    width: 40px;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+
 
 /* Hide spinners on input[type="tel"] in Webkit. */
 /* http://stackoverflow.com/questions/3790935/can-i-hide-the-html5-number-inputs-spin-box */

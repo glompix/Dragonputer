@@ -54,7 +54,6 @@
 
     /* Character model */
     Character = function (source) {
-
         // This is *the* data structure for a character sheet. It is data only to make
         // saving and restoring characters dead simple.
         var data = {
@@ -97,15 +96,53 @@
             willpower: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
 
             powers: [],
-            rituals: []
+            rituals: [],
+            skills: [ // Default skills. TODO: 
+                { name: 'Acrobatics', ability: 'DEX', trained: false, armorPenalty: 0, misc: 0 },
+                { name: 'Arcana', ability: 'INT', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Athletics', ability: 'STR', trained: false, armorPenalty: 0, misc: 0 },
+                { name: 'Bluff', ability: 'CHA', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Diplomacy', ability: 'CHA', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Dungeoneering', ability: 'WIS', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Endurance', ability: 'CON', trained: false, armorPenalty: 0, misc: 0 },
+                { name: 'Heal', ability: 'WIS', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'History', ability: 'INT', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Insight', ability: 'WIS', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Intimidate', ability: 'CHA', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Nature', ability: 'WIS', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Perception', ability: 'WIS', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Religion', ability: 'INT', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Stealth', ability: 'DEX', trained: false, armorPenalty: 0, misc: 0 },
+                { name: 'Streetwise', ability: 'CHA', trained: false, armorPenalty: 'n/a', misc: 0 }, 
+                { name: 'Thievery', ability: 'DEX', trained: false, armorPenalty: 0, misc: 0 }
+            ]
         };
 
         function abilityMod(value) {
             return Math.floor((value - 10) / 2.0);
         }
 
+        function abilityModByName(name) {
+            if (name === 'STR') { return calc.strength.mod(); }
+            else if (name === 'CON') { return calc.constitution.mod(); }
+            else if (name === 'DEX') { return calc.dexterity.mod(); }
+            else if (name === 'INT') { return calc.intelligence.mod(); }
+            else if (name === 'WIS') { return calc.wisdom.mod(); }
+            else if (name === 'CHA') { return calc.charisma.mod(); }
+            else { console.warn('Invalid ability name.'); return undefined }
+        }
+
         function defenseBase() {
             return 10 + calc.halfLevel();
+        }
+
+        function getSkill(name) {
+            $.each(skills, function (index, value) {
+                if (value.name === name) {
+                    return value;
+                }
+            });
+            return undefined;
         }
 
         function defenseScore(d) {
@@ -125,18 +162,18 @@
             halfLevel: function () { return Math.floor(calc.level() / 2.0); },
 
             hitpoints: {
-                bloodied: function() { return Math.floor(data.hitpoints.max / 2.0); },
+                bloodied: function () { return Math.floor(data.hitpoints.max / 2.0); },
             },
             surges: {
-                hpValue: function() { return Math.floor(data.hitpoints.max / 4.0); }
+                hpValue: function () { return Math.floor(data.hitpoints.max / 4.0); }
             },
 
-            strength: { mod: function() { return abilityMod(data.strength.value); } },
-            constitution: { mod: function() { return abilityMod(data.constitution.value); } },
+            strength: { mod: function () { return abilityMod(data.strength.value); } },
+            constitution: { mod: function () { return abilityMod(data.constitution.value); } },
             dexterity: { mod: function () { return abilityMod(data.dexterity.value); } },
-            intelligence: { mod: function() { return abilityMod(data.intelligence.value); } },
-            wisdom: { mod: function() { return abilityMod(data.wisdom.value); } },
-            charisma: { mod: function() { return abilityMod(data.charisma.value); } },
+            intelligence: { mod: function () { return abilityMod(data.intelligence.value); } },
+            wisdom: { mod: function () { return abilityMod(data.wisdom.value); } },
+            charisma: { mod: function () { return abilityMod(data.charisma.value); } },
             initiative: { mod: function () { return calc.dexterity.mod() + calc.halfLevel() + data.initiative.misc; } },
 
             armorClass: {
@@ -154,6 +191,18 @@
             willpower: {
                 base: defenseBase,
                 score: function () { return defenseScore(data.willpower); }
+            },
+
+            skills: {
+                abilMod: function (skill) { return abilityModByName(skill.ability); },
+                bonus: function (skill) {
+                    console.log('calc bonus from', skill);
+                    return calc.skills.abilMod(skill)
+                        + calc.halfLevel()
+                        + (skill.trained ? 5 : 0)
+                        + (skill.armorPenalty === 'n/a' ? 0 : (parseInt(skill.armorPenalty) || 0))
+                        + parseInt(skill.misc) || 0;
+                }
             }
         }
 
