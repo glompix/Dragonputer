@@ -14,6 +14,7 @@
                 <a class="cs-power-name">{{ power.name }}</a>
             </div>
             <div class="cs-power-body">
+                <a class="cs-power-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
                 <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
                 <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
                 <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
@@ -37,9 +38,11 @@
         @* Accordian these *@
         <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'encounter' }">
             <div class="cs-power-head">
+                <input class="cs-power-used" type="checkbox" ng-model="power.used" />
                 <a class="cs-power-name">{{ power.name }}</a>
             </div>
             <div class="cs-power-body">
+                <a class="cs-power-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
                 <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
                 <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
                 <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
@@ -64,9 +67,11 @@
         @* Accordian these *@
         <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'daily' }">
             <div class="cs-power-head">
+                <input class="cs-power-used" type="checkbox" ng-model="power.used" />
                 <a class="cs-power-name">{{ power.name }}</a>
             </div>
             <div class="cs-power-body">
+                <a class="cs-power-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
                 <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
                 <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
                 <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />

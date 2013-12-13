@@ -231,6 +231,14 @@
                 data.powers.push(power);
             }
         }
+
+        this.removePower = function (power) {
+            $.each(data.powers, function (index, value) {
+                if (power === value) {
+                    data.powers.splice(index, 1);
+                }
+            });
+        }
         
         function copyObject(m, target) {
             for (var prop in m) {
