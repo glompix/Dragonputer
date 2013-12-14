@@ -1,18 +1,22 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('dragonputer').controller('CharacterSheetController', ['$scope', 'localStorageService', 'facebookAuthService', 'characterService',
-        function ($scope, localStorageService, facebookAuthService, characterService) {
+    angular.module('dragonputer').controller('CharacterSheetController', ['$scope', 'facebookAuthService', 'characterService',
+        function ($scope, facebookAuthService, characterService) {
 
             function loadCharacter() {
                 var character = characterService.getLocal();               
                 if (character && !$scope.c) {
                     $scope.c = character;
+                    $(document).trigger('characterLoaded');
+                    console.log('characterLoaded');
                 }
                 else if (character) {
                     console.log('Compare characters', $scope.c.data.timestamp.getTime(), character.data.timestamp.getTime());
                     if (character.data.timestamp.getTime() > $scope.c.data.timestamp.getTime()) {
                         $scope.c = character;
+                        $(document).trigger('characterLoaded');
+                        console.log('characterLoaded');
                         if (!$scope.$$phase) {
                             $scope.$apply();
                         }

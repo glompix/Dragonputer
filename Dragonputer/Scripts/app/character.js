@@ -196,7 +196,6 @@
             skills: {
                 abilMod: function (skill) { return abilityModByName(skill.ability); },
                 bonus: function (skill) {
-                    console.log('calc bonus from', skill);
                     return calc.skills.abilMod(skill)
                         + calc.halfLevel()
                         + (skill.trained ? 5 : 0)
@@ -208,7 +207,6 @@
 
         if (source) {
             while (typeof source === 'string') {
-                console.log('Parsing', source);
                 source = JSON.parse(source);
             }
             data = $.extend(data, source);

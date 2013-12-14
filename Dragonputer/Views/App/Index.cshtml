@@ -57,16 +57,34 @@
             });
         }
 
+        function adjustTextarea($textArea) {
+            $textArea.height(1);
+            $textArea.height($textArea.prop('scrollHeight'));
+        }
+
         $(document).ready(function () {
+            // Auto-size textareas.
+            $('.character-sheet').on('input propertychange', 'textarea', function () {
+                adjustTextarea($(this));
+            });
+
+            // Collapsable powers
             $('.cs-power-body').hide();
             $('.cs-powers').on('click', '.cs-power-name', function (e) {
                 e.preventDefault();
-                $(this).closest('.cs-power-block').children('.cs-power-body').slideToggle();
+                var $body = $(this).closest('.cs-power-block').children('.cs-power-body');
+                $body.slideToggle();
+                $body.find('textarea').each(function () {
+                    adjustTextarea($(this));
+                });
             });
 
+            // Using position: fixed to keep scrolling native, but have to fix up each section's
+            // left offset to compensate.
             $(window).resize(alignSections);
             alignSections();
 
+            // Snap to section.
             $('.character-sheet').scroll(function () {
                 clearTimeout($.data(this, 'scrollTimer'));
                 $.data(this, 'scrollTimer', setTimeout(function () {
@@ -97,6 +115,7 @@
                 }, 150));
             });
 
+            // First section to show isn't the one that's farthest left.
             var $initialSection = $('[data-initial-section]:first');
             if ($initialSection.attr('data-initial-section')) {
                 $('.character-sheet').scrollLeft($initialSection[0].offsetLeft);
