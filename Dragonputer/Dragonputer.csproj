@@ -534,6 +534,8 @@
       <LastGenOutput>StorageModel.cs</LastGenOutput>
       <DependentUpon>StorageModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\cs-forms.less" />
+    <Content Include="Content\cs-mixins.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />

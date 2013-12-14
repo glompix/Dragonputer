@@ -224,6 +224,10 @@
             return JSON.stringify(data); 
         }
 
+        this.isBloodied = function () {
+            return (parseInt(data.hitpoints.current) || 0) < calc.hitpoints.bloodied();
+        }
+
         this.addPower = function (power) {
             if (power.name) {
                 data.powers.push(power);
@@ -234,6 +238,20 @@
             $.each(data.powers, function (index, value) {
                 if (power === value) {
                     data.powers.splice(index, 1);
+                }
+            });
+        }
+
+        this.addStatusEffect = function (effect) {
+            if (effect.name) {
+                data.statusEffects.push(effect);
+            }
+        }
+
+        this.removeStatusEffect = function (effect) {
+            $.each(data.statusEffects, function (index, value) {
+                if (effect === value) {
+                    data.statusEffects.splice(index, 1);
                 }
             });
         }

@@ -4,7 +4,7 @@
     </div>
     <div class="cs-field-block">
         <span class="cs-status-current">Current</span>
-        <input class="cs-current-hp-value" type="tel" ng-class="{ 'text-danger': c.hitpoints.current <= c.hitpoints.bloodied() }" ng-model="c.data.hitpoints.current" />
+        <input class="cs-current-hp-value" type="tel" ng-class="{ 'danger': c.isBloodied() }" ng-model="c.data.hitpoints.current" />
         <label class="cs-current-hp-label">HP</label>
         <input class="cs-temp-hp-value" type="tel" ng-model="c.data.hitpoints.temp" />
         <label class="cs-temp-hp-label">Temp</label>
@@ -22,9 +22,25 @@
         <span class="cs-surge-hp-value">{{ c.calc.surges.hpValue() }}</span>
     </div>
     <div class="cs-section-header">
-        <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
+        <a class="cs-section-control" ng-init="$newStatusEffectForm = { show: false, name: '' }" ng-click="$newStatusEffectForm.show = true"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Status Effects</h3>
     </div>
+    <ul class="cs-list">
+        <li class="cs-list-new-form" ng-show="$newStatusEffectForm.show">
+            <button class="cs-list-new-button" ng-click="c.addStatusEffect({ name: $newStatusEffectForm.name }); $newStatusEffectForm.name = ''; $newStatusEffectForm.show = false;">Add</button>
+            <input class="cs-list-new-value" type="text" ng-model="$newStatusEffectForm.name" />
+        </li>
+        @* Accordian these *@
+        <li class="cs-list-item" ng-repeat="effect in c.data.statusEffects">
+            <div class="cs-list-item-head">
+                <a class="cs-list-item-name">{{ effect.name }}</a>
+            </div>
+            <div class="cs-list-item-body">
+                <a class="cs-list-item-remove" ng-click="c.removeStatusEffect(effect)"><i class="fa fa-trash-o"></i></a>
+                <textarea ng-model="effect.description" placeholder="description..."></textarea>
+            </div>
+        </li>
+    </ul>
     <div class="cs-section-header">
         <h3 class="cs-section-label">Action Points</h3>
     </div>

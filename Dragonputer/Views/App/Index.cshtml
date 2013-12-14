@@ -72,7 +72,7 @@
             $('.cs-power-body').hide();
             $('.cs-powers').on('click', '.cs-power-name', function (e) {
                 e.preventDefault();
-                var $body = $(this).closest('.cs-power-block').children('.cs-power-body');
+                var $body = $(this).closest('.cs-list-item').children('.cs-power-body');
                 $body.slideToggle();
                 $body.find('textarea').each(function () {
                     adjustTextarea($(this));

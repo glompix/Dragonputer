@@ -1,0 +1,66 @@
+﻿.cs-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.cs-list-new-form {
+    margin: 5px;
+}
+.cs-list-new-value {
+    .form-control;
+    width: 70%;
+}
+.cs-list-new-button {
+    .btn;
+    .btn-default;
+    float: right;
+    margin-left: 10px;
+    width: 25%;
+    :hover {
+        border: 1px solid @input-border-focus;
+    }
+}
+.cs-list-item input, .cs-list-item textarea {
+    .cs-seamless-input;
+    padding: 0 8px;
+    width: 100%;
+}
+.cs-list-item {
+    margin: 5px 0;
+}
+.cs-list-item-body > * {
+    display: block;
+}
+.cs-list-item-head {
+    .panel-heading;
+    padding: 0px 8px;
+}
+.cs-list-item-name {
+    .panel-title;
+    font-weight: bold;
+    font-size: 16px;
+    display: block;
+    padding: 5px 5px;
+    margin: 0 -5px; padding-left: 5px;
+    &:hover {
+        color: inherit;
+        text-decoration: none;
+    }
+}
+
+.cs-list-item-remove {
+    .text-danger;
+    cursor: pointer;
+    font-size: 18px;
+    color: @brand-danger;
+    &:hover {
+        color: fade(@brand-danger, 0.8);
+    }
+}
+.cs-list-item-body .cs-list-item-remove {
+    .pull-right;
+    height: 0;
+    position: relative;
+    top: -30px;
+    left: -5px;
+}

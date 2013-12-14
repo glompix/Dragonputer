@@ -3,18 +3,18 @@
         <a class="cs-section-control" ng-init="$addAtWillPower = false" ng-click="$addAtWillPower = !$addAtWillPower" ng-hide="$addAtWillPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">At-will powers</h3>
     </div>
-    <ul>
+    <ul class="cs-list">
         <li class="cs-new-power-form" ng-show="$addAtWillPower">
-            <button class="cs-new-power-button" ng-click="c.addPower({ name: $newPowerName, type: 'at-will' }); $newPowerName = ''; $addAtWillPower = false;">Add</button>
-            <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
+            <button class="cs-list-new-button" ng-click="c.addPower({ name: $newPowerName, type: 'at-will' }); $newPowerName = ''; $addAtWillPower = false;">Add</button>
+            <input class="cs-list-new-value" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
-        <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'at-will' }">
-            <div class="cs-power-head">
-                <a class="cs-power-name">{{ power.name }}</a>
+        <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'at-will' }">
+            <div class="cs-list-item-head">
+                <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
             </div>
-            <div class="cs-power-body">
-                <a class="cs-power-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
+            <div class="cs-list-item-body cs-power-body">
+                <a class="cs-list-item-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
                 <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
                 <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
                 <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
@@ -30,19 +30,19 @@
         <a class="cs-section-control" ng-init="$addEncounterPower = false" ng-click="$addEncounterPower = !$addEncounterPower" ng-hide="$addEncounterPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Encounter powers</h3>
     </div>
-    <ul>
+    <ul class="cs-list">
         <li class="cs-new-power-form" ng-show="$addEncounterPower">
-            <button class="cs-new-power-button" ng-click="c.addPower({ name: $newPowerName, type: 'encounter' }); $newPowerName = ''; $addEncounterPower = false;">Add</button>
-            <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
+            <button class="cs-list-new-button" ng-click="c.addPower({ name: $newPowerName, type: 'encounter' }); $newPowerName = ''; $addEncounterPower = false;">Add</button>
+            <input class="cs-list-new-value" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
-        <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'encounter' }">
-            <div class="cs-power-head">
+        <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'encounter' }">
+            <div class="cs-list-item-head">
                 <input class="cs-power-used" type="checkbox" ng-model="power.used" />
-                <a class="cs-power-name">{{ power.name }}</a>
+                <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
             </div>
-            <div class="cs-power-body">
-                <a class="cs-power-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
+            <div class="cs-list-item-body cs-power-body">
+                <a class="cs-list-item-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
                 <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
                 <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
                 <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
@@ -59,19 +59,19 @@
         <a class="cs-section-control" ng-init="$addDailyPower = false" ng-click="$addDailyPower = !$addDailyPower" ng-hide="$addDailyPower"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Daily powers</h3>
     </div>
-    <ul>
+    <ul class="cs-list">
         <li class="cs-new-power-form" ng-show="$addDailyPower">
-            <button class="cs-new-power-button" ng-click="c.addPower({ name: $newPowerName,  type: 'daily' }); $newPowerName = ''; $addDailyPower = false;">Add</button>
-            <input class="cs-new-power-name" type="text" ng-model="$newPowerName" />
+            <button class="cs-list-new-button" ng-click="c.addPower({ name: $newPowerName,  type: 'daily' }); $newPowerName = ''; $addDailyPower = false;">Add</button>
+            <input class="cs-list-new-value" type="text" ng-model="$newPowerName" />
         </li>
         @* Accordian these *@
-        <li class="cs-power-block" ng-repeat="power in c.data.powers | filter: { type: 'daily' }">
-            <div class="cs-power-head">
+        <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'daily' }">
+            <div class="cs-list-item-head">
                 <input class="cs-power-used" type="checkbox" ng-model="power.used" />
-                <a class="cs-power-name">{{ power.name }}</a>
+                <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
             </div>
-            <div class="cs-power-body">
-                <a class="cs-power-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
+            <div class="cs-list-item-body cs-power-body">
+                <a class="cs-list-item-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
                 <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
                 <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
                 <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
@@ -86,7 +86,7 @@
         <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
         <h3 class="cs-section-label">Rituals</h3>
     </div>
-    <div class="cs-power-block cs-no-content">
+    <div class="cs-list-item cs-no-content">
         You have no rituals.
     </div>
 </fieldset>
