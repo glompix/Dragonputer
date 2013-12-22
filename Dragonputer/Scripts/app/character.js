@@ -95,9 +95,12 @@
             reflex: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
             willpower: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
 
+            // Powers
             powers: [],
             rituals: [],
-            skills: [ // Default skills. TODO: 
+
+            // Skills
+            skills: [
                 { name: 'Acrobatics', ability: 'DEX', trained: false, armorPenalty: 0, misc: 0 },
                 { name: 'Arcana', ability: 'INT', trained: false, armorPenalty: 'n/a', misc: 0 }, 
                 { name: 'Athletics', ability: 'STR', trained: false, armorPenalty: 0, misc: 0 },
@@ -115,7 +118,10 @@
                 { name: 'Stealth', ability: 'DEX', trained: false, armorPenalty: 0, misc: 0 },
                 { name: 'Streetwise', ability: 'CHA', trained: false, armorPenalty: 'n/a', misc: 0 }, 
                 { name: 'Thievery', ability: 'DEX', trained: false, armorPenalty: 0, misc: 0 }
-            ]
+            ],
+
+            // Items & Currency
+            items: []
         };
 
         function abilityMod(value) {
@@ -252,6 +258,20 @@
             $.each(data.statusEffects, function (index, value) {
                 if (effect === value) {
                     data.statusEffects.splice(index, 1);
+                }
+            });
+        }
+
+        this.addItem = function (item) {
+            if (item.name) {
+                data.items.push(item);
+            }
+        }
+
+        this.removeItem = function (item) {
+            $.each(data.items, function (index, value) {
+                if (item === value) {
+                    data.items.splice(index, 1);
                 }
             });
         }

@@ -569,6 +569,8 @@
     <Content Include="Views\App\_Meta.cshtml" />
     <Content Include="Views\App\_Skills.cshtml" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\App\_Items.cshtml" />
+    <Content Include="Views\App\_New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

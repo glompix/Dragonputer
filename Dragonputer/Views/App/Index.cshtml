@@ -13,7 +13,7 @@
     @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
     @Styles.Render("~/Content/site.less")
 </head>
-<body>
+<body ng-class="{ 'modal-active': $newCharacterForm.show }">
     <nav class="app-bar" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
@@ -37,13 +37,17 @@
             </ul>
         </div>
     </nav>
-    <form class="character-sheet">
+    <div class="app-modals">
+        @Html.Partial("_New")
+    </div>
+    <div class="character-sheet">
         @Html.Partial("_Meta")
         @Html.Partial("_Status")
         @Html.Partial("_Abilities")
         @Html.Partial("_Powers")
         @Html.Partial("_Skills")
-    </form>
+        @Html.Partial("_Items")
+    </div>
 
     @Scripts.Render("~/js/character")
 

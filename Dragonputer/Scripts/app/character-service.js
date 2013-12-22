@@ -34,6 +34,9 @@
                 character.data.timestamp = new Date();
                 saveLocal(character.json());
             },
+            clear: function () {
+                localStorageService.clearAll();
+            },
             pull: function (signedRequest, callback) {
                 if (!signedRequest)
                     return;

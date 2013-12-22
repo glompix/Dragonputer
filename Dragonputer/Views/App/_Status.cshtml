@@ -30,7 +30,6 @@
             <button class="cs-list-new-button" ng-click="c.addStatusEffect({ name: $newStatusEffectForm.name }); $newStatusEffectForm.name = ''; $newStatusEffectForm.show = false;">Add</button>
             <input class="cs-list-new-value" type="text" ng-model="$newStatusEffectForm.name" />
         </li>
-        @* Accordian these *@
         <li class="cs-list-item" ng-repeat="effect in c.data.statusEffects">
             <div class="cs-list-item-head">
                 <a class="cs-list-item-name">{{ effect.name }}</a>

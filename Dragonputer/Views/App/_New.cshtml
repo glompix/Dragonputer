@@ -1,0 +1,43 @@
+﻿<div class="new-character" ng-show="$newCharacterForm.show">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 class="modal-title">Hail, mighty adventurer.</h3>
+        </div>
+        <div class="new-character-body">
+            <div class="left-panel">
+                <p>
+                    Dragonputer is a simple character sheet application implementing D&amp;D basic 4th edition rules. It doesn't
+                    try to do a lot for you - just record your character's stats, spells, and other basic data.
+                </p>
+                <p>
+                    Here are the key features:
+                </p>
+                <ul>
+                    <li><strong>Play offline.</strong> Like roleplaying in the woods? This web application works offline. Your character is saved in your browser.</li>
+                    <li><strong>Cloud backup.</strong> Log in with Facebook and back your characters up on our servers.</li>
+                </ul>
+            </div>
+            <div class="right-panel">
+                <p class="prototype-alert">
+                    <strong>Warning! Application prototype.</strong>
+                    This application is an early prototype. It is subject to drastic change, and may stop functioning or lose
+                    your data. If you'd like to help me work on this, <a href="http://www.github.com/glompix/Dragonputer">
+                        fork a
+                        feature branch
+                    </a> on Github and send me a pull request.
+                </p>
+                <p>
+                    If you want to try this out, get started by giving your character a name.
+                </p>
+                <form>
+                    <label for="NewCharacterName">Character Name</label>
+                    <input type="text" id="NewCharacterName" ng-model="$newCharacterForm.name" />
+                    <div class="new-character-actions">
+                        <button type="submit" ng-click="$newCharacterForm.submit()" ng-disabled="!$newCharacterForm.valid()" class="btn btn-primary">Adventure Time!</button>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
