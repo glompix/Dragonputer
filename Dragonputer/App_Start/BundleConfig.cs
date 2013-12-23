@@ -9,7 +9,6 @@ namespace Dragonputer
         {
             var charJsBundle = new ScriptBundle("~/js/character").Include(
                 "~/Scripts/underscore.js",
-                "~/Scripts/less-1.5.1.js",
                 "~/Scripts/jquery-2.0.3.js",
                 "~/Scripts/angular.js",
                 "~/Scripts/angular-local-storage.js",

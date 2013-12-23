@@ -10,21 +10,23 @@
     padding-top: 3px;
 }
 
-.cs-value-field {
+.cs-value-field(@width: 80px) {
     .form-control;
     .text-center;
     color: #fafafa;
     font-weight: bold;
     font-size: 16px;
+    width: @width;
 }
 
-.cs-value-fakeinput {
+.cs-value-fakeinput(@width: 80px) {
     .text-center;
     background-color: @input-bg;
     border: 1px solid @input-border;
     padding: 6px 8px;
     margin-left: 10px;
     border-radius: @input-border-focus;
+    width: @width;
 }
 
 .cs-seamless-input {

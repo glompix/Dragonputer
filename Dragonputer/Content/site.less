@@ -2,8 +2,6 @@
 @import "cs-mixins.less";
 @import "cs-forms.less";
 
-@input-padding: 12px 6px;
-
 .danger {
     .has-error;
 }
@@ -152,7 +150,6 @@ body {
 .user-menu-links {
     .nav;
     .navbar-nav;
-
     .user-menu-text {
         color: #ccc;
         &:hover {
@@ -229,7 +226,7 @@ input[type="text"].text-danger,
 /* ====== CHARACTER SHEET SHARED ======= */
 
 /* ===== ABILITY SCORES ===== */
-.cs-abil-value { .cs-value-field; width: 70px; }
+.cs-abil-value { .cs-value-field(70px); }
 .cs-abil-value-label { width: 70px; }
 
 .cs-abil-type { .cs-label-lg; width: 50px; }
@@ -237,14 +234,12 @@ input[type="text"].text-danger,
 
 
 .cs-abil-mod, .cs-abil-mod-hl {
-.cs-value-fakeinput;
+    .cs-value-fakeinput(40px);
     margin-left: 20px;
-    width: 40px;
 }
 .cs-abil-misc {
-    .cs-value-field;
+    .cs-value-field(40px);
     margin-left: 20px;
-    width: 40px; 
 }
 .cs-abil-mod-label, .cs-abil-mod-hl-label, .cs-abil-misc-label {
     margin-left: 20px;
@@ -253,12 +248,10 @@ input[type="text"].text-danger,
 }
 
 .cs-def-score {
-    .cs-value-fakeinput;
-    .text-center;
+    .cs-value-fakeinput(50px);
     font-size: 16px;
     font-weight: bold;
     height: @input-height-base;
-    width: 50px;
     border-radius: @border-radius-base;
 }
 .cs-def-type {
@@ -273,8 +266,8 @@ input[type="text"].text-danger,
     padding: 4px;
     margin: 4px 0 0 2px;
 }
-span.cs-def-component { .cs-value-fakeinput; .cs-def-component(); }
-input.cs-def-component { .cs-value-field; .cs-def-component(); }
+span.cs-def-component { .cs-value-fakeinput(); .cs-def-component(); }
+input.cs-def-component { .cs-value-field(); .cs-def-component(); }
 
 .cs-def-score-label {
     width: 52px;
@@ -293,9 +286,8 @@ input.cs-def-component { .cs-value-field; .cs-def-component(); }
     padding: 0px 8px;
 }
 .cs-power-attack input {
-    .cs-value-field;
+    .cs-value-field(80px);
     display: inline;
-    width: 80px;
 }
 .cs-power-name:hover {
     cursor: pointer;
@@ -320,9 +312,8 @@ input.cs-power-used {
     .cs-label-md;
 }
 .cs-current-hp-value {
-    .cs-value-field;
+    .cs-value-field(60px);
     margin-left: 15px;
-    width: 60px;
  }
 .cs-current-hp-label, .cs-temp-hp-label {
     .cs-label-lg;
@@ -330,9 +321,8 @@ input.cs-power-used {
     width: 30px;
 }
 .cs-temp-hp-value {
-    .cs-value-field;
+    .cs-value-field(60px);
     margin-left: 15px;
-    width: 60px;
 }
 
 .cs-max-hp-label, .cs-bloodied-hp-label,
@@ -343,14 +333,12 @@ input.cs-power-used {
 }
 
 .cs-max-hp-value, .cs-surges-day-value {
-    .cs-value-field;
-    width: 60px;
+    .cs-value-field(60px);
     margin-left: 15px;
 }
 
 .cs-bloodied-hp-value, .cs-surge-hp-value {
-    .cs-value-fakeinput;
-    width: 60px;
+    .cs-value-fakeinput(60px);
     margin-left: 15px;
 }
 
@@ -376,8 +364,7 @@ input.cs-power-used {
 
 }
 .cs-meta-xp-value {
-    .cs-value-field;
-    width: 100px;
+    .cs-value-field(100px);
     margin-bottom: 5px;
 }
 .cs-meta-level-label {
@@ -387,8 +374,7 @@ input.cs-power-used {
     text-transform: uppercase;
 }
 .cs-meta-level-value {
-    .cs-value-fakeinput;
-    width: 60px;
+    .cs-value-fakeinput(60px);
 }
 .cs-meta-label {
     .cs-field-label;
@@ -416,8 +402,7 @@ input.cs-power-used {
     width: 40px;
 }
 .cs-skill-bonus { 
-    .cs-value-fakeinput;
-    width: 40px;
+    .cs-value-fakeinput(40px);
 }
 .cs-skill-name-label {
     padding: 0 0 0 5px;
@@ -444,8 +429,7 @@ input.cs-power-used {
     width: 40px;
 }
 .cs-skill-mod-hl {
-    .cs-value-fakeinput;
-    width: 40px;
+    .cs-value-fakeinput(40px);
 }
 .cs-skill-trained-label { 
     width: 34px;
@@ -458,8 +442,7 @@ input.cs-power-used {
     width: 40px;
 }
 input.cs-skill-armor-penalty { 
-    .cs-value-field;
-    width: 40px;
+    .cs-value-field(40px);
     font-weight: normal;
     font-size: 14px !important;
 }
@@ -473,9 +456,8 @@ span.cs-skill-armor-penalty {
     margin-left: 5px;
 }
 .cs-skill-misc {
-    .cs-value-field;
+    .cs-value-field(40px);
     margin-left: 5px;
-    width: 40px;
     font-size: 14px;
     font-weight: normal;
 }
