@@ -1,0 +1,14 @@
+﻿<div class="cs-section-header">
+    <a href="" class="cs-section-control" ng-click="addForm.visible = !addForm.visible;" ng-hide="addForm.visible"><i class="fa fa-plus"></i></a>
+    <h3 class="cs-section-label">{{ title }}</h3>
+</div>
+<ul class="cs-list">
+    <li class="cs-list-new-form" ng-show="addForm.visible">
+        <form>
+            <input class="cs-list-new-value" type="text" ng-model="addForm.name" />
+            <button class="cs-list-new-button" ng-click="addItem(addForm.name); addForm.name = ''; addForm.visible = false;">Add</button>
+        </form>
+    </li>
+</ul>
+<ul class="cs-list" ng-transclude>
+</ul>

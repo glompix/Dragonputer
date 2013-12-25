@@ -1,61 +1,20 @@
 ﻿<div class="cs-section cs-items">
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$newMagicItemForm = { show: false, name: '' }" ng-click="$newMagicItemForm.show = true"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Magic Items</h3>
-    </div>
-    <ul class="cs-list">
-        <li class="cs-list-new-form" ng-show="$newMagicItemForm.show">
-            <button class="cs-list-new-button" ng-click="c.addItem({ name: $newMagicItemForm.name, type: 'magic', used: false }); $newMagicItemForm.name = ''; $newMagicItemForm.show = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newMagicItemForm.name" />
-        </li>
+    <cs-list-editor title="Magic Items" defaults='{ "type": "magic", "used": false }' source="c.data.items">
         <li class="cs-list-item" ng-repeat="item in c.data.items | filter: { type: 'magic' }">
-            <div class="cs-list-item-head">
-                <a class="cs-list-item-name">{{ item.name }}</a>
-            </div>
-            <div class="cs-list-item-body">
-                <a class="cs-list-item-remove" ng-click="c.removeItem(item)"><i class="fa fa-trash-o"></i></a>
-                <textarea ng-model="item.description" placeholder="description..."></textarea>
-            </div>
+            <a href="" class="cs-list-item-remove" ng-click="c.data.items.splice($.inArray(item, c.data.items), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
-    </ul>
-
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$newEquipmentForm = { show: false, name: '' }" ng-click="$newEquipmentForm.show = true"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Equipment</h3>
-    </div>
-    <ul class="cs-list">
-        <li class="cs-list-new-form" ng-show="$newEquipmentForm.show">
-            <button class="cs-list-new-button" ng-click="c.addItem({ name: $newEquipmentForm.name, type: 'equipment' }); $newEquipmentForm.name = ''; $newEquipmentForm.show = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newEquipmentForm.name" />
-        </li>
+    </cs-list-editor>
+    <cs-list-editor title="Equipment" defaults='{ "type": "equipment" }' source="c.data.items">
         <li class="cs-list-item" ng-repeat="item in c.data.items | filter: { type: 'equipment' }">
-            <div class="cs-list-item-head">
-                <a class="cs-list-item-name">{{ item.name }}</a>
-            </div>
-            <div class="cs-list-item-body">
-                <a class="cs-list-item-remove" ng-click="c.removeItem(item)"><i class="fa fa-trash-o"></i></a>
-                <textarea ng-model="item.description" placeholder="description..."></textarea>
-            </div>
+            <a href="" class="cs-list-item-remove" ng-click="c.data.items.splice($.inArray(item, c.data.items), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
-    </ul>
-
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$newOtherItemForm = { show: false, name: '' }" ng-click="$newOtherItemForm.show = true"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Other Wealth</h3>
-    </div>
-    <ul class="cs-list">
-        <li class="cs-list-new-form" ng-show="$newOtherItemForm.show">
-            <button class="cs-list-new-button" ng-click="c.addItem({ name: $newOtherItemForm.name, type: 'other' }); $newOtherItemForm.name = ''; $newOtherItemForm.show = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newOtherItemForm.name" />
-        </li>
+    </cs-list-editor>
+    <cs-list-editor title="Magic Items" defaults='{ "type": "other" }' source="c.data.items">
         <li class="cs-list-item" ng-repeat="item in c.data.items | filter: { type: 'other' }">
-            <div class="cs-list-item-head">
-                <a class="cs-list-item-name">{{ item.name }}</a>
-            </div>
-            <div class="cs-list-item-body">
-                <a class="cs-list-item-remove" ng-click="c.removeItem(item)"><i class="fa fa-trash-o"></i></a>
-                <textarea ng-model="item.description" placeholder="description..."></textarea>
-            </div>
+            <a href="" class="cs-list-item-remove" ng-click="c.data.items.splice($.inArray(item, c.data.items), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
-    </ul>
+    </cs-list-editor>
 </div>

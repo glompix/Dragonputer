@@ -21,7 +21,7 @@ namespace Dragonputer.Controllers
 # " + version + @"
 /
 /Content/site.less
-" + System.Web.Optimization.Scripts.Url("~/js/character").ToString();
+" + System.Web.Optimization.Scripts.Url("~/js/character").ToString() + "\n";
             return Content(content, "text/cache-manifest");
         }
     }

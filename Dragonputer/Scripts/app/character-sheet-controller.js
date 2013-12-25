@@ -12,7 +12,7 @@
                 $scope.$newCharacterForm.show = true;
             }
 
-            $scope.canSave = function () { return $scope.c.name && $scope.c.json() !== characterService.getLocal().json(); };
+            $scope.canSave = function () { return $scope.c.name || $scope.c.json() !== characterService.getLocal().json(); };
             $scope.save = function () {
                 console.log('Saving: ', $scope.c);
                 characterService.saveLocal($scope.c);

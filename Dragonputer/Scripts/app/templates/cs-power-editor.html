@@ -1,0 +1,14 @@
+﻿<!-- Special editor for powers -->
+<div class="cs-list-item-head">
+    <input class="cs-power-used" type="checkbox" ng-hide="power.used === undefined" ng-model="power.used" />
+    <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
+</div>
+<div class="cs-list-item-body cs-power-body">
+    <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
+    <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
+    <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
+    <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
+    <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
+    <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea><!-- TODO: [ABIL] highlighting filter. -->
+    <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
+</div>

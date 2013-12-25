@@ -73,10 +73,9 @@
             });
 
             // Collapsable powers
-            $('.cs-power-body').hide();
-            $('.cs-powers').on('click', '.cs-power-name', function (e) {
+            $('.character-sheet').on('click', '.cs-list-item-name', function (e) {
                 e.preventDefault();
-                var $body = $(this).closest('.cs-list-item').children('.cs-power-body');
+                var $body = $(this).closest('.cs-list-item').find('.cs-list-item-body');
                 $body.slideToggle();
                 $body.find('textarea').each(function () {
                     adjustTextarea($(this));

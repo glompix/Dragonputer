@@ -19,7 +19,8 @@ namespace Dragonputer
                 "~/Scripts/app/character.js",
                 "~/Scripts/app/character-service.js",
                 "~/Scripts/app/facebook-auth-service.js",
-                "~/Scripts/app/character-sheet-controller.js"
+                "~/Scripts/app/character-sheet-controller.js",
+                "~/Scripts/app/character-sheet-list.js"
             );
             bundles.Add(charJsBundle);
         }

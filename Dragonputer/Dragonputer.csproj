@@ -254,9 +254,14 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\character-service.js" />
     <Content Include="Scripts\app\character-sheet-controller.js" />
+    <Content Include="Scripts\app\character-sheet-list.js" />
     <Content Include="Scripts\app\character.js" />
+    <Content Include="Scripts\app\templates\cs-basic-editor.html" />
+    <Content Include="Scripts\app\templates\cs-list-editor.html" />
     <Content Include="Scripts\app\dragonputer.js" />
     <Content Include="Scripts\app\facebook-auth-service.js" />
+    <Content Include="Scripts\app\templates\cs-power-display.html" />
+    <Content Include="Scripts\app\templates\cs-power-editor.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\errors.json" />

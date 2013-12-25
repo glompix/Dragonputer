@@ -1,92 +1,26 @@
 ﻿<fieldset class="cs-section cs-powers">
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$addAtWillPower = false" ng-click="$addAtWillPower = !$addAtWillPower" ng-hide="$addAtWillPower"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">At-will powers</h3>
-    </div>
-    <ul class="cs-list">
-        <li class="cs-new-power-form" ng-show="$addAtWillPower">
-            <button class="cs-list-new-button" ng-click="c.addPower({ name: $newPowerName, type: 'at-will' }); $newPowerName = ''; $addAtWillPower = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newPowerName" />
-        </li>
-        @* Accordian these *@
+    <cs-list-editor title="At-will powers" defaults='{ "type": "at-will" }' source="c.data.powers">
         <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'at-will' }">
-            <div class="cs-list-item-head">
-                <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
-            </div>
-            <div class="cs-list-item-body cs-power-body">
-                <a class="cs-list-item-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
-                <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
-                <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
-                <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
-                <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
-                <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
-                <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea>@* TODO: [ABIL] highlighting filter. *@
-                <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
-            </div>
+            <a href="" class="cs-list-item-remove" ng-click="c.data.powers.splice($.inArray(power, c.data.powers), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-power-editor.html")'"></div>
         </li>
-    </ul>
-    
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$addEncounterPower = false" ng-click="$addEncounterPower = !$addEncounterPower" ng-hide="$addEncounterPower"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Encounter powers</h3>
-    </div>
-    <ul class="cs-list">
-        <li class="cs-new-power-form" ng-show="$addEncounterPower">
-            <button class="cs-list-new-button" ng-click="c.addPower({ name: $newPowerName, type: 'encounter' }); $newPowerName = ''; $addEncounterPower = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newPowerName" />
-        </li>
-        @* Accordian these *@
+    </cs-list-editor>
+    <cs-list-editor title="Encounter powers" defaults='{ "type": "encounter", "used": false }' source="c.data.powers">
         <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'encounter' }">
-            <div class="cs-list-item-head">
-                <input class="cs-power-used" type="checkbox" ng-model="power.used" />
-                <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
-            </div>
-            <div class="cs-list-item-body cs-power-body">
-                <a class="cs-list-item-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
-                <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
-                <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
-                <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
-                <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
-                <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
-                <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea>@* TODO: [ABIL] highlighting filter. *@
-                <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
-            </div>
+            <a href="" class="cs-list-item-remove" ng-click="c.data.powers.splice($.inArray(power, c.data.powers), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-power-editor.html")'"></div>
         </li>
-            
-    </ul>
-    
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$addDailyPower = false" ng-click="$addDailyPower = !$addDailyPower" ng-hide="$addDailyPower"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Daily powers</h3>
-    </div>
-    <ul class="cs-list">
-        <li class="cs-new-power-form" ng-show="$addDailyPower">
-            <button class="cs-list-new-button" ng-click="c.addPower({ name: $newPowerName,  type: 'daily' }); $newPowerName = ''; $addDailyPower = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newPowerName" />
-        </li>
-        @* Accordian these *@
+    </cs-list-editor>
+    <cs-list-editor title="Daily powers" defaults='{ "type": "daily", "used": false }' source="c.data.powers">
         <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'daily' }">
-            <div class="cs-list-item-head">
-                <input class="cs-power-used" type="checkbox" ng-model="power.used" />
-                <a class="cs-power-name cs-list-item-name">{{ power.name }}</a>
-            </div>
-            <div class="cs-list-item-body cs-power-body">
-                <a class="cs-list-item-remove" ng-click="c.removePower(power)"><i class="fa fa-trash-o"></i></a>
-                <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
-                <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
-                <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
-                <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
-                <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
-                <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea>@* TODO: [ABIL] highlighting filter. *@
-                <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
-            </div>
+            <a href="" class="cs-list-item-remove" ng-click="c.data.powers.splice($.inArray(power, c.data.powers), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-power-editor.html")'"></div>
         </li>
-    </ul>
-    <div class="cs-section-header">
-        <a href="#" id="AddWillPowerButton" class="cs-section-control"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Rituals</h3>
-    </div>
-    <div class="cs-list-item cs-no-content">
-        You have no rituals.
-    </div>
+    </cs-list-editor>
+    <cs-list-editor title="Rituals" source="c.data.rituals">
+        <li class="cs-list-item" ng-repeat="item in c.data.rituals">
+            <a href="" class="cs-list-item-remove" ng-click="c.data.rituals.splice($.inArray(item, c.data.rituals), 1);"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
+        </li>
+    </cs-list-editor>
 </fieldset>

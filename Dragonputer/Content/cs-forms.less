@@ -5,10 +5,12 @@
 }
 .cs-list-new-form {
     margin: 5px;
+    height: 34px;
 }
 .cs-list-new-value {
     .form-control;
     width: 70%;
+    float: left;
 }
 .cs-list-new-button {
     .btn;
@@ -27,6 +29,9 @@
 }
 .cs-list-item {
     margin: 5px 0;
+}
+.cs-list-item-body {
+    display: none; /* Initially hidden. */
 }
 .cs-list-item-body > * {
     display: block;
@@ -50,17 +55,13 @@
 
 .cs-list-item-remove {
     .text-danger;
+    .pull-right;
+    height: 0;
     cursor: pointer;
     font-size: 18px;
     color: @brand-danger;
+    margin-right: 5px;
     &:hover {
         color: fade(@brand-danger, 0.8);
     }
-}
-.cs-list-item-body .cs-list-item-remove {
-    .pull-right;
-    height: 0;
-    position: relative;
-    top: -30px;
-    left: -5px;
 }

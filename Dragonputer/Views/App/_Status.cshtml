@@ -21,10 +21,11 @@
         <input class="cs-surges-day-value" type="tel" ng-model="c.data.surges.perDay" />
         <span class="cs-surge-hp-value">{{ c.calc.surges.hpValue() }}</span>
     </div>
-    <div class="cs-section-header">
-        <a class="cs-section-control" ng-init="$newStatusEffectForm = { show: false, name: '' }" ng-click="$newStatusEffectForm.show = true"><i class="fa fa-plus"></i></a>
-        <h3 class="cs-section-label">Status Effects</h3>
-    </div>
+    <cs-list-editor title="Status Effects" source="c.data.statusEffects">
+        <li class="cs-list-item"
+            ng-repeat="item in c.data.items | filter: { type: 'magic' }"
+            ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></li>
+    </cs-list-editor>
     <ul class="cs-list">
         <li class="cs-list-new-form" ng-show="$newStatusEffectForm.show">
             <button class="cs-list-new-button" ng-click="c.addStatusEffect({ name: $newStatusEffectForm.name }); $newStatusEffectForm.name = ''; $newStatusEffectForm.show = false;">Add</button>
