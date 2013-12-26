@@ -1,19 +1,19 @@
 ﻿<div class="cs-section cs-items">
     <cs-list-editor title="Magic Items" defaults='{ "type": "magic", "used": false }' source="c.data.items">
         <li class="cs-list-item" ng-repeat="item in c.data.items | filter: { type: 'magic' }">
-            <a href="" class="cs-list-item-remove" ng-click="c.data.items.splice($.inArray(item, c.data.items), 1);"><i class="fa fa-trash-o"></i></a>
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.items, item)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
     </cs-list-editor>
     <cs-list-editor title="Equipment" defaults='{ "type": "equipment" }' source="c.data.items">
         <li class="cs-list-item" ng-repeat="item in c.data.items | filter: { type: 'equipment' }">
-            <a href="" class="cs-list-item-remove" ng-click="c.data.items.splice($.inArray(item, c.data.items), 1);"><i class="fa fa-trash-o"></i></a>
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.items, item)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
     </cs-list-editor>
     <cs-list-editor title="Magic Items" defaults='{ "type": "other" }' source="c.data.items">
         <li class="cs-list-item" ng-repeat="item in c.data.items | filter: { type: 'other' }">
-            <a href="" class="cs-list-item-remove" ng-click="c.data.items.splice($.inArray(item, c.data.items), 1);"><i class="fa fa-trash-o"></i></a>
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.items, item)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
     </cs-list-editor>

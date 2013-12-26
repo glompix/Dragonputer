@@ -22,25 +22,11 @@
         <span class="cs-surge-hp-value">{{ c.calc.surges.hpValue() }}</span>
     </div>
     <cs-list-editor title="Status Effects" source="c.data.statusEffects">
-        <li class="cs-list-item"
-            ng-repeat="item in c.data.items | filter: { type: 'magic' }"
-            ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></li>
+        <li class="cs-list-item" ng-repeat="item in c.data.statusEffects">
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.statusEffects, item)"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
+        </li>
     </cs-list-editor>
-    <ul class="cs-list">
-        <li class="cs-list-new-form" ng-show="$newStatusEffectForm.show">
-            <button class="cs-list-new-button" ng-click="c.addStatusEffect({ name: $newStatusEffectForm.name }); $newStatusEffectForm.name = ''; $newStatusEffectForm.show = false;">Add</button>
-            <input class="cs-list-new-value" type="text" ng-model="$newStatusEffectForm.name" />
-        </li>
-        <li class="cs-list-item" ng-repeat="effect in c.data.statusEffects">
-            <div class="cs-list-item-head">
-                <a class="cs-list-item-name">{{ effect.name }}</a>
-            </div>
-            <div class="cs-list-item-body">
-                <a class="cs-list-item-remove" ng-click="c.removeStatusEffect(effect)"><i class="fa fa-trash-o"></i></a>
-                <textarea ng-model="effect.description" placeholder="description..."></textarea>
-            </div>
-        </li>
-    </ul>
     <div class="cs-section-header">
         <h3 class="cs-section-label">Action Points</h3>
     </div>

@@ -1,5 +1,6 @@
 ﻿<!-- Editor for elements that just have a title and description. (status effects, items, etc...) -->
 <div class="cs-list-item-head">
+    <input class="cs-power-used" type="checkbox" ng-hide="item.used === undefined" ng-model="item.used" />
     <a href="#" class="cs-list-item-name">{{ item.name }}</a>
 </div>
 <div class="cs-list-item-body">

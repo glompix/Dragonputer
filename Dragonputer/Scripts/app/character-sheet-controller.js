@@ -26,7 +26,12 @@
                 characterService.clear();
                 $scope.c = characterService.getLocal();
                 $scope.$newCharacterForm.show = true;
-            }
+            };
+
+            // Utility function for working with lists.
+            $scope.removeFrom = function (array, item) {
+                array.splice($.inArray(item, array), 1);
+            };
 
             $scope.login = facebookAuthService.login;
             $scope.logout = facebookAuthService.logout;
