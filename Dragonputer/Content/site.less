@@ -105,7 +105,7 @@ body {
 
 .cs-section {
     padding: 10px;
-    width: 375px;
+    width: 365px;
     position: absolute;
     top: 0;
     bottom: 0;
@@ -120,7 +120,7 @@ body {
     /* Fit to width on mobile phones. */
     @media (max-width: @screen-xs-min)
     {
-        min-width: 375px;
+        min-width: 365px;
         width: 100%;
     }
 }
@@ -131,6 +131,7 @@ body {
     .navbar-inverse;
     .navbar-fixed-top;
     margin: 0;
+    min-width: 365px; 
 }
 
 .app-logo {
@@ -142,6 +143,7 @@ body {
 .app-playing-as {
     .text-muted;
     font-size: 80%;
+    display: none;
 }
 
 .user-menu {
@@ -215,7 +217,7 @@ body {
 
 /* Highlight editable inputs for differentiation */
 input[type="tel"],input[type="text"] {
-    color: @input-border-focus !important;
+    color: @input-border-focus;
 }
 /* Make text-danger work where needed. */
 input[type="tel"].text-danger,
@@ -274,11 +276,13 @@ input.cs-def-component { .cs-value-field(); .cs-def-component(); }
     width: 52px;
 }
 .cs-def-type-label {
-    width: 80px;
+    width: 78px;
     margin-left: 15px;
 }
 .cs-def-component-label {
     width: 26px;
+    .text-overflow();
+    overflow: hidden;
     text-overflow: clip;
 }
 
@@ -330,6 +334,9 @@ input.cs-power-used {
     width: 60px;
     margin-left: 15px;
 }
+.cs-surges-day-label {
+    margin-left: 168px;
+}
 
 .cs-max-hp-value, .cs-surges-day-value {
     .cs-value-field(60px);
@@ -339,6 +346,22 @@ input.cs-power-used {
 .cs-bloodied-hp-value, .cs-surge-hp-value {
     .cs-value-fakeinput(60px);
     margin-left: 15px;
+}
+.cs-second-wind-label {
+    .text-center;
+    display: block;
+    padding: 5px;
+    width: 100%;
+    font-size: 12px;
+    cursor: pointer;
+    .cs-second-wind-text {
+        padding: 4px 15px 4px 0;
+        font-weight: normal;
+    }
+    input {
+        height: 20px;
+        width: 20px;
+    }
 }
 
 /* ======== META ========= */
@@ -374,6 +397,7 @@ input.cs-power-used {
 }
 .cs-meta-level-value {
     .cs-value-fakeinput(60px);
+    margin-left: 10px;
 }
 .cs-meta-label {
     .cs-field-label;
@@ -389,8 +413,14 @@ input.cs-power-used {
 
 .cs-character-picture {
     .img-rounded;
+    .text-center;
+    cursor: pointer;
     width: 100%;
     margin: 5px 0;
+    &.no-content .fa {
+        font-size: 80px;
+        margin: 15px;
+    }
 }
 
 .cs-image-btn-group {

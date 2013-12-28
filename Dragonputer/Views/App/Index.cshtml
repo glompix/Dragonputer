@@ -15,7 +15,7 @@
     @Styles.Render("//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css")
     @Styles.Render("~/Content/site.less")
 </head>
-<body ng-class="{ 'modal-active': $newCharacterForm.show }" cs-background-image="c.data.background">
+<body ng-class="{ 'modal-active': $newCharacterForm.show }" cs-background-image="c.data.wallpaper">
     <nav class="app-bar" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
@@ -49,6 +49,7 @@
         @Html.Partial("_Powers")
         @Html.Partial("_Skills")
         @Html.Partial("_Items")
+        @Html.Partial("_Notes")
     </div>
 
     @Scripts.Render("~/js/character")

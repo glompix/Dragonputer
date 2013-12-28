@@ -4,7 +4,7 @@
     </div>
     <div class="cs-field-block">
         <span class="cs-status-current">Current</span>
-        <input class="cs-current-hp-value" type="tel" ng-class="{ 'danger': c.isBloodied() }" ng-model="c.data.hitpoints.current" />
+        <input class="cs-current-hp-value" type="tel" ng-class="{ 'text-danger': c.isBloodied() }" ng-model="c.data.hitpoints.current" />
         <label class="cs-current-hp-label">HP</label>
         <input class="cs-temp-hp-value" type="tel" ng-model="c.data.hitpoints.temp" />
         <label class="cs-temp-hp-label">Temp</label>
@@ -12,22 +12,49 @@
     <div class="cs-header-block">
         <span class="cs-max-hp-label">Max HP</span>
         <span class="cs-bloodied-hp-label">Bloodied</span>
-        <span class="cs-surges-day-label">Surges/day</span>
-        <span class="cs-surge-hp-label">HP Value</span>
     </div>
     <div class="cs-field-block">
         <input class="cs-max-hp-value" type="tel" ng-model="c.data.hitpoints.max" />
         <span class="cs-bloodied-hp-value">{{ c.calc.hitpoints.bloodied() }}</span>
+    </div>
+
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Surges</h3>
+    </div>
+    <div class="cs-header-block">
+        <span class="cs-surges-day-label">Surges/day</span>
+        <span class="cs-surge-hp-label">HP Value</span>
+    </div>
+    <div class="cs-field-block">
+        <span class="cs-status-current">Current</span>
+        <input class="cs-current-hp-value" type="tel" ng-model="c.data.surges.current" />
         <input class="cs-surges-day-value" type="tel" ng-model="c.data.surges.perDay" />
         <span class="cs-surge-hp-value">{{ c.calc.surges.hpValue() }}</span>
     </div>
+    <div class="cs-field-block">
+        <label class="cs-second-wind-label">
+            <span class="cs-second-wind-text">Second Wind (encounter power)</span> 
+            <span class="cs-used-text">Used</span>
+            <input type="checkbox" ng-model="c.data.secondWindUsed" />
+        </label>
+    </div>
+
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Action Points</h3>
+    </div>
+    <div class="cs-field-block">
+        <span class="cs-status-current">Current</span>
+        <input class="cs-current-hp-value" type="tel" ng-model="c.data.actionPoints.current" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-block-label" for="ActionPointEffectsTextBox">Additional effects for spending action points</label>
+        <textarea ng-model="c.data.actionPoints.effects" id="ActionPointEffectsTextBox"></textarea>
+    </div>
+
     <cs-list-editor title="Status Effects" source="c.data.statusEffects">
         <li class="cs-list-item" ng-repeat="item in c.data.statusEffects">
             <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.statusEffects, item)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
     </cs-list-editor>
-    <div class="cs-section-header">
-        <h3 class="cs-section-label">Action Points</h3>
-    </div>
 </fieldset>

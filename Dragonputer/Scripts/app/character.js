@@ -67,14 +67,25 @@
             race: '',
             class$: '',
             diety: '',
+            alignment: '',
+            size: '',
+            age: '',
+            gender: '',
+            height: '',
+            weight: '',
+            adventuringCompany: '',
             picture: null,
-            background: null,
+            wallpaper: null,
 
             // Status
             hitpoints: {
                 current: 0,
                 temp: 0,
                 max: 0
+            },
+            actionPoints: {
+                current: 0,
+                effects: ''
             },
             surges: {
                 current: 0,
@@ -123,7 +134,15 @@
             ],
 
             // Items & Currency
-            items: []
+            items: [],
+
+            // Notes
+            companions: '',
+            sessionNotes: '',
+            personality: '',
+            appearance: '',
+            background: ''
+
         };
 
         function abilityMod(value) {

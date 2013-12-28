@@ -11,6 +11,14 @@
         </div>
     </div>
     <div class="cs-field-block">
+        <img class="cs-character-picture" onclick="$('#PictureFileInput').trigger('click');" ng-show="c.data.picture" ng-src="{{ c.data.picture }}" />
+        <div class="cs-character-picture no-content" onclick="$('#PictureFileInput').trigger('click');" ng-hide="c.data.picture">
+            <i class="fa fa-lg fa-user"></i>
+            <p>Set Picture</p>
+        </div>
+        <input type="file" class="hidden-file-input" id="PictureFileInput" cs-file-model="c.data.picture" />
+    </div>
+    <div class="cs-field-block">
         <label class="cs-meta-xp-label">XP</label>
         <input class="cs-meta-xp-value" type="tel" ng-model="c.data.experience" />
         <span class="cs-meta-level-label">Level</span>
@@ -28,37 +36,84 @@
         <label class="cs-meta-label">Diety</label>
         <input class="cs-meta-value" type="text" ng-model="c.data.diety" />
     </div>
-
-
     <div class="cs-field-block">
         <label class="cs-meta-label">Paragon Path</label>
         <input class="cs-meta-value" type="text" ng-model="c.data.paragonPath" />
     </div>
-
     <div class="cs-field-block">
         <label class="cs-meta-label">Epic Destiny</label>
         <input class="cs-meta-value" type="text" ng-model="c.data.epicDestiny" />
     </div>
-
     <div class="cs-field-block">
-        <img class="cs-character-picture" onclick="$('#PictureFileInput').trigger('click');" ng-show="c.data.picture" ng-src="{{ c.data.picture }}" />
-        <div class="cs-character-picture no-content" onclick="$('#PictureFileInput').trigger('click');" ng-hide="c.data.picture">
-            <i class="fa fa-lg fa-user"></i>
-            <p>Set Picture</p>
-        </div> 
-        <input type="file" class="hidden-file-input" id="PictureFileInput" cs-file-model="c.data.picture" />
+        <label class="cs-meta-label">Alignment</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.alignment" />
     </div>
     <div class="cs-field-block">
-        <div class="btn-group btn-group-justified" ng-show="c.data.background">
-            <a class="btn btn-default" onclick="$('#BackgroundFileInput').trigger('click');">Change Background</a>
-            <a href="" class="btn btn-default" ng-click="c.data.background = null">Remove Background</a>
-        </div>
-        <div class="btn-group btn-group-justified" ng-hide="c.data.background">
-            <a class="btn btn-default" onclick="$('#BackgroundFileInput').trigger('click');">Set Background</a>    
-        </div>
-        <input type="file" class="hidden-file-input" id="BackgroundFileInput" cs-file-model="c.data.background" />
+        <label class="cs-meta-label">Size</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.size" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-meta-label">Age</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.age" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-meta-label">Gender</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.gender" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-meta-label">Height</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.height" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-meta-label">Weight</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.weight" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-meta-label">Party Name</label>
+        <input class="cs-meta-value" type="text" ng-model="c.data.adventuringCompany" />
     </div>
 
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Race Features</h3>
+    </div>
+    <div class="cs-field-block">
+        <textarea ng-model="c.data.raceFeatures"></textarea>
+    </div>
+
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Class/Destiny Features</h3>
+    </div>
+    <div class="cs-field-block">
+        <textarea ng-model="c.data.classFeatures"></textarea>
+    </div>
+
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Feats</h3>
+    </div>
+    <div class="cs-field-block">
+        <textarea ng-model="c.data.feats"></textarea>
+    </div>
+
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Languages Known</h3>
+    </div>
+    <div class="cs-field-block">
+        <textarea ng-model="c.data.languages"></textarea>
+    </div>
+
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Settings</h3>
+    </div>
+    <div class="cs-field-block">
+        <div class="btn-group btn-group-justified" ng-show="c.data.wallpaper">
+            <a class="btn btn-default" onclick="$('#wallpaperFileInput').trigger('click');">Change Wallpaper</a>
+            <a href="" class="btn btn-default" ng-click="c.data.wallpaper = null">Remove wallpaper</a>
+        </div>
+        <div class="btn-group btn-group-justified" ng-hide="c.data.wallpaper">
+            <a class="btn btn-default" onclick="$('#wallpaperFileInput').trigger('click');">Set Wallpaper</a>    
+        </div>
+        <input type="file" class="hidden-file-input" id="wallpaperFileInput" cs-file-model="c.data.wallpaper" />
+    </div>
     <div class="cs-field-block">
         <button ng-click="delete()" ng-disabled="!canDelete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
     </div>
