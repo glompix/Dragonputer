@@ -67,6 +67,8 @@
             race: '',
             class$: '',
             diety: '',
+            picture: null,
+            background: null,
 
             // Status
             hitpoints: {

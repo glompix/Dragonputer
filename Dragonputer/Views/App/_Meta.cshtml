@@ -41,5 +41,25 @@
     </div>
 
     <div class="cs-field-block">
-        <button ng-click="delete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
+        <img class="cs-character-picture" onclick="$('#PictureFileInput').trigger('click');" ng-show="c.data.picture" ng-src="{{ c.data.picture }}" />
+        <div class="cs-character-picture no-content" onclick="$('#PictureFileInput').trigger('click');" ng-hide="c.data.picture">
+            <i class="fa fa-lg fa-user"></i>
+            <p>Set Picture</p>
+        </div> 
+        <input type="file" class="hidden-file-input" id="PictureFileInput" cs-file-model="c.data.picture" />
+    </div>
+    <div class="cs-field-block">
+        <div class="btn-group btn-group-justified" ng-show="c.data.background">
+            <a class="btn btn-default" onclick="$('#BackgroundFileInput').trigger('click');">Change Background</a>
+            <a href="" class="btn btn-default" ng-click="c.data.background = null">Remove Background</a>
+        </div>
+        <div class="btn-group btn-group-justified" ng-hide="c.data.background">
+            <a class="btn btn-default" onclick="$('#BackgroundFileInput').trigger('click');">Set Background</a>    
+        </div>
+        <input type="file" class="hidden-file-input" id="BackgroundFileInput" cs-file-model="c.data.background" />
+    </div>
+
+    <div class="cs-field-block">
+        <button ng-click="delete()" ng-disabled="!canDelete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
+    </div>
 </fieldset>

@@ -12,6 +12,7 @@
                 $scope.$newCharacterForm.show = true;
             }
 
+            // Save
             $scope.canSave = function () { return $scope.c.name || $scope.c.json() !== characterService.getLocal().json(); };
             $scope.save = function () {
                 console.log('Saving: ', $scope.c);
@@ -22,6 +23,7 @@
                 });
             };
 
+            $scope.canDelete = function () { return true; }
             $scope.delete = function () {
                 characterService.clear();
                 $scope.c = characterService.getLocal();
