@@ -182,6 +182,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Content\angular-slider.less" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="favicon.ico" />
@@ -251,6 +252,7 @@
     <Content Include="Scripts\angular-touch.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
+    <Content Include="Scripts\app\angular-slider.js" />
     <Content Include="Scripts\app\character-service.js" />
     <Content Include="Scripts\app\character-sheet-controller.js" />
     <Content Include="Scripts\app\cs-list-editor.js" />

@@ -73,6 +73,13 @@
         <input class="cs-meta-value" type="text" ng-model="c.data.adventuringCompany" />
     </div>
 
+    <cs-list-editor title="Feats" source="c.data.feats">
+        <li class="cs-list-item" ng-repeat="item in c.data.feats">
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.feats, item)"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
+        </li>
+    </cs-list-editor>
+
     <div class="cs-section-header">
         <h3 class="cs-section-label">Race Features</h3>
     </div>
@@ -85,13 +92,6 @@
     </div>
     <div class="cs-field-block">
         <textarea ng-model="c.data.classFeatures"></textarea>
-    </div>
-
-    <div class="cs-section-header">
-        <h3 class="cs-section-label">Feats</h3>
-    </div>
-    <div class="cs-field-block">
-        <textarea ng-model="c.data.feats"></textarea>
     </div>
 
     <div class="cs-section-header">
@@ -114,6 +114,12 @@
         </div>
         <input type="file" class="hidden-file-input" id="wallpaperFileInput" cs-file-model="c.data.wallpaper" />
     </div>
+
+    <div class="cs-field-block">
+        <span class="cs-block-label">Background Opacity</span>
+        <slider ng-model="c.data.wallpaperOpacity" floor="0" ceiling="1" step=".02" precision="2"></slider>
+    </div>
+
     <div class="cs-field-block">
         <button ng-click="delete()" ng-disabled="!canDelete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
     </div>

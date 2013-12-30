@@ -2,6 +2,9 @@
     <a href="" class="cs-section-control" ng-click="addForm.visible = !addForm.visible;" ng-hide="addForm.visible"><i class="fa fa-plus"></i></a>
     <h3 class="cs-section-label">{{ title }}</h3>
 </div>
+<div class="cs-field-block" ng-show="helpText">
+    <span class="cs-block-label">{{ helpText }}</span>
+</div>
 <ul class="cs-list">
     <li class="cs-list-new-form" ng-show="addForm.visible">
         <form>

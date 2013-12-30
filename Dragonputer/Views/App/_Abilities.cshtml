@@ -1,23 +1,4 @@
 ﻿<fieldset class="cs-section cs-abil-scores">
-    @* INITIATIVE *@
-    <div class="cs-section-header">
-        <h3 class="cs-section-label">Initiative</h3>
-    </div>
-    <div class="cs-header-block">
-        <span class="cs-abil-value-label">score</span>
-        <span class="cs-abil-type-label">&nbsp;</span>
-        <span class="cs-abil-mod-label">dex</span>
-        <span class="cs-abil-mod-hl-label">½ lvl</span>
-        <span class="cs-abil-misc-label">misc</span>
-    </div>
-    <div class="cs-field-block">
-        <span class="cs-abil-value">{{ c.calc.initiative.mod() }}</span>
-        <span class="cs-abil-type">INIT</span>
-        <span class="cs-abil-mod">{{ c.calc.dexterity.mod() }}</span>
-        <span class="cs-abil-mod-hl">{{ c.calc.halfLevel() }}</span>
-        <input class="cs-abil-misc" ng-model="c.data.initiative.misc" type="tel" />
-    </div>
-
     @* ABILITIES *@
     <div class="cs-section-header">
         <h3 class="cs-section-label">Ability Scores</h3>
@@ -124,4 +105,75 @@
         <input class="cs-def-component" type="tel" ng-model="c.data.willpower.misc1" />
         <input class="cs-def-component" type="tel" ng-model="c.data.willpower.misc2" />
     </div>
+
+    @* INITIATIVE *@
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Initiative</h3>
+    </div>
+    <div class="cs-header-block">
+        <span class="cs-abil-value-label">score</span>
+        <span class="cs-abil-type-label">&nbsp;</span>
+        <span class="cs-abil-mod-label">dex</span>
+        <span class="cs-abil-mod-hl-label">½ lvl</span>
+        <span class="cs-abil-misc-label">misc</span>
+    </div>
+    <div class="cs-field-block">
+        <span class="cs-def-score">{{ c.calc.initiative.mod() }}</span>
+        <span class="cs-initiative-label">Initiative</span>
+        <span class="cs-abil-mod">{{ c.calc.dexterity.mod() }}</span>
+        <span class="cs-abil-mod-hl">{{ c.calc.halfLevel() }}</span>
+        <input class="cs-abil-misc" ng-model="c.data.initiative.misc" type="tel" />
+    </div>
+
+    @* MOVEMENT *@
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Movement</h3>
+    </div>
+    <div class="cs-header-block">
+        <span class="cs-move-score-label">score</span>
+        <span class="cs-move-base-label">base</span>
+        <span class="cs-move-armor-label">armor</span>
+        <span class="cs-move-item-label">item</span>
+        <span class="cs-move-misc-label">misc</span>
+    </div>
+    <div class="cs-field-block">
+        <span class="cs-move-score">{{ c.calc.speed.score() }}</span>
+        <span class="cs-move-speed-label">Speed</span>
+        <input class="cs-move-factor" ng-model="c.data.speed.base" />
+        <input class="cs-move-factor" ng-model="c.data.speed.armor" />
+        <input class="cs-move-factor" ng-model="c.data.speed.item" />
+        <input class="cs-move-factor" ng-model="c.data.speed.misc" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-block-label" for="SpecialMovementField">Special Movement</label>
+        <textarea ng-model="c.data.speed.specialMovement" id="SpecialMovementSpeed"></textarea>
+    </div>
+
+    @* SENSES *@
+    <div class="cs-section-header">
+        <h3 class="cs-section-label">Senses</h3>
+    </div>
+    <div class="cs-header-block">
+        <span class="cs-sense-score-label">score</span>
+        <span class="cs-sense-name-label">passive sense</span>
+        <span class="cs-sense-base-label">base</span>
+        <span class="cs-sense-bonus-label">skill bonus</span>
+    </div>
+    <div class="cs-field-block">
+        <span class="cs-sense-score">{{ c.calc.insight.score() }}</span>
+        <span class="cs-sense-name">Insight</span>
+        <span class="cs-sense-base">{{ c.calc.insight.base() }}</span>
+        <input class="cs-sense-skill" ng-model="c.data.insight.skillBonus" />
+    </div>
+    <div class="cs-field-block">
+        <span class="cs-sense-score">{{ c.calc.perception.score() }}</span>
+        <span class="cs-sense-name">Perception</span>
+        <span class="cs-sense-base">{{ c.calc.insight.base() }}</span>
+        <input class="cs-sense-skill" ng-model="c.data.insight.skillBonus" />
+    </div>
+    <div class="cs-field-block">
+        <label class="cs-block-label" for="SpecialMovementField">Special Senses</label>
+        <textarea ng-model="c.data.speed.specialSenses" id="SpecialMovementSpeed"></textarea>
+    </div>
+
 </fieldset>

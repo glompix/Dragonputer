@@ -1,19 +1,24 @@
 ﻿.cs-label-lg {
     font-size: 24px;
-    margin-left: 15px;
+    margin-left: 15px; /* TODO: Remove margins. */
     font-weight: bold;
 }
 
 .cs-label-md {
     font-size: 20px;
-    margin-left: 15px;
     padding-top: 3px;
+}
+
+.cs-label-sm {
+    padding: 8px 0 0 5px;
+    font-size: 14px;
+    font-weight: bold;
+    .text-overflow();
 }
 
 .cs-value-field(@width: 80px) {
     .form-control;
     .text-center;
-    color: #fafafa;
     font-weight: bold;
     font-size: 16px;
     width: @width;

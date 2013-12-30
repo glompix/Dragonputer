@@ -14,6 +14,7 @@
             scope: {
                 title: '@',
                 defaults: '@',
+                helpText: '@',
                 source: '='
             },
             link: function (scope, $element, attrs) {

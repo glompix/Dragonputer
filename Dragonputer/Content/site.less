@@ -1,6 +1,7 @@
 ﻿@import "bootstrap/bootstrap.less";
 @import "cs-mixins.less";
 @import "cs-forms.less";
+@import "angular-slider.less";
 
 .danger {
     .has-error;
@@ -120,7 +121,7 @@ body {
     /* Fit to width on mobile phones. */
     @media (max-width: @screen-xs-min)
     {
-        min-width: 365px;
+        min-width: 360px;
         width: 100%;
     }
 }
@@ -215,9 +216,9 @@ body {
     }
 }
 
-/* Highlight editable inputs for differentiation */
+
 input[type="tel"],input[type="text"] {
-    color: @input-border-focus;
+    
 }
 /* Make text-danger work where needed. */
 input[type="tel"].text-danger,
@@ -286,6 +287,36 @@ input.cs-def-component { .cs-value-field(); .cs-def-component(); }
     text-overflow: clip;
 }
 
+
+.cs-score-label(@width: 80px) {
+    .cs-label-md;
+    font-weight: bold;
+    width: @width;
+    margin-left: 8px;
+}
+.cs-move-score {
+    .cs-def-score;
+}
+.cs-initiative-label, 
+.cs-move-speed-label { .cs-score-label(80px); }
+.cs-move-factor {
+    .cs-value-field(40px);
+    margin-left: 5px;
+}
+
+.cs-sense-name { 
+    .cs-score-label(125px); 
+}
+.cs-sense-score {
+    .cs-def-score;
+}
+.cs-sense-base {
+    .cs-value-fakeinput(40px);
+}
+.cs-sense-skill {
+    .cs-move-factor;
+}
+
 /* ===== POWERS ===== */
 .cs-power-attack {
     padding: 0px 8px;
@@ -313,6 +344,7 @@ input.cs-power-used {
 /* ===== STATUS ===== */
 .cs-status-current {
     .cs-label-md;
+    margin-left: 15px;
 }
 .cs-current-hp-value {
     .cs-value-field(60px);
@@ -383,7 +415,7 @@ input.cs-power-used {
     .cs-label-md;
     width: 40px;
     text-transform: uppercase;
-
+    margin-left: 15px;
 }
 .cs-meta-xp-value {
     .cs-value-field(100px);
@@ -406,7 +438,6 @@ input.cs-power-used {
 }
 .cs-meta-value {
     .form-control;
-    .text-left;
     width: 185px;
     margin: 0 0 5px 10px;
 }
@@ -447,12 +478,9 @@ input.cs-power-used {
     padding: 0 0 0 5px;
     width: 90px;
 }
-.cs-skill-name { 
-    padding: 8px 0 0 5px;
+.cs-skill-name {
+    .cs-label-sm; 
     width: 90px;
-    font-size: 14px;
-    font-weight: bold;
-    .text-overflow();
 }
 .cs-skill-abil-label {  
     width: 15px;

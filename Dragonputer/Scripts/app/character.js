@@ -2,56 +2,7 @@
 
 (function () {
     'use strict';
-
     
-    /* Defense Score value type */
-    function Defense(c, armor, classBonus, feat, enh, misc1, misc2) {
-        this.c = c;
-        this.armor = armor;
-        this.classBonus = classBonus;
-        this.feat = feat;
-        this.enh = enh;
-        this.misc1 = misc1;
-        this.misc2 = misc2;
-    }
-    Defense.prototype.base = function () {
-        return 10 + this.c.halfLevel();
-    };
-    Defense.prototype.score = function () {
-        return 
-    };
-
-    function Initiative(c, misc) {
-        this.c = c;
-        this.misc = misc || 0;
-    }
-    Initiative.prototype.mod = function () {
-        return this.c.dexterity.mod() + this.c.halfLevel() + this.misc;
-    }
-
-    function HitPoints() {
-        this.current = 0;
-        this.temp = 0;
-        this.max = 0;
-        this.surgesPerDay = 0;
-    }
-    HitPoints.prototype.bloodied = function () { return Math.floor(this.max / 2.0); }
-    HitPoints.prototype.surgeValue = function () { return Math.floor(this.max / 4.0); }
-
-    function Power(type, name) {
-        this.type = type;
-        this.name = name;
-        this.flavor = '';
-        this.properties = '';
-        this.range = '';
-        this.target = '';
-        this.attack = {
-            source: '',
-            target: ''
-        };
-        this.description = '';
-    }
-
     /* Character model */
     Character = function (source) {
         // This is *the* data structure for a character sheet. It is data only to make
@@ -76,6 +27,7 @@
             adventuringCompany: '',
             picture: null,
             wallpaper: null,
+            wallpaperOpacity: .9,
 
             // Status
             hitpoints: {
@@ -101,6 +53,9 @@
             wisdom: { value: 0 },
             charisma: { value: 0 },
             initiative: { misc: 0 },
+            speed: { base: 0, armor: 0, item: 0, misc: 0 },
+            insight: { skillBonus: 0 },
+            perception: { skillBonus: 0 },
 
             // Defenses
             armorClass: { armor: 0, classBonus: 0, feat: 0, enh: 0, misc1: 0, misc2: 0 },
@@ -111,6 +66,7 @@
             // Powers
             powers: [],
             rituals: [],
+            feats: [],
 
             // Skills
             skills: [
@@ -202,6 +158,22 @@
             wisdom: { mod: function () { return abilityMod(data.wisdom.value); } },
             charisma: { mod: function () { return abilityMod(data.charisma.value); } },
             initiative: { mod: function () { return calc.dexterity.mod() + calc.halfLevel() + data.initiative.misc; } },
+            speed: {
+                score: function () {
+                    return (parseInt(data.speed.base) || 0)
+                        + (parseInt(data.speed.armor) || 0)
+                        + (parseInt(data.speed.item) || 0)
+                        + (parseInt(data.speed.misc) || 0);
+                }
+            },
+            insight: { 
+                base: function() { return 10; },
+                score: function () { return calc.insight.base() + (parseInt(data.insight.skillBonus) || 0); }
+            },
+            perception: {
+                base: function() { return 10; },
+                score: function () { return calc.perception.base() + (parseInt(data.perception.skillBonus) || 0); }
+            },
 
             armorClass: {
                 base: defenseBase,

@@ -10,6 +10,7 @@ document details a list of features to work on, in order of priority.
 * c - complete
 
 ## Defects 
+* u - check timestamp before downloading character. hit azure download limits on 12/29!
 * u - textareas don't auto-size on load (only change)
 * u - input isn't auto-focused when initiating new list item
 
