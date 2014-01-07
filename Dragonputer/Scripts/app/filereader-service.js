@@ -1,4 +1,4 @@
-﻿http://odetocode.com/blogs/scott/archive/2013/07/03/building-a-filereader-service-for-angularjs-the-service.aspx
+﻿// http://odetocode.com/blogs/scott/archive/2013/07/03/building-a-filereader-service-for-angularjs-the-service.aspx
 (function (module) {
 
     var filereaderService = function ($q, $log) {

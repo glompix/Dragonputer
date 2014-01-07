@@ -3,6 +3,8 @@
 @import "cs-forms.less";
 @import "angular-slider.less";
 
+@checkbox-size: 34px;
+
 .danger {
     .has-error;
 }
@@ -17,7 +19,7 @@ body {
 }
 
 .app-modals {
-    background: fade(@body-bg, .9);
+    background: @body-bg;
     position: fixed;
     top: @navbar-height;
     bottom: 0;
@@ -90,7 +92,7 @@ body {
 
 .character-sheet {
     .container-fixed;
-    background-color: fade(@body-bg, .9);
+    background-color: @body-bg;
     position: fixed;
     width: 100%;
     top: @navbar-height;
@@ -344,55 +346,44 @@ input.cs-power-used {
 /* ===== STATUS ===== */
 .cs-status-current {
     .cs-label-md;
-    margin-left: 15px;
+    margin: 5px 0 0 12px;
+    font-weight: bold;
 }
 .cs-current-hp-value {
     .cs-value-field(60px);
-    margin-left: 15px;
+    height: 42px;
+    padding: 15px;
+    width: 80px;
+    font-size: 24px;
+    margin-left: 40px;
  }
-.cs-current-hp-label, .cs-temp-hp-label {
-    .cs-label-lg;
-    margin-left: 5px;
-    width: 30px;
-}
 .cs-temp-hp-value {
     .cs-value-field(60px);
     margin-left: 15px;
 }
-
-.cs-max-hp-label, .cs-bloodied-hp-label,
-.cs-surges-day-label, .cs-surge-hp-label
-{
-    width: 60px;
-    margin-left: 15px;
-}
-.cs-surges-day-label {
-    margin-left: 168px;
+.cs-temp-hp-label {
+    .cs-label-md;
+    margin-left: 30px;
 }
 
-.cs-max-hp-value, .cs-surges-day-value {
-    .cs-value-field(60px);
-    margin-left: 15px;
-}
+.cs-max-hp-label, .cs-surges-day-label { width: 60px; }
+.cs-bloodied-hp-label, .cs-surge-hp-label { width: 60px; margin-left: 15px; }
 
-.cs-bloodied-hp-value, .cs-surge-hp-value {
-    .cs-value-fakeinput(60px);
-    margin-left: 15px;
-}
+.cs-max-hp-value { .cs-value-field(60px); }
+.cs-bloodied-hp-value{ .cs-value-fakeinput(60px); margin-left: 15px; }
+
+.cs-surges-day-value { .cs-value-field(60px); }
+.cs-surge-hp-value { .cs-value-fakeinput(60px); margin-left: 15px; }
+
 .cs-second-wind-label {
-    .text-center;
-    display: block;
-    padding: 5px;
+    .cs-label-md;
     width: 100%;
-    font-size: 12px;
     cursor: pointer;
-    .cs-second-wind-text {
-        padding: 4px 15px 4px 0;
-        font-weight: normal;
-    }
+    font-weight: normal;
+    margin-left: 30px;
     input {
-        height: 20px;
-        width: 20px;
+        height: @checkbox-size - 14px;
+        width: @checkbox-size;
     }
 }
 
@@ -502,8 +493,8 @@ input.cs-power-used {
     width: 34px;
 }
 .cs-skill-trained { 
-    width: 34px;
-    height: 34px;
+    width: @checkbox-size;
+    height: @checkbox-size;
 }
 .cs-skill-armor-penalty-label { 
     width: 40px;
