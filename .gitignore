@@ -95,8 +95,9 @@ DocProject/Help/html
 # Click-Once directory
 publish/
 
-# Publish Web Output
+# Publish Web Output and Profiles
 *.Publish.xml
+*.pubxml
 
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line

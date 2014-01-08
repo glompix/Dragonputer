@@ -13,6 +13,7 @@ The work is broken into two phases: Prototyping and Generalization.
 This phase is building a prototype. Get it done quick and cheap. Focus on 4e.
 
 ### Defects 
+* background opacity slider doesn't work.
 * check timestamp before downloading character. hit azure download limits on 12/29!
 * textareas don't auto-size on load (only change)
 * input isn't auto-focused when initiating new list item
@@ -27,6 +28,7 @@ This phase is building a prototype. Get it done quick and cheap. Focus on 4e.
 * separate edit/display views for powers
   * hide unused sections
 * sample characters
+* logging and monitoring, for me~
 
 ### Possible Features ##
 * Number field up/down popup
