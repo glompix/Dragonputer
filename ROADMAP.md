@@ -13,14 +13,15 @@ The work is broken into two phases: Prototyping and Generalization.
 This phase is building a prototype. Get it done quick and cheap. Focus on 4e.
 
 ### Defects 
+* Safari viewport is weird.
 * background opacity slider doesn't work.
 * check timestamp before downloading character. hit azure download limits on 12/29!
 * textareas don't auto-size on load (only change)
 * input isn't auto-focused when initiating new list item
 
 ### Definite features
-* Rearrange status section
 * Rearrange meta section
+* select text on focus
 * multiple characters
   * dropdown in app bar (like google play or analytics)
   * cloud sync on/off option
@@ -35,7 +36,7 @@ This phase is building a prototype. Get it done quick and cheap. Focus on 4e.
 * highlight special strings in textareas (i.e. WIS, FORT, 1d8, etc...)
 * lock sheet
 * optional instant-save/sync (signalr)
-* watch facebook friend's character (signalr)
+  * watch facebook friend's character (signalr)
 * import that dnd4e format.
 
 ## Generalization
