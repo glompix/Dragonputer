@@ -184,7 +184,7 @@
   <ItemGroup>
     <None Include="Content\angular-slider.less" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Content\font-awesome.css" />
+    <None Include="Content\font-awesome.less" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
