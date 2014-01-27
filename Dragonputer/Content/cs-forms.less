@@ -78,13 +78,25 @@
         text-decoration: none;
     }
 }
-
 .cs-list-item-remove {
     color: @brand-danger;
+    cursor: pointer;
     &:hover {
-        color: fade(@brand-danger, 0.8);
+        color: fade(@brand-danger, 80%);
     }
 }
+
+/* Remove button inline with item name. */
+.cs-list-item > .cs-list-item-remove {
+    .pull-right;
+    font-size: 18px;
+    color: @brand-danger;
+    margin: 2px 5px 0 0;
+    &:hover {
+        color: fade(@brand-danger, 80%);
+    }
+}
+
 .cs-block-label {
     font-size: 10px;
     text-transform: uppercase;

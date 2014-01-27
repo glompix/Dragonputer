@@ -1,0 +1,57 @@
+﻿/* New character form */
+.new-character {
+    .modal-dialog;
+    .container;
+    width: 100%;
+    max-width: 800px;
+    margin: 35px auto;
+
+    @media (max-width: 800px) {
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    #NewCharacterName {
+        .form-control;
+    }
+
+    .new-character-body {
+        .modal-body;
+        .make-row();
+        margin-left: 0; margin-right: 0;
+        .left-panel {
+            .make-sm-column(6);
+        }
+        .right-panel {
+            .make-sm-column(6);
+        }
+    }
+
+    ul { 
+        margin: 10px 0; 
+        padding: 0 10px; 
+    }
+
+    .prototype-alert {
+        .alert;
+        .alert-warning;
+
+        strong {
+            display: block;
+            margin: 0 0 5px 0;
+        }
+    }
+
+    .new-character-actions {
+        .text-right;
+        margin: 10px 0;
+    }
+
+    &.ng-hide {
+        transition: 0.5s linear all;
+        display: block !important;
+        position: absolute;
+        top: 3000px;
+        .opacity(0);
+    }
+}

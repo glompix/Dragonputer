@@ -1,4 +1,6 @@
-﻿using System.Web;
+﻿using BundleTransformer.Core.Orderers;
+using BundleTransformer.Core.Transformers;
+using System.Web;
 using System.Web.Optimization;
 namespace Dragonputer
 {
@@ -7,7 +9,7 @@ namespace Dragonputer
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            var charJsBundle = new ScriptBundle("~/js/character").Include(
+            bundles.Add(new ScriptBundle("~/js/character").Include(
                 "~/Scripts/underscore.js",
                 "~/Scripts/jquery-2.0.3.js",
                 "~/Scripts/angular.js",
@@ -25,8 +27,20 @@ namespace Dragonputer
                 "~/Scripts/app/cs-list-editor.js",
                 "~/Scripts/app/angular-slider.js",
                 "~/Scripts/app/character-sheet-controller.js"
-            );
-            bundles.Add(charJsBundle);
+            ));
+            bundles.Add(new StyleBundle("~/css/character").Include(
+                "~/Content/font-awesome.css",
+                "~/Content/angular-slider.css"
+            ));
+
+            var cssTransformer = new CssTransformer();
+            var nullOrderer = new NullOrderer();
+            var css = new Bundle("~/css/character")
+                .Include("~/Content/site.less")
+                .Include("~/Content/font-awesome.css");
+            css.Transforms.Add(cssTransformer);
+            css.Orderer = new NullOrderer();
+            bundles.Add(css);
         }
     }
 }
