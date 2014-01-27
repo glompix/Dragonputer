@@ -263,7 +263,6 @@
     <Content Include="Scripts\app\templates\cs-list-editor.html" />
     <Content Include="Scripts\app\dragonputer.js" />
     <Content Include="Scripts\app\facebook-auth-service.js" />
-    <Content Include="Scripts\app\templates\cs-power-display.html" />
     <Content Include="Scripts\app\templates\cs-power-editor.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
