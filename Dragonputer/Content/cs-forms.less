@@ -30,6 +30,32 @@
 .cs-list-item {
     margin: 5px 0;
 }
+
+.cs-list-item-buttons {
+    width: 100%;
+    margin: 2px 5px;
+}
+.cs-list-item-buttons > a {
+    cursor: pointer;
+    &:hover {
+        text-decoration: none;
+    }
+    &:active {
+    }
+    text-align: center;
+    display: block;
+    float: left;
+    width: 50%;
+    padding: 5px;
+    margin: 0;
+    background-color: #181818;
+    border-top: 1px solid #333;
+    border-right: 1px solid #333;
+    border-bottom: 1px solid #333;
+    &:first-child {
+        border-left: 1px solid #333;
+    }
+}
 .cs-list-item-body {
     display: none; /* Initially hidden. */
 }
@@ -54,12 +80,7 @@
 }
 
 .cs-list-item-remove {
-    .text-danger;
-    .pull-right;
-    cursor: pointer;
-    font-size: 18px;
     color: @brand-danger;
-    margin: 2px 5px 0 0;
     &:hover {
         color: fade(@brand-danger, 0.8);
     }

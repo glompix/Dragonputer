@@ -1,14 +1,39 @@
-﻿<!-- Special editor for powers -->
+﻿<!-- Special editor for powers. -->
+<!--   `power - The power being edited. -->
 <div class="cs-list-item-head">
     <input class="cs-power-used" type="checkbox" ng-hide="power.used === undefined" ng-model="power.used" />
     <a href="" class="cs-power-name cs-list-item-name">{{ power.name }}</a>
 </div>
 <div class="cs-list-item-body cs-power-body">
-    <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="Flavor text..."></textarea>
-    <input class="cs-power-properties" ng-model="power.properties" placeholder="Properties..." />
-    <input class="cs-power-range" ng-model="power.range" placeholder="Range..." />
-    <input class="cs-power-target" ng-model="power.target" placeholder="Target..." />
-    <div class="cs-power-attack">Attack: <input ng-model="power.attack.source" placeholder="WIS" /> vs <input ng-model="power.attack.target" placeholder="REF" /></div>
-    <textarea class="cs-power-desc" ng-model="power.description" placeholder="Attack description..."></textarea><!-- TODO: [ABIL] highlighting filter. -->
-    <input class="cs-power-source" ng-model="power.source" placeholder="Source... (PHB ??)" />
+    <div ng-show="power._edit">
+        <div class="cs-list-item-buttons">
+            <a href="" class="cs-list-item-edit" ng-disabled="true" ng-click="power._edit = false"><i class="fa fa-edit"></i> Done</a>
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.powers, power)"><i class="fa fa-trash-o"></i> Remove</a>
+        </div>
+        <label>Flavor Text</label>
+        <textarea class="cs-power-flavor" ng-model="power.flavor" placeholder="..."></textarea>
+        <label>Properties</label>
+        <input class="cs-power-properties" ng-model="power.properties" placeholder="..." />
+        <label>Range</label>
+        <input class="cs-power-range" ng-model="power.range" placeholder="..." />
+        <label>Target</label>
+        <input class="cs-power-target" ng-model="power.target" placeholder="..." />
+        <label>Attack Roll</label>
+        <div class="cs-power-attack"><input ng-model="power.attack.source" placeholder="..." /> vs <input ng-model="power.attack.target" placeholder="..." /></div>
+        <label>Description</label><!-- TODO: [ABIL] highlighting filter. -->
+        <textarea class="cs-power-desc" ng-model="power.description" placeholder="..."></textarea>
+        <label>Source</label>
+        <input class="cs-power-source" ng-model="power.source" placeholder="..." />
+    </div>
+    <div ng-hide="power._edit">
+        <div class="cs-list-item-buttons">
+            <a href="" class="cs-list-item-edit" ng-disabled="true" ng-click="power._edit = true"><i class="fa fa-edit"></i> Edit</a>
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.powers, power)"><i class="fa fa-trash-o"></i> Remove</a>
+        </div>
+        <p ng-show="power.properties">{{ power.properties }}</p>
+        <p ng-show="power.range">{{ power.range }}</p>
+        <p ng-show="power.target">{{ power.target }}</p>
+        <div ng-show="power.attack.source && power.attack.target">{{ power.attack.source }} vs. {{ power.attack.target }}</div>
+        <p ng-show="power.description">{{ power.description }}</p>
+    </div>
 </div>

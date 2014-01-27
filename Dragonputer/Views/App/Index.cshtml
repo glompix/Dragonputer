@@ -79,9 +79,6 @@
                 e.preventDefault();
                 var $body = $(this).closest('.cs-list-item').find('.cs-list-item-body');
                 $body.slideToggle();
-                $body.find('textarea').each(function () {
-                    adjustTextarea($(this));
-                });
             });
 
             // Using position: fixed to keep scrolling native, but have to fix up each section's

@@ -18,7 +18,7 @@ This phase is building a prototype. Get it done quick and cheap. Focus on 4e.
 * check timestamp before downloading character. hit azure download limits on 12/29!
 * textareas don't auto-size on load (only change)
 * input isn't auto-focused when initiating new list item
-
+	
 ### Definite features
 * Rearrange meta section
 * select text on focus
@@ -41,4 +41,5 @@ This phase is building a prototype. Get it done quick and cheap. Focus on 4e.
 
 ## Generalization
 This phase makes it easy to build other types of character sheets supporting
-different games. Write tests, 
+different games. Write tests, build widgets, arrange widgets to define a type
+of character sheet?

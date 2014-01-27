@@ -1,25 +1,21 @@
 ﻿<fieldset class="cs-section cs-powers">
     <cs-list-editor title="At-will powers" defaults='{ "type": "at-will" }' source="c.data.powers">
         <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'at-will' }">
-            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.powers, power)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-power-editor.html")'"></div>
         </li>
     </cs-list-editor>
     <cs-list-editor title="Encounter powers" defaults='{ "type": "encounter", "used": false }' source="c.data.powers">
         <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'encounter' }">
-            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.powers, power)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-power-editor.html")'"></div>
         </li>
     </cs-list-editor>
     <cs-list-editor title="Daily powers" defaults='{ "type": "daily", "used": false }' source="c.data.powers">
         <li class="cs-list-item" ng-repeat="power in c.data.powers | filter: { type: 'daily' }">
-            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.powers, power)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-power-editor.html")'"></div>
         </li>
     </cs-list-editor>
     <cs-list-editor title="Rituals" source="c.data.rituals">
         <li class="cs-list-item" ng-repeat="item in c.data.rituals">
-            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.rituals, item)"><i class="fa fa-trash-o"></i></a>
             <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
         </li>
     </cs-list-editor>
