@@ -13,7 +13,8 @@
             }
 
             // Save
-            $scope.canSave = function () { return $scope.c.name || $scope.c.json() !== characterService.getLocal().json(); };
+            $scope.localCharacterJson = undefined; // cache of local json for 
+            $scope.canSave = function () { return $scope.c.name && $scope.c.json() !== $scope.localCharacterJson; };
             $scope.save = function () {
                 console.log('Saving: ', $scope.c);
                 characterService.saveLocal($scope.c);
@@ -75,6 +76,7 @@
                 var character = characterService.getLocal();
                 if (character && !$scope.c) {
                     $scope.c = character;
+                    $scope.c.localCharacterJson = character.json();
                     $(document).trigger('characterLoaded');
                     console.log('characterLoaded');
                 }
@@ -82,6 +84,7 @@
                     console.log('Compare characters', $scope.c.data.timestamp.getTime(), character.data.timestamp.getTime());
                     if (character.data.timestamp.getTime() > $scope.c.data.timestamp.getTime()) {
                         $scope.c = character;
+                        $scope.c.localCharacterJson = character.json();
                         $(document).trigger('characterLoaded');
                         console.log('characterLoaded');
                         if (!$scope.$$phase) {
