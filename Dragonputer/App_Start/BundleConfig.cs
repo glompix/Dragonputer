@@ -24,6 +24,7 @@ namespace Dragonputer
                 "~/Scripts/app/cs-file-input.js",
                 "~/Scripts/app/cs-list-editor.js",
                 "~/Scripts/app/angular-slider.js",
+                "~/Scripts/app/power-highlight.js",
                 "~/Scripts/app/character-sheet-controller.js"
             );
             bundles.Add(charJsBundle);

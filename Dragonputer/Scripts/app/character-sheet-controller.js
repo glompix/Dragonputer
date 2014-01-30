@@ -3,6 +3,8 @@
 
     angular.module('dragonputer').controller('CharacterSheetController', ['$scope', 'facebookAuthService', 'characterService',
         function ($scope, facebookAuthService, characterService) {
+            $scope.localCharacterJson = undefined; // cache of local json, primarily for canSave.
+
             // Load existing character, or create a new one.
             loadCharacter();
 
@@ -13,13 +15,14 @@
             }
 
             // Save
-            $scope.localCharacterJson = undefined; // cache of local json for 
-            $scope.canSave = function () { return $scope.c.name && $scope.c.json() !== $scope.localCharacterJson; };
+            $scope.canSave = function () { return $scope.c.data.name && $scope.c.json() !== $scope.localCharacterJson; };
             $scope.save = function () {
                 console.log('Saving: ', $scope.c);
                 characterService.saveLocal($scope.c);
                 characterService.push(facebookAuthService.getSignedRequest(), function () {
                     console.log('Pushed character. Updating local.');
+                    loadCharacter();
+                }, function () {
                     loadCharacter();
                 });
             };
@@ -76,17 +79,15 @@
                 var character = characterService.getLocal();
                 if (character && !$scope.c) {
                     $scope.c = character;
-                    $scope.c.localCharacterJson = character.json();
+                    $scope.localCharacterJson = character.json();
                     $(document).trigger('characterLoaded');
-                    console.log('characterLoaded');
                 }
                 else if (character) {
                     console.log('Compare characters', $scope.c.data.timestamp.getTime(), character.data.timestamp.getTime());
                     if (character.data.timestamp.getTime() > $scope.c.data.timestamp.getTime()) {
                         $scope.c = character;
-                        $scope.c.localCharacterJson = character.json();
+                        $scope.localCharacterJson = character.json();
                         $(document).trigger('characterLoaded');
-                        console.log('characterLoaded');
                         if (!$scope.$$phase) {
                             $scope.$apply();
                         }
