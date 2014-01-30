@@ -219,7 +219,7 @@
         this.data = data;
         this.calc = calc;
 
-        this.json = function () { 
+        this.json = function () {
             return JSON.stringify(data); 
         }
 

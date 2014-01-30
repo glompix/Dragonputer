@@ -52,7 +52,7 @@
                     }
                 });
             },
-            push: function (signedRequest, callback) {
+            push: function (signedRequest, success, failure) {
                 if (!signedRequest)
                     return;
 
@@ -68,11 +68,15 @@
                         character.data.id = parseInt(id);
                         character.data.timestamp = new Date();
                         saveLocal(character.json());
-                        if (callback) {
-                            callback();
+                        if (success) {
+                            success();
                         }
                     }
-                });
+                }).failure(function () {
+                    if (failure) {
+                        failure();
+                    }
+                });;
             }
         }
     });

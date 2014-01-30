@@ -286,6 +286,7 @@
     <Content Include="Scripts\app\character.js" />
     <Content Include="Scripts\app\cs-background-image.js" />
     <Content Include="Scripts\app\cs-file-input.js" />
+    <Content Include="Scripts\app\power-highlight.js" />
     <Content Include="Scripts\app\templates\cs-basic-editor.html" />
     <Content Include="Scripts\app\templates\cs-list-editor.html" />
     <Content Include="Scripts\app\dragonputer.js" />
