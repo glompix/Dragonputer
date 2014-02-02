@@ -74,11 +74,13 @@
                 adjustTextarea($(this));
             });
 
-            // Collapsable powers
+            // Collapsable lists
             $('.character-sheet').on('click', '.cs-list-item-name', function (e) {
                 e.preventDefault();
-                var $body = $(this).closest('.cs-list-item').find('.cs-list-item-body');
+                var $item = $(this).closest('.cs-list-item');
+                var $body = $item.find('.cs-list-item-body');
                 $body.slideToggle();
+                $item.toggleClass('active');
             });
 
             // Using position: fixed to keep scrolling native, but have to fix up each section's
@@ -122,6 +124,21 @@
             if ($initialSection.attr('data-initial-section')) {
                 $('.character-sheet').scrollLeft($initialSection[0].offsetLeft);
             }
+
+            // Ctrl+S to save
+            $(window).keydown(function (event) {
+                switch (event.which) {
+                    case 83:
+                        if (event.ctrlKey) {
+                            angular.element(document).scope().save();
+                            event.preventDefault();
+                            return false;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            });
         });
     </script>
     @if (enableAnalytics)

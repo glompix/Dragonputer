@@ -29,41 +29,46 @@
 }
 .cs-list-item {
     margin: 5px 0;
+    transition: .25s linear;
+    border: 1px solid transparent;
+    &.active, &:hover {
+        background: @gray-darker;
+        border: 1px solid #111;
+    }
 }
 
 .cs-list-item-buttons {
-    width: 100%;
-    margin: 2px 5px;
+    width: auto;
+    margin: 0 -8px 8px -8px;
     padding: 0;
+    border-top: 1px solid #111;
+    border-bottom: 1px solid #111;
 }
-.cs-list-item-buttons > a {
-    cursor: pointer;
-    &:hover {
-        text-decoration: none;
-    }
-    &:active {
-    }
+.cs-list-item-buttons > * {
+    .cs-pressable();
+    color: @link-color;
     text-align: center;
+    border: none;
     display: block;
     padding: 5px;
     margin: 0;
-    background-color: #181818;
-    border-top: 1px solid #333;
-    border-right: 1px solid #333;
-    border-bottom: 1px solid #333;
-    &:first-child {
-        border-left: 1px solid #333;
+    background-color: @gray-darker;
+    font-weight: bold;
+    &:not(:first-child) {
+        border-left: 1px solid #111;
     }
 }
 .cs-list-item-body {
     display: none; /* Initially hidden. */
+    padding: 0 8px 8px 8px;
 }
 .cs-list-item-body > * {
     display: block;
 }
 .cs-list-item-head {
-    .panel-heading;
-    padding: 0px 8px;
+    padding: 0 5px;
+    transition: .25s linear;
+    .cs-pressable();
 }
 .cs-list-item-name {
     .panel-title;

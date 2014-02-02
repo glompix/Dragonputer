@@ -5,9 +5,9 @@
     <a href="" class="cs-power-name cs-list-item-name">{{ power.name }}</a>
 </div>
 <div class="cs-list-item-body cs-power-body">
-    <div ng-init="power._edit = false;" ng-show="power._edit">
+    <form action="" ng-submit="_edit = false" ng-init="_edit = false;" ng-show="_edit">
         <div class="cs-list-item-buttons container">
-            <a href="" class="cs-list-item-edit col-xs-6" ng-disabled="true" ng-click="power._edit = false"><i class="fa fa-edit"></i> Done</a>
+            <button type="submit" class="cs-list-item-edit col-xs-6">Done</button>
             <a href="" class="cs-list-item-remove col-xs-6" ng-click="removeFrom(c.data.powers, power)"><i class="fa fa-trash-o"></i> Remove</a>
         </div>
         <label>Flavor Text</label>
@@ -24,11 +24,12 @@
         <textarea class="cs-power-desc" ng-model="power.description"></textarea>
         <label>Source</label>
         <input class="cs-power-source" ng-model="power.source" />
-    </div>
-    <div ng-hide="power._edit">
+    </form>
+    <div ng-hide="_edit">
         <div class="cs-list-item-buttons container">
-            <a href="" class="cs-list-item-edit col-xs-12" ng-disabled="true" ng-click="power._edit = true"><i class="fa fa-edit"></i> Edit</a>
+            <a href="" class="cs-list-item-edit col-xs-12" ng-disabled="true" ng-click="_edit = true"><i class="fa fa-edit"></i> Edit</a>
         </div>
+        <p class="cs-power-flavor">{{ power.flavor }}</></p>
         <p ng-show="power.properties">{{ power.properties }}</p>
         <p ng-show="power.range">{{ power.range }}</p>
         <p ng-show="power.target">{{ power.target }}</p>

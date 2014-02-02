@@ -19,6 +19,13 @@
         </div>
     </div>
 
+    <cs-list-editor title="Modifiers" help-text="Status effects, Resistances, saving throw mods..." source="c.data.statusEffects">
+        <li class="cs-list-item" ng-repeat="item in c.data.statusEffects">
+            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.statusEffects, item)"><i class="fa fa-trash-o"></i></a>
+            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
+        </li>
+    </cs-list-editor>
+
     <div class="cs-section-header">
         <h3 class="cs-section-label">Surges</h3>
     </div>
@@ -52,11 +59,4 @@
         <label class="cs-block-label" for="ActionPointEffectsTextBox">Additional effects for spending action points</label>
         <textarea ng-model="c.data.actionPoints.effects" id="ActionPointEffectsTextBox"></textarea>
     </div>
-
-    <cs-list-editor title="Modifiers" help-text="Status effects, Resistances, saving throw mods..." source="c.data.statusEffects">
-        <li class="cs-list-item" ng-repeat="item in c.data.statusEffects">
-            <a href="" class="cs-list-item-remove" ng-click="removeFrom(c.data.statusEffects, item)"><i class="fa fa-trash-o"></i></a>
-            <div ng-include="'@Url.Content("~/Scripts/app/templates/cs-basic-editor.html")'"></div>
-        </li>
-    </cs-list-editor>
 </fieldset>

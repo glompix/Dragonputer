@@ -33,6 +33,21 @@
     width: @width;
 }
 
+.cs-pressable() {
+    cursor: pointer;
+    transition: .25s linear;
+    &:hover {
+        background: @gray;
+        text-decoration: none;
+        color: #ccc;
+    }
+    &:active {
+        background: #444;
+        color: #bbb;
+        transition: .1s linear;
+    }
+}
+
 .cs-seamless-input {
     background: transparent;
     color: #ccc;
