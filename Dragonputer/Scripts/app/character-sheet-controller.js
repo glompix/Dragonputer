@@ -1,9 +1,10 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('dragonputer').controller('CharacterSheetController', ['$scope', 'facebookAuthService', 'characterService',
-        function ($scope, facebookAuthService, characterService) {
+    angular.module('dragonputer').controller('CharacterSheetController', ['$scope', '$window', 'facebookAuthService', 'characterService',
+        function ($scope, $window, facebookAuthService, characterService) {
             $scope.localCharacterJson = undefined; // cache of local json, primarily for canSave.
+            $scope.winPrompt = function (text, data) { $window.prompt(text, data); };
 
             // Load existing character, or create a new one.
             loadCharacter();

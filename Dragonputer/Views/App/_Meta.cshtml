@@ -121,7 +121,7 @@
     </div>
 
     <div class="cs-field-block">
-        <button ng-click="document.prompt('Here be JSON! (images are not included)', $scope.c.miniJson())" ng-disabled="!canDelete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
+        <button ng-click="winPrompt('This is your character data, excluding images. Choose \'Import JSON\' when creating a new character and copy this in.', c.miniJson())" ng-disabled="!canDelete()" class="btn btn-default btn-group-justified">Copy {{ c.data.name }}</button>
         <button ng-click="delete()" ng-disabled="!canDelete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
     </div>
 </fieldset>
