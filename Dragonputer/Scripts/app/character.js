@@ -220,7 +220,7 @@
         this.calc = calc;
 
         this.json = function () {
-            return JSON.stringify(data); 
+            return JSON.stringify(data, null, '\t'); 
         }
         this.miniJson = function () {
             var copy = new Character(this.json());

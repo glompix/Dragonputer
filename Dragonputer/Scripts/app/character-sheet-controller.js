@@ -1,10 +1,23 @@
 ﻿(function () {
     'use strict';
 
-    angular.module('dragonputer').controller('CharacterSheetController', ['$scope', '$window', 'facebookAuthService', 'characterService',
-        function ($scope, $window, facebookAuthService, characterService) {
+    angular.module('dragonputer').controller('CharacterSheetController', ['$scope', '$window', 'facebookAuthService', 'characterService', '$http',
+        function ($scope, $window, facebookAuthService, characterService, $http) {
             $scope.localCharacterJson = undefined; // cache of local json, primarily for canSave.
-            $scope.winPrompt = function (text, data) { $window.prompt(text, data); };
+            $scope.export = function () {
+                var payload = {
+                    "description": 'Dragonputer-' + $scope.c.data.name,
+                    "public": true,
+                    "files": {
+                        "character.json": {
+                            "content": $scope.c.json()
+                        }
+                    }
+                };
+                $http.post('https://api.github.com/gists', payload).success(function(data, status) {
+                    $window.open(data.html_url);
+                })
+            }
 
             // Load existing character, or create a new one.
             loadCharacter();
