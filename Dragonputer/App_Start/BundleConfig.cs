@@ -17,6 +17,7 @@ namespace Dragonputer
                 "~/Scripts/modernizr-2.6.2.js",
                 "~/Scripts/bootstrap.min.js",
                 "~/Scripts/jquery.easing.1.3.js",
+                "~/Scripts/fastclick.js",
                 "~/Scripts/app/dragonputer.js",
                 "~/Scripts/app/character.js",
                 "~/Scripts/app/character-service.js",

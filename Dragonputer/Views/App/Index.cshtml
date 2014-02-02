@@ -69,6 +69,8 @@
         }
 
         $(document).ready(function () {
+            FastClick.attach(document.body);
+
             // Auto-size textareas.
             $('.character-sheet').on('input propertychange', 'textarea', function () {
                 adjustTextarea($(this));

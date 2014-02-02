@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>FastClick</id>
+    <version>0.6.9</version>
+    <title>FastClick</title>
+    <authors>Rowan Beentje,  Matthew Caruana Galizia,  FT Labs</authors>
+    <owners>Rowan Beentje,  Matthew Caruana Galizia,  FT Labs</owners>
+    <licenseUrl>https://github.com/ftlabs/fastclick/blob/master/LICENSE.txt</licenseUrl>
+    <projectUrl>https://github.com/ftlabs/fastclick</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>FastClick is a simple, easy-to-use library for eliminating the 300ms delay between a physical tap and the firing of a click event on mobile browsers. The aim is to make your application feel less laggy and more responsive while avoiding any interference with your current logic.</description>
+    <summary>Polyfill to remove click delays on browsers with touch UIs.</summary>
+    <releaseNotes />
+    <copyright>Copyright (C) 2012 The Financial Times Ltd.</copyright>
+    <language />
+    <tags>fastclick javascript</tags>
+  </metadata>
+</package>
