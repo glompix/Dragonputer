@@ -9,12 +9,12 @@
 <html @Html.Raw(enableOffline ? @"manifest=""manifest.appcache""" : "") ng-app="dragonputer" ng-controller="CharacterSheetController">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="height=device-height, user-scalable=no, initial-scale=1.0" />
+    <meta name="viewport" content="height=device-height, initial-scale=1.0" />
     <title>{{ c.data.name }} - dragonputer</title>
 
     @Styles.Render("~/css/character")
 </head>
-<body ng-class="{ 'modal-active': $newCharacterForm.show }" cs-background-image="c.data.wallpaper">
+<body ng-class="{ 'modal-active': $newCharacterForm.show }" ng-style="{ background: url(c.data.wallpaper) }" cs-background-image="c.data.wallpaper">
     <nav class="app-bar" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
@@ -80,9 +80,8 @@
             FastClick.attach(document.body);
 
             // Textarea adjustments
-            $('textarea')
-                .each(function () { adjustTextarea($(this)); })
-                .keydown(function () { adjustTextarea($(this)); });
+            $('textarea').each(function () { adjustTextarea($(this)); })
+            $(document).on('keypress', 'textarea', function () { adjustTextarea($(this)); });
             
             // Collapsable lists
             $('.character-sheet').on('click', '.cs-list-item-name', function (e) {

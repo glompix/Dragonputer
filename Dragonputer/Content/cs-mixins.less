@@ -9,6 +9,13 @@
     padding-top: 3px;
 }
 
+.background-size(@size) {
+    -webkit-background-size: @size;
+    -moz-background-size: @size;
+    -o-background-size: @size;
+    background-size: @size;
+}
+
 .cs-label-sm {
     padding: 8px 0 0 5px;
     font-size: 14px;
@@ -35,16 +42,9 @@
 
 .cs-pressable() {
     cursor: pointer;
-    transition: .25s linear;
     &:hover {
-        background: @gray;
-        text-decoration: none;
-        color: #ccc;
-    }
-    &:active {
-        background: #444;
+        background: @gray-darker;
         color: #bbb;
-        transition: .1s linear;
     }
 }
 

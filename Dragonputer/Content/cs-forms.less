@@ -29,10 +29,12 @@
 }
 .cs-list-item {
     margin: 5px 0;
-    transition: .25s linear;
     border: 1px solid transparent;
-    &.active, &:hover {
+    &.active {
         background: @gray-darker;
+        border: 1px solid #111;
+    }
+    &:not(.active):hover {
         border: 1px solid #111;
     }
 }
@@ -60,7 +62,6 @@
 }
 .cs-list-item-body {
     padding: 0 8px 8px 8px;
-    transition: all .25s linear;
     display: none;
 }
 .cs-list-item.active .cs-list-item-body {
@@ -71,7 +72,6 @@
 }
 .cs-list-item-head {
     padding: 0 5px;
-    transition: .25s linear;
     .cs-pressable();
 }
 .cs-list-item-name {
