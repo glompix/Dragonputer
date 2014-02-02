@@ -59,8 +59,12 @@
     }
 }
 .cs-list-item-body {
-    display: none; /* Initially hidden. */
     padding: 0 8px 8px 8px;
+    transition: all .25s linear;
+    display: none;
+}
+.cs-list-item.active .cs-list-item-body {
+    display: block;
 }
 .cs-list-item-body > * {
     display: block;

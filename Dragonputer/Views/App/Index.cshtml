@@ -78,14 +78,16 @@
 
         $(document).ready(function () {
             FastClick.attach(document.body);
-            $('textarea').each(function () { adjustTextarea($(this)); });
 
+            // Textarea adjustments
+            $('textarea')
+                .each(function () { adjustTextarea($(this)); })
+                .keydown(function () { adjustTextarea($(this)); });
+            
             // Collapsable lists
             $('.character-sheet').on('click', '.cs-list-item-name', function (e) {
                 e.preventDefault();
                 var $item = $(this).closest('.cs-list-item');
-                var $body = $item.find('.cs-list-item-body');
-                $body.slideToggle();
                 $item.toggleClass('active');
             });
 
