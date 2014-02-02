@@ -117,10 +117,12 @@
 
     <div class="cs-field-block">
         <span class="cs-block-label">Background Opacity</span>
-        <slider ng-model="c.data.wallpaperOpacity" floor="0" ceiling="1" step=".02" precision="2"></slider>
+        <input type="number" min="0" step="5" max="100" ng-model="c.data.wallpaperOpacity" class="form-control" />
+        @*<slider ng-model="c.data.wallpaperOpacity" floor="0" ceiling="1" step=".02" precision="2"></slider>*@
     </div>
 
     <div class="cs-field-block">
+        <span class="cs-block-label">Character Actions</span>
         <button ng-click="export()" class="btn btn-default btn-group-justified">Export {{ c.data.name }}</button>
         <button ng-click="delete()" ng-disabled="!canDelete()" class="cs-delete-button">Delete {{ c.data.name }}</button>
     </div>

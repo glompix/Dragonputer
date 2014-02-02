@@ -14,7 +14,7 @@
 
     @Styles.Render("~/css/character")
 </head>
-<body ng-class="{ 'modal-active': $newCharacterForm.show }" ng-style="{ background: url(c.data.wallpaper) }" cs-background-image="c.data.wallpaper">
+<body ng-class="{ 'modal-active': $newCharacterForm.show }" cs-background-image="c.data.wallpaper">
     <nav class="app-bar" role="navigation">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#UserMenu">
@@ -41,7 +41,7 @@
     <div class="app-modals">
         @Html.Partial("_New")
     </div>
-    <div class="character-sheet">
+    <div class="character-sheet" cs-background-opacity="c.data.wallpaperOpacity">
         @Html.Partial("_Meta")
         @Html.Partial("_Status")
         @Html.Partial("_Abilities")
@@ -82,7 +82,7 @@
             // Textarea adjustments
             $('textarea').each(function () { adjustTextarea($(this)); })
             $(document).on('keypress', 'textarea', function () { adjustTextarea($(this)); });
-            
+
             // Collapsable lists
             $('.character-sheet').on('click', '.cs-list-item-name', function (e) {
                 e.preventDefault();
@@ -167,4 +167,5 @@
         </script>
     }
 </body>
+
 </html>
