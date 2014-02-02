@@ -573,6 +573,7 @@
     <Content Include="Content\cs-forms.less" />
     <Content Include="Content\cs-mixins.less" />
     <Content Include="Content\new-character.less" />
+    <Content Include="Content\cs-samples.json" />
     <None Include="Properties\PublishProfiles\dragonputer - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\dragonputer - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\dragonputer.pubxml" />
