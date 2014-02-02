@@ -222,6 +222,12 @@
         this.json = function () {
             return JSON.stringify(data); 
         }
+        this.miniJson = function () {
+            var copy = new Character(this.json());
+            copy.data.picture = undefined;
+            copy.data.wallpaper = undefined;
+            return copy.json();
+        }
 
         this.isBloodied = function () {
             return (parseInt(data.hitpoints.current) || 0) < calc.hitpoints.bloodied();

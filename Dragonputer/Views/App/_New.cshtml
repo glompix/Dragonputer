@@ -30,11 +30,22 @@
                     If you want to try this out, get started by giving your character a name.
                 </p>
                 <form>
-                    <label for="NewCharacterName">Character Name</label>
-                    <input type="text" id="NewCharacterName" ng-model="$newCharacterForm.name" />
+                    <fieldset ng-show="$newCharacterForm.mode === 'name'">
+                        <label for="NewCharacterName">Character Name</label>
+                        <input type="text" id="NewCharacterName" ng-model="$newCharacterForm.name" />
+                    </fieldset>
+                    <fieldset ng-show="$newCharacterForm.mode === 'json'">
+                        <label for="NewCharacterJson">Import JSON</label>
+                        <textarea id="NewCharacterJson" ng-model="$newCharacterForm.json"></textarea>
+                    </fieldset>
                     <div class="new-character-actions">
                         <button type="submit" ng-click="$newCharacterForm.submit()" ng-disabled="!$newCharacterForm.valid()" class="btn btn-primary">Adventure Time!</button>
                     </div>
+                    <p class="text-small">
+                        <a href="" ng-show="$newCharacterForm.mode !== 'json'" ng-click="$newCharacterForm.mode = 'json'">Import from JSON?</a>
+                        <a href="" ng-show="$newCharacterForm.mode !== 'name'" ng-click="$newCharacterForm.mode = 'name'">Start a new character?</a>
+                    </p>
+                    
                 </form>
             </div>
             <div class="clearfix"></div>

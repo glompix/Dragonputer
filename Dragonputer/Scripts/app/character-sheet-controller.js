@@ -62,12 +62,21 @@
                 var form = {
                     show: false,
                     name: '',
+                    mode: 'name',
                     valid: function () {
-                        return $scope.$newCharacterForm.name !== '';
+                        return $scope.$newCharacterForm.name !== '' || $scope.$newCharacterForm
                     },
                     submit: function () {
                         if (form.valid()) {
-                            $scope.c.data.name = form.name;
+                            console.log('submit json', $scope.$newCharacterForm.json);
+                            if ($scope.$newCharacterForm.json) {
+                                var character = new Character($scope.$newCharacterForm.json);
+                                console.log('load json', character);
+                                loadCharacter(character);
+                            }
+                            else {
+                                $scope.c.data.name = form.name;
+                            }
                             form.show = false;
                         }
                     }
@@ -75,21 +84,27 @@
                 return form;
             }
 
-            function loadCharacter() {
-                var character = characterService.getLocal();
-                if (character && !$scope.c) {
+            function loadCharacter(character) {
+                if (character) {
                     $scope.c = character;
-                    $scope.localCharacterJson = character.json();
                     $(document).trigger('characterLoaded');
                 }
-                else if (character) {
-                    console.log('Compare characters', $scope.c.data.timestamp.getTime(), character.data.timestamp.getTime());
-                    if (character.data.timestamp.getTime() > $scope.c.data.timestamp.getTime()) {
+                else {
+                    character = characterService.getLocal();
+                    if (character && !$scope.c) {
                         $scope.c = character;
                         $scope.localCharacterJson = character.json();
                         $(document).trigger('characterLoaded');
-                        if (!$scope.$$phase) {
-                            $scope.$apply();
+                    }
+                    else if (character) {
+                        console.log('Compare characters', $scope.c.data.timestamp.getTime(), character.data.timestamp.getTime());
+                        if (character.data.timestamp.getTime() > $scope.c.data.timestamp.getTime()) {
+                            $scope.c = character;
+                            $scope.localCharacterJson = character.json();
+                            $(document).trigger('characterLoaded');
+                            if (!$scope.$$phase) {
+                                $scope.$apply();
+                            }
                         }
                     }
                 }
