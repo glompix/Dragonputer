@@ -68,13 +68,17 @@
             $textArea.height($textArea.prop('scrollHeight'));
         }
 
+        var mouseDown = 0;
+        document.body.onmousedown = function () {
+            ++mouseDown;
+        }
+        document.body.onmouseup = function () {
+            --mouseDown;
+        }
+
         $(document).ready(function () {
             FastClick.attach(document.body);
-
-            // Auto-size textareas.
-            $('.character-sheet').on('input propertychange', 'textarea', function () {
-                adjustTextarea($(this));
-            });
+            $('textarea').each(function () { adjustTextarea($(this)); });
 
             // Collapsable lists
             $('.character-sheet').on('click', '.cs-list-item-name', function (e) {
@@ -94,6 +98,9 @@
             $('.character-sheet').scroll(function () {
                 clearTimeout($.data(this, 'scrollTimer'));
                 $.data(this, 'scrollTimer', setTimeout(function () {
+                    if (mouseDown)
+                        return;
+
                     var $sheet = $('.character-sheet');
                     var $sections = $('.cs-section');
                     var scrollLeft = $sheet.scrollLeft();
