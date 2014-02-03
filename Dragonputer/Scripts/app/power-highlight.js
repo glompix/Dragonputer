@@ -13,7 +13,7 @@
                 'cha', 'charisma'
             ]),
             defenseName: matchArrayRegex([
-                'ac', 'armor\s+class',
+                'ac', 'armor\\s+class',
                 'fort', 'fortitude',
                 'ref', 'reflex',
                 'will', 'willpower'
@@ -21,16 +21,18 @@
         };
 
         function matchArrayRegex(array) {
-            return new RegExp('\b(' + array.join('|') + ')\b', 'gi');
+            return new RegExp('\\b(' + array.join('|') + ')\\b', 'gi');
         }
 
         return function (input) {
-            var html = input
-                ? input.toString()
-                    .replace(regex.diceRoll, '<code class="dice-roll">$1</code>')
-                    .replace(regex.abilityName, '<code class="ability-name">$1</code>')
-                    .replace(regex.defenseName, '<code class="defense-name">$1</code>')
-                : input;
+            if (!input) return input;
+
+            console.log('abilities', regex.abilityName);
+            console.log('defenses', regex.defenseName);
+            var html = input.toString();
+            html = html.replace(regex.diceRoll, '<code class="dice-roll">$1</code>');
+            html = html.replace(regex.abilityName, '<code class="ability-name">$1</code>')
+            html = html.replace(regex.defenseName, '<code class="defense-name">$1</code>');
             return $sce.trustAsHtml(html);  
         };
     }]);

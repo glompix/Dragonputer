@@ -29,11 +29,8 @@ namespace Dragonputer.Controllers
 " + listFiles("~/Scripts/app/templates") + @"
 
 NETWORK:
-+http://*
-+https://*
-+http://www.google-analytics.com/analytics.js
-+http://connect.facebook.net/en_US/all.js
-+";
+*
+";
              return Content(content, "text/cache-manifest");
          }
 
